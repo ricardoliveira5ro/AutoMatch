@@ -30,13 +30,13 @@ public class Car {
     private String model;
 
     @Column(name = "condition")
-    private String condition;
+    private Condition condition;
 
     @Column(name = "price")
     private Float price;
 
     @Column(name = "style")
-    private String style;
+    private Style style;
 
     @Column(name = "date")
     private Date date;
@@ -45,13 +45,13 @@ public class Car {
     private Integer mileage;
 
     @Column(name = "fuel_type")
-    private String fuelType;
+    private FuelType fuelType;
 
     @Column(name = "gear_box")
     private String gearBox;
 
     @Column(name = "color")
-    private String color;
+    private Color color;
 
     @Column(name = "doors")
     private Integer doors;
