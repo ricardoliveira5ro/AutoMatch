@@ -2,9 +2,7 @@ package com.ricardo.autoMatch.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,8 +13,6 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @Table(name = "users")
 public class User implements UserDetails {
@@ -43,6 +39,16 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user")
     private List<Car> cars;
+
+    public User() {}
+
+    public User(String firstName, String lastName, String password, String contactEmail, String contactPhone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.contactEmail = contactEmail;
+        this.contactPhone = contactPhone;
+    }
 
     @Override
     public String getUsername() {
