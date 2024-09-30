@@ -15,7 +15,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-@Table(name = "car")
+@Table(name = "cars")
 public class Car {
 
     @Id
@@ -30,12 +30,14 @@ public class Car {
     private String model;
 
     @Column(name = "condition")
+    @Enumerated(EnumType.STRING)
     private Condition condition;
 
     @Column(name = "price")
     private Float price;
 
     @Column(name = "style")
+    @Enumerated(EnumType.STRING)
     private Style style;
 
     @Column(name = "date")
@@ -45,12 +47,15 @@ public class Car {
     private Integer mileage;
 
     @Column(name = "fuel_type")
+    @Enumerated(EnumType.STRING)
     private FuelType fuelType;
 
     @Column(name = "gear_box")
-    private String gearBox;
+    @Enumerated(EnumType.STRING)
+    private GearBox gearBox;
 
     @Column(name = "color")
+    @Enumerated(EnumType.STRING)
     private Color color;
 
     @Column(name = "doors")
@@ -61,4 +66,8 @@ public class Car {
 
     @Column(name = "horse_power")
     private Integer horsePower;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
