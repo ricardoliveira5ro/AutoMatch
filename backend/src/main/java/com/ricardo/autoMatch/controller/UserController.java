@@ -3,6 +3,7 @@ package com.ricardo.autoMatch.controller;
 import com.ricardo.autoMatch.dto.LoginRequestDTO;
 import com.ricardo.autoMatch.dto.LoginResponseDTO;
 import com.ricardo.autoMatch.dto.SignupRequestDTO;
+import com.ricardo.autoMatch.dto.SignupResponseDTO;
 import com.ricardo.autoMatch.model.User;
 import com.ricardo.autoMatch.service.JWTService;
 import com.ricardo.autoMatch.service.UserService;
@@ -27,10 +28,15 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<String> register(@RequestBody SignupRequestDTO signupRequestDTO) {
-        userService.signup(signupRequestDTO);
+    public ResponseEntity<SignupResponseDTO> register(@RequestBody SignupRequestDTO signupRequestDTO) {
+        User user = userService.signup(signupRequestDTO);
 
-        return ResponseEntity.ok("Successfully created");
+        SignupResponseDTO userResponse = SignupResponseDTO.builder()
+                                                .id(user.getId())
+                                                .email(user.getContactEmail())
+                                                .build();
+
+        return ResponseEntity.ok(userResponse);
     }
 
     @PostMapping("/login")
@@ -39,6 +45,12 @@ public class UserController {
 
         String token = jwtService.generateToken(user);
 
-        return ResponseEntity.ok(new LoginResponseDTO(user.getUsername(), token, jwtService.getExpirationTime()));
+        LoginResponseDTO response = LoginResponseDTO.builder()
+                                        .username(user.getUsername())
+                                        .token(token)
+                                        .expiresIn(jwtService.getExpirationTime())
+                                        .build();
+
+        return ResponseEntity.ok(response);
     }
 }

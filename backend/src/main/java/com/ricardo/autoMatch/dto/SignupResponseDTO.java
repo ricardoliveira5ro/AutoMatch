@@ -1,10 +1,12 @@
 package com.ricardo.autoMatch.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class LoginRequestDTO {
+@Builder
+public class SignupResponseDTO {
 
+    private int id;
     private String email;
-    private String password;
 }
