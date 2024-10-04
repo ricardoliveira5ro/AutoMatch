@@ -1,0 +1,22 @@
+.background-wrapper {
+    height: 400px;
+    width: 100%;
+}
+
+.background {
+    background: url("../../images/road-banner.jpg") no-repeat center center;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.card-container {
+    width: 100%;
+    max-width: 600px;
+}
+
+.make-select {
+    background-color: #83888f;
+    border: #83888f;
+    max-width: fit-content;
+}
