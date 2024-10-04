@@ -1,10 +1,12 @@
+import './NavBar.css';
+
 export const NavBar = () => {
 
     return (
         <nav className="navbar navbar-dark">
             <div className="container-fluid flex-column flex-md-row justify-content-center justify-content-sm-between mx-sm-5 my-sm-2">
                 <a className="navbar-brand mb-2 mb-md-0">
-                    <img src={require('../../../logos/logo-no-background.png')} width={180} alt="logo"/>
+                    <img src={require('../../../../images/logos/logo-no-background.png')} width={180} alt="logo"/>
                 </a>
                 <div className='d-none d-lg-flex'>
                     <div className="input-group input-group-sm">

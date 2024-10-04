@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import { NavBar } from './layouts/home/components/NavBar';
+import { Home } from './layouts/home/Home';
 
 export const App = () => {
   return (
-    <NavBar/>
+    <Home/>
   );
 }
