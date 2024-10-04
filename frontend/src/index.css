@@ -13,6 +13,7 @@ code {
 }
 
 :root {
+  --color-main-orange: #ff6600;
   --color-background-dark: #101114;
   --color-background-dark-contrast: #1E1F24;
 }
