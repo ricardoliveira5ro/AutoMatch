@@ -45,7 +45,7 @@ export const Banner = () => {
                     </div>
 
                     <div className='row mt-4'>
-                        <div className='col d-none d-md-flexflex-column align-items-center'>
+                        <div className='col d-none d-md-flex flex-column align-items-center'>
                             <div className='container p-0'>
                                 <span className="text-white">Price (Max.)</span>
                             </div>

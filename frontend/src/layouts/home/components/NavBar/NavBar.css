@@ -7,6 +7,10 @@
 }
 
 .btn-primary {
-    background-color: #061761;
+    background-color: var(--color-main-orange);
     border: none;
+}
+
+.btn-primary:hover {
+    background-color: #c25004;
 }
