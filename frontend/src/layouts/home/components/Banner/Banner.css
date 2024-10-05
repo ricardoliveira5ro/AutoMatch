@@ -60,3 +60,12 @@
 .banner-input:focus {
     outline: none;
 }
+
+.banner-advanced {
+    width: fit-content;
+}
+
+.banner-advanced > a {
+    color: white;
+    text-decoration: none;
+}

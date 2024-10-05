@@ -24,7 +24,7 @@ html {
   background-color: var(--color-background-dark);
 }
 
-span, input, button {
+span, input, button, a {
   font-family: "Ubuntu", sans-serif !important; 
   font-weight: 500 !important;
 }
