@@ -1,0 +1,9 @@
+.recommendations-container {
+    background-color: var(--color-background-dark-contrast);
+    margin-top: 10em;
+}
+
+.recommendations-container a {
+    font-size: 18px;
+    text-decoration: none;
+}
