@@ -7,3 +7,26 @@
     font-size: 18px;
     text-decoration: none;
 }
+
+.card-recommendation {
+    width: 24rem;
+    border: none;
+    background-color: #35373d;
+}
+
+.card-recommendation .card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+.card-price {
+    color: var(--color-main-orange);
+    font-size: 1.4rem;
+}
+
+.card-price > span {
+    font-size: 0.8rem;
+}
