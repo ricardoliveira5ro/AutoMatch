@@ -49,7 +49,7 @@ export const Banner = () => {
                             <div className='container p-0'>
                                 <span className="text-white">Price (Max.)</span>
                             </div>
-                            <input type="text" className="banner-input" placeholder="$" aria-label="Horse Power" aria-describedby="horsepower" />
+                            <input type="text" className="banner-input" placeholder="€" aria-label="Horse Power" aria-describedby="horsepower" />
                         </div>
                         <div className='col d-none d-md-flex flex-column align-items-center'>
                             <div className='container p-0'>
