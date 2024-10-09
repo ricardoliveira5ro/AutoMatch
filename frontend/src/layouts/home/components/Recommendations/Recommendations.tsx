@@ -14,14 +14,14 @@ export const Recommendations = () => {
     return (
         <div className='container'>
             <div className='card p-4 recommendations-container'>
-                <div className='d-flex flex-row justify-content-between align-items-center'>
+                <div className='d-flex flex-row justify-content-between align-items-center recommendations-header'>
                     <h2 className='text-white'>Recommendations</h2>
                     <a href="#">
                         <i className="bi bi-info-circle me-2" style={{color: 'var(--color-main-orange)'}}></i>
                         <span className='text-white'>View all</span>
                     </a>
                 </div>
-                <div className='d-flex flex-row justify-content-center mt-4' style={{columnGap: '30px'}}>
+                <div className='d-flex flex-wrap justify-content-center align-items-center mt-4' style={{columnGap: '30px', rowGap: '30px'}}>
                     <div className="card card-recommendation">
                         <img src={require('../../../../images/cars/recommendation-mercedes-E220.jpg')} className="card-img-top img-fluid" alt="Car Image"/>
                             <div className="card-body d-flex flex-column justify-content-between">
