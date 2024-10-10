@@ -34,13 +34,13 @@ export const Banner = () => {
                             <div className='container p-0'>
                                 <span className="text-white">Year</span>
                             </div>
-                            <input type="text" className="banner-input" placeholder="--" aria-label="Year" aria-describedby="year" />
+                            <input type="number" className="banner-input" placeholder="--" aria-label="Year" aria-describedby="year" />
                         </div>
                         <div className='col d-none d-md-flex flex-column align-items-center'>
                             <div className='container p-0'>
                                 <span className="text-white">Mileage</span>
                             </div>
-                            <input type="text" className="banner-input" placeholder="KM" aria-label="Mileage" aria-describedby="mileage" />
+                            <input type="number" className="banner-input" placeholder="KM" aria-label="Mileage" aria-describedby="mileage" />
                         </div>
                     </div>
 
@@ -49,13 +49,13 @@ export const Banner = () => {
                             <div className='container p-0'>
                                 <span className="text-white">Price (Max.)</span>
                             </div>
-                            <input type="text" className="banner-input" placeholder="€" aria-label="Horse Power" aria-describedby="horsepower" />
+                            <input type="number" className="banner-input" placeholder="€" aria-label="Horse Power" aria-describedby="horsepower" />
                         </div>
                         <div className='col d-none d-md-flex flex-column align-items-center'>
                             <div className='container p-0'>
                                 <span className="text-white">Horse Power</span>
                             </div>
-                            <input type="text" className="banner-input" placeholder="HP" aria-label="Horse Power" aria-describedby="horsepower" />
+                            <input type="number" className="banner-input" placeholder="HP" aria-label="Horse Power" aria-describedby="horsepower" />
                         </div>
                         <div className='col d-none d-md-flex flex-column align-items-center'>
                             <div className='container p-0'>

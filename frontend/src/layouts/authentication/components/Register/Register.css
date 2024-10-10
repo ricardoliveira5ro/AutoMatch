@@ -1,0 +1,25 @@
+.register-container {
+    width: 100%;
+    row-gap: 20px;
+}
+
+.register-container > i {
+    color: white;
+    font-size: 100px;
+}
+
+.register-container input {
+    width: 100%;
+    outline: none;
+    padding: 5px 10px;
+    border: white;
+    border-radius: 5px;
+}
+
+.register-container > button {
+    width: 100%;
+}
+
+.back-home {
+    text-decoration: none;
+}

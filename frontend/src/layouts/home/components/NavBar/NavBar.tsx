@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import './NavBar.css';
 
 export const NavBar = () => {
@@ -21,7 +22,7 @@ export const NavBar = () => {
                     <i className="bi bi-star-fill" style={{color: '#83888f'}}></i>
                     <span className='ms-2 text-white'>Favorites</span>
                 </a>
-                    <button type="button" className="btn btn-primary btn-sm px-5">Login</button>
+                    <NavLink to='/login' type="button" className="btn btn-primary btn-sm px-5">Login</NavLink>
                 </div>
             </div>
         </nav>
