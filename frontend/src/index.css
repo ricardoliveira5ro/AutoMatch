@@ -20,7 +20,7 @@ code {
   --color-background-dark-contrast: #1E1F24;
 }
 
-html {
+html, body {
   background-color: var(--color-background-dark);
 }
 

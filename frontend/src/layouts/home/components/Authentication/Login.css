@@ -1,0 +1,25 @@
+.login-container {
+    width: 100%;
+    row-gap: 20px;
+}
+
+.login-container > i {
+    color: white;
+    font-size: 100px;
+}
+
+.login-container > input {
+    width: 100%;
+    outline: none;
+    padding: 5px 10px;
+    border: white;
+    border-radius: 5px;
+}
+
+.login-container > button {
+    width: 100%;
+}
+
+.back-home {
+    text-decoration: none;
+}
