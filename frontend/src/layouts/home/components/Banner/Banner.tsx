@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Banner.css';
 
 export const Banner = () => {
@@ -77,7 +78,7 @@ export const Banner = () => {
                             </a>
                         </div>
                         <div className='col d-flex flex-column justify-content-end align-items-center'>
-                            <button type="button" className="btn btn-sm btn-banner-search text-white">Search</button>
+                            <Link to='/search' type="button" className="btn btn-sm btn-banner-search text-white">Search</Link>
                         </div>
                     </div>
                 </div>
