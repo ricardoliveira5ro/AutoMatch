@@ -31,3 +31,32 @@
     border: none;
     width: 180px;
 }
+
+.advanced-filters-container {
+    background-color: var(--color-background-dark-contrast);
+    border-radius: 10px;
+    padding: 1.5rem;
+    column-gap: 40px;
+    row-gap: 20px;
+}
+
+.car-style-container li {
+    color: white;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background-color: transparent;
+}
+
+.car-style-container img {
+    width: 100px;
+}
+
+.other-filters-container {
+    row-gap: 20px;
+    column-gap: 20px;
+}
+
+.other-filters-container input,  .other-filters-container select{
+    width: 180px;
+}
