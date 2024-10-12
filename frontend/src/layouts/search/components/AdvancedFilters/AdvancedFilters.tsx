@@ -3,7 +3,7 @@ import './AdvancedFilters.css';
 export const AdvancedFilters = () => {
 
     return (
-        <div className='d-flex flex-column justify-content-center align-items-center advanced-filters-container w-100 mt-3'>
+        <div className='d-flex flex-column justify-content-center align-items-center advanced-filters-container w-100'>
             <div className='d-flex flex-column car-style-container'>
                 <ul className="list-group d-flex flex-row flex-wrap justify-content-center align-items-center" style={{ rowGap: '15px', columnGap: '35px' }}>
                     <li className="list-group-item d-flex justify-content-center align-items-end">
