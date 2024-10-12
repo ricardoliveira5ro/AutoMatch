@@ -6,7 +6,7 @@ export const BasicFilters: React.FC<{
 }> = (props) => {
 
     return (
-        <div className='d-flex flex-row flex-wrap justify-content-center align-items-end basic-filters-container w-100 mt-3'>
+        <div className='d-flex flex-row flex-wrap justify-content-center align-items-end basic-filters-container w-100'>
             <div className='d-flex flex-column align-items-center'>
                 <div className='container p-0'>
                     <span className="text-white">Make</span>
