@@ -3,3 +3,11 @@
     height: 180px;
     object-fit: cover;
 }
+
+.car-card-characteristic {
+    column-gap: 10px;
+}
+
+.car-card-characteristic > p {
+    margin: 0;
+}
