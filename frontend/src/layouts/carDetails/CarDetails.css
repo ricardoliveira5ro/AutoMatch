@@ -1,0 +1,8 @@
+.car-key-details-container {
+    background-color: var(--color-background-dark-contrast);
+    border-radius: 5px;
+}
+
+.car-key-details-container p, .car-key-details-container span {
+    color: white;
+}
