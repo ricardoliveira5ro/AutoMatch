@@ -18,11 +18,11 @@ export const CardCard = () => {
                     <img src={require('../../../../images/cars/recommendation-mercedes-E220.jpg')} className="img-fluid rounded-start" alt="Car" />
                 </div>
                 <div className="col-md-9">
-                    <div className="card-body d-flex flex-row justify-content-between align-items-center h-100">
+                    <div className="car-card-body card-body d-flex flex-row justify-content-between align-items-center h-100" style={{rowGap: '20px'}}>
                         <div className='h-100'>
                             <h5 className="card-title text-white">Mercedes-Benz E 220 d AMG Line</h5>
                             <p className="card-text text-white">{formatValueSpaces(1950)} cm3 • 194 hp</p>
-                            <div className='d-flex flex-row flex-wrap' style={{ columnGap: '20px' }}>
+                            <div className='d-flex flex-row flex-wrap' style={{ columnGap: '20px', rowGap: '5px' }}>
                                 <div className='d-flex flex-row align-items-center car-card-characteristic'>
                                     <i className="bi bi-speedometer2" style={{ color: 'white' }}></i>
                                     <p className='text-white'>{formatValueSpaces(189998)} KM</p>

@@ -11,3 +11,9 @@
 .car-card-characteristic > p {
     margin: 0;
 }
+
+@media (max-width: 991px) {
+    .car-card-body {
+        flex-direction: column !important;
+    }
+}
