@@ -1,0 +1,8 @@
+.car-carousel > div {
+    border-radius: 5px;
+}
+
+.car-carousel img {
+    object-fit: cover;
+    height: 55vh;
+}
