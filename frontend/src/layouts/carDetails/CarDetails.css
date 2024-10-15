@@ -1,8 +1,11 @@
-.car-key-details-container {
+.car-key-info-container {
     background-color: var(--color-background-dark-contrast);
+    padding: 20px 10px;
+    column-gap: 40px;
+    row-gap: 40px;
     border-radius: 5px;
 }
 
-.car-key-details-container p, .car-key-details-container span {
-    color: white;
+.car-key-info-container i {
+    font-size: 30px;
 }
