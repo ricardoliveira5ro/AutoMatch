@@ -1,4 +1,5 @@
 import './Recommendations.css';
+import { Link } from 'react-router-dom';
 
 export const Recommendations = () => {
 
@@ -11,6 +12,8 @@ export const Recommendations = () => {
         .replace(/,/g, ' ');
     };
 
+    const carId = 1;
+
     return (
         <div className='container'>
             <div className='card p-4 recommendations-container'>
@@ -22,7 +25,7 @@ export const Recommendations = () => {
                     </a>
                 </div>
                 <div className='d-flex flex-wrap justify-content-center align-items-center mt-4' style={{columnGap: '30px', rowGap: '30px'}}>
-                    <div className="card card-recommendation">
+                    <Link to={`/cars/${carId}`} className="card card-recommendation">
                         <img src={require('../../../../images/cars/recommendation-mercedes-E220.jpg')} className="card-img-top img-fluid" alt="Car Image"/>
                             <div className="card-body d-flex flex-column justify-content-between">
                                 <div>
@@ -31,8 +34,8 @@ export const Recommendations = () => {
                                 </div>
                                 <span className='card-price'>{formatPrice(37500)} <span>EUR</span></span>
                             </div>
-                    </div>
-                    <div className="card card-recommendation">
+                    </Link>
+                    <Link to={`/cars/${carId}`} className="card card-recommendation">
                         <img src={require('../../../../images/cars/recommendation-porsche-taycan-4S.jpg')} className="card-img-top img-fluid" alt="Car Image"/>
                             <div className="card-body d-flex flex-column justify-content-between">
                                 <div>
@@ -41,8 +44,8 @@ export const Recommendations = () => {
                                 </div>
                                 <span className='card-price'>{formatPrice(73950)} <span>EUR</span></span>
                             </div>
-                    </div>
-                    <div className="card card-recommendation">
+                    </Link>
+                    <Link to={`/cars/${carId}`} className="card card-recommendation">
                         <img src={require('../../../../images/cars/recommendation-audi-rs4.jpg')} className="card-img-top img-fluid" alt="Car Image"/>
                             <div className="card-body d-flex flex-column justify-content-between" style={{rowGap: '20px'}}>
                                 <div>
@@ -51,7 +54,7 @@ export const Recommendations = () => {
                                 </div>
                                 <span className='card-price'>{formatPrice(85000)} <span>EUR</span></span>
                             </div>
-                    </div>
+                    </Link>
                 </div>
             </div>
         </div>
