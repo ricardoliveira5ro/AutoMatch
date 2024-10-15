@@ -1,0 +1,5 @@
+.car-description-container {
+    background-color: var(--color-background-dark-contrast);
+    padding: 20px 30px;
+    border-radius: 5px;
+}
