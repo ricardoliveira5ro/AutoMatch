@@ -1,6 +1,7 @@
 .car-key-details-container {
     background-color: var(--color-background-dark-contrast);
     border-radius: 5px;
+    height: 55vh;
 }
 
 .car-key-details-container p, .car-key-details-container span {

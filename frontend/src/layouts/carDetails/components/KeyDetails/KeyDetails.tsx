@@ -6,8 +6,8 @@ export const KeyDetails: React.FC<{
 }> = (props) => {
 
     return (
-        <div className='col-5 ps-4'>
-            <div className='car-key-details-container d-flex flex-column justify-content-between p-3' style={{ height: '55vh' }}>
+        <div className='col-lg-5 col-12 ps-lg-4 pt-lg-0 pt-4'>
+            <div className='car-key-details-container d-flex flex-column justify-content-between p-3'>
                 <div>
                     <span className='fs-5'>Mercedes-Benz E 220 d AMG Line</span>
                     <p className='fs-6'>Class E 220</p>

@@ -1,0 +1,9 @@
+@media (max-width: 992px) {
+    .car-carousel img {
+        height: 45vh;
+    }
+
+    .car-key-details-container {
+        height: max-content;
+    }
+}
