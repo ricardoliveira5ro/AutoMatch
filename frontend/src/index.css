@@ -33,6 +33,11 @@ p {
   font-weight: 300 !important;
 }
 
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
 .back-home {
   text-decoration: none;
 }
