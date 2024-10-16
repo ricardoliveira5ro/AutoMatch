@@ -3,7 +3,7 @@ import './Search.css';
 import { useState } from 'react';
 import { BasicFilters } from './components/BasicFilters/BasicFilters';
 import { AdvancedFilters } from './components/AdvancedFilters/AdvancedFilters';
-import { CardCard } from './components/CarCard/CarCard';
+import { CardCard } from '../utils/components/CarCard/CarCard';
 
 export const Search = () => {
 

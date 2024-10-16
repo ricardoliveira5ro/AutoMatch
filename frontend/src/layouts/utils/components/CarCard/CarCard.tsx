@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './CarCard.css'
 
 export const CardCard = () => {
@@ -11,11 +12,13 @@ export const CardCard = () => {
             .replace(/,/g, ' ');
     };
 
+    const carId = 1;
+
     return (
-        <div className="card w-100" style={{ backgroundColor: 'var(--color-background-dark-contrast)' }}>
+        <Link to={`/cars/${carId}`} className="card w-100" style={{ backgroundColor: 'var(--color-background-dark-contrast)' }}>
             <div className="row g-0">
                 <div className="col-md-3 card-image">
-                    <img src={require('../../../../images/cars/recommendation-mercedes-E220.jpg')} className="img-fluid rounded-start" alt="Car" />
+                    <img src={require('../../../../images/cars/recommendation-mercedes-E220.jpg')} className="img-fluid car-card-img" alt="Car" />
                 </div>
                 <div className="col-md-9">
                     <div className="car-card-body card-body d-flex flex-row justify-content-between align-items-center h-100" style={{rowGap: '20px'}}>
@@ -45,6 +48,6 @@ export const CardCard = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 }
