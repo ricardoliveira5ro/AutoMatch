@@ -3,7 +3,7 @@ import './Carousel.css'
 export const Carousel = () => {
 
     return (
-        <div id="carouselExample" className="car-carousel carousel slide col-7">
+        <div id="carouselExample" className="car-carousel carousel slide col-lg-7 col-12">
             <div className="carousel-inner">
                 <div className="carousel-item active">
                     <img src={require('../../../../images/cars/recommendation-mercedes-E220.jpg')} className="d-block w-100" alt="..." />
