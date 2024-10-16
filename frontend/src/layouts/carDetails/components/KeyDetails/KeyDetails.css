@@ -7,3 +7,8 @@
 .car-key-details-container p, .car-key-details-container span {
     color: white;
 }
+
+.add-to-favorites {
+    cursor: pointer;
+    text-decoration: none;
+}

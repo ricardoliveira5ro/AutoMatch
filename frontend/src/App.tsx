@@ -6,6 +6,7 @@ import { Login } from './layouts/authentication/Login/Login';
 import { Register } from './layouts/authentication/Register/Register';
 import { Search } from './layouts/search/Search';
 import { CarDetails } from './layouts/carDetails/CarDetails';
+import { Favorites } from './layouts/favorites/Favorites';
 
 export const App = () => {
   return (
@@ -16,6 +17,7 @@ export const App = () => {
         <Route path='/register' element={<Register/>}/>
         <Route path='/search' element={<Search/>}/>
         <Route path='/cars/:id' element={<CarDetails/>}/>
+        <Route path='/favorites' element={<Favorites/>}/>
       </Routes>
     </div>
   );
