@@ -1,8 +1,8 @@
-.profile-container i {
+.profile-form-container i {
     font-size: 80px;
 }
 
-.profile-container input {
+.profile-form-container input {
     width: 100%;
     outline: none;
     padding: 5px 10px;
@@ -10,7 +10,7 @@
     border-radius: 5px;
 }
 
-.profile-container input:disabled {
+.profile-form-container input:disabled {
     cursor: not-allowed;
     color: grey;
 }
@@ -36,7 +36,7 @@
 }
 
 @media (max-width: 567px) {
-    .profile-container input, .profile-container button {
+    .profile-form-container input, .profile-form-container button {
         font-size: smaller;
     }
 }
