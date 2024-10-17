@@ -7,6 +7,7 @@ import { Register } from './layouts/authentication/Register/Register';
 import { Search } from './layouts/search/Search';
 import { CarDetails } from './layouts/carDetails/CarDetails';
 import { Favorites } from './layouts/favorites/Favorites';
+import { Profile } from './layouts/profile/Profile';
 
 export const App = () => {
   return (
@@ -18,6 +19,7 @@ export const App = () => {
         <Route path='/search' element={<Search/>}/>
         <Route path='/cars/:id' element={<CarDetails/>}/>
         <Route path='/favorites' element={<Favorites/>}/>
+        <Route path='/profile' element={<Profile/>}/>
       </Routes>
     </div>
   );
