@@ -1,0 +1,14 @@
+.remove-favorite-container {
+    background-color: red;
+    border-radius: 5px;
+}
+
+.car-cards-list {
+    row-gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .car-cards-list {
+        row-gap: 40px;
+    }
+}
