@@ -1,0 +1,42 @@
+.profile-container i {
+    font-size: 80px;
+}
+
+.profile-container input {
+    width: 100%;
+    outline: none;
+    padding: 5px 10px;
+    border: #35373d;
+    border-radius: 5px;
+}
+
+.profile-container input:disabled {
+    cursor: not-allowed;
+    color: grey;
+}
+
+.email-save-container {
+    column-gap: 20px;
+    row-gap: 20px;
+    width: 100%;
+}
+
+.save-profile-btn {
+    min-width: max-content;
+}
+
+@media (max-width: 991px) {
+    .email-save-container {
+        flex-direction: column !important;
+    }
+
+    .save-profile-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 567px) {
+    .profile-container input, .profile-container button {
+        font-size: smaller;
+    }
+}
