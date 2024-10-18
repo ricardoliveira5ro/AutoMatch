@@ -5,7 +5,7 @@ class CarModel {
     condition: string;
     price: number;
     style: string;
-    //date: date;
+    date: string;
     mileage: number;
     fuelType: string;
     gearBox: string;
@@ -15,8 +15,8 @@ class CarModel {
     horsePower: number;
     //user: user;
 
-    constructor (id: number, make: string, model: string, condition: string, price: number, style: string, mileage: number, 
-        fuelType: string, gearBox: string, color: string, doors: number, displacement: number, horsePower: number) 
+    constructor (id: number, make: string, model: string, condition: string, price: number, style: string, date: string, 
+        mileage: number, fuelType: string, gearBox: string, color: string, doors: number, displacement: number, horsePower: number) 
     {
         this.id = id;
         this.make = make;
@@ -24,6 +24,7 @@ class CarModel {
         this.condition = condition;
         this.price = price;
         this.style = style;
+        this.date = date;
         this.mileage = mileage;
         this.fuelType = fuelType;
         this.gearBox = gearBox;
