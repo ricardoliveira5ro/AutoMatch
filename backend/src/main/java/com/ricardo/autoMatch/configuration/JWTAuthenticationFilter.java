@@ -43,9 +43,9 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
             final String authHeader = request.getHeader("Authorization");
 
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-                if (!request.getRequestURI().equals("/api/users/login") && !request.getRequestURI().equals("/api/users/signup")) {
-                    throw new Exception("Authentication token is missing or invalid");
-                }
+                //if (!request.getRequestURI().equals("/api/users/login") && !request.getRequestURI().equals("/api/users/signup")) {
+                //    throw new Exception("Authentication token is missing or invalid");
+                //}
 
                 filterChain.doFilter(request, response);
                 return;
