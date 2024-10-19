@@ -87,7 +87,7 @@ export const Recommendations = () => {
                             <div className="card-body d-flex flex-column justify-content-between">
                                 <div>
                                     <h5 className="card-title text-white">Mercedes-Benz E 220 d AMG Line</h5>
-                                    <p className="card-text text-white">{car.date.split('-')[0]} • {formatPrice(car.mileage)} km • {car.fuelType} • {car.horsePower} hp</p>
+                                    <p className="card-text text-white">{car.date.split('-')[0]} &nbsp;&#8226;&nbsp; {formatPrice(car.mileage)} km &nbsp;&#8226;&nbsp; {car.fuelType} &nbsp;&#8226;&nbsp; {car.horsePower} hp</p>
                                 </div>
                                 <span className='card-price'>{formatPrice(car.price)} <span>EUR</span></span>
                             </div>
