@@ -14,6 +14,8 @@ import java.util.Date;
 public class CarDTO {
 
     private Long id;
+    private String title;
+    private String description;
     private String make;
     private String model;
     private String condition;

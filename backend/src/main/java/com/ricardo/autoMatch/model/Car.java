@@ -23,6 +23,12 @@ public class Car {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "title")
+    private String title;
+
+    @Column(name = "description", length = 2048)
+    private String description;
+
     @Column(name = "make", nullable = false)
     private String make;
 
