@@ -20,22 +20,25 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "contact_email")
+    @Column(name = "contact_email", nullable = false, unique = true)
     private String contactEmail;
 
-    @Column(name = "contact_phone")
+    @Column(name = "contact_phone", nullable = false)
     private String contactPhone;
+
+    @Column(name = "location")
+    private String location;
 
     @OneToMany(mappedBy = "user")
     private List<Car> cars;
