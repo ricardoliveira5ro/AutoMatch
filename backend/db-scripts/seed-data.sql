@@ -1,127 +1,82 @@
--- Inserting 50 Users
-INSERT INTO users (id, first_name, last_name, password, contact_email, contact_phone) VALUES
-(1, 'John', 'Doe', '$2a$10$7A6V5lJFK7OtbvGB4ehmeu3Wzm7VJpbozeOPjk0HcsOjmrM21WmjO', 'john.doe@example.com', '123456789'),
-(2, 'Jane', 'Smith', '$2a$10$KzU7Uu3dRmV2vfdN5nE6VOPl8xOebE4a3tcsmcK/R3V3rMld1JmHC', 'jane.smith@example.com', '987654321'),
-(3, 'Michael', 'Johnson', '$2a$10$hHRG9gkrQYLCGbDvmJpKnOTR7Cs5RV64eqsUJpc2PKlYarRINvTyi', 'michael.johnson@example.com', '1122334455'),
-(4, 'Chris', 'EPICKUPs', '$2a$10$UbLo.NygOkI4n8h.ANPiJuiApnYcEXjDTdRQqiGFoa1bVcNZBjTcm', 'chris.ePICKUPs@example.com', '2233445566'),
-(5, 'Emily', 'Watson', '$2a$10$4rXHDG4no7ynl3Fl.mMoRO3MFdP3IOnQK6/azkhpbRgDlEqSi9HkO', 'emily.watson@example.com', '3344556677'),
-(6, 'Olivia', 'Brown', '$2a$10$11hJ9zD30eVkIbVr1Y3MZOFodFBcyOQ6U3B/Ym/WNdkDKX/Wz3F.q', 'olivia.brown@example.com', '4455667788'),
-(7, 'Daniel', 'White', '$2a$10$yHSnKmmyuHZ9RHVd9fUpUes7oV/O4.VUy7QxFJtaDKXFrHhW2pKNa', 'daniel.white@example.com', '5566778899'),
-(8, 'Sophia', 'Martinez', '$2a$10$yTBbR48XWm8wct2Ihv8uiuPZrG8/y2gXrGH5XYvoVpeP5rKtYa.tO', 'sophia.martinez@example.com', '6677889900'),
-(9, 'James', 'Anderson', '$2a$10$QsVv0C8DkLjCgd0Pf8BFiOH88AvNCrGJmiYYNpKOo2u6/kdGptY8q', 'james.anderson@example.com', '7788990011'),
-(10, 'Lucas', 'Moore', '$2a$10$3Bjf6dp5j/VvcdS4QxWzZeUpDPOXFSs5uFiwzRu8uRAfhpbRJpy7q', 'lucas.moore@example.com', '8899001122'),
-(11, 'Ava', 'Thompson', '$2a$10$Nj/fFh1puCsYnn6pdvFOsuJUNeWEGgke9G/PdpGVPTf3udHnFvsR6', 'ava.thompson@example.com', '9900112233'),
-(12, 'Charlotte', 'Jackson', '$2a$10$7GhXfiLSHYi0YpRPlB/Ttu1K56a93Z9AWuGJXz7spC7MfKvT6AvnW', 'charlotte.jackson@example.com', '1011123344'),
-(13, 'Henry', 'Harris', '$2a$10$Rxp9aEMDCvH43Z.K0ZPceelNmXRBcdTnbvBne.mZRHZBGbhzo2pVC', 'henry.harris@example.com', '1112233445'),
-(14, 'Lily', 'Clark', '$2a$10$W3eRxKOZhrwR0.fzFayOO.m06hhsSCeLKepZrkn1rwMDu6KLeyJxq', 'lily.clark@example.com', '1213344556'),
-(15, 'Amelia', 'Lewis', '$2a$10$cIeiq42zH/R8G8/sr/NlsONNFqEdhV0z19Y5usBY0l/MBFrw6KmgS', 'amelia.lewis@example.com', '1314455667'),
-(16, 'Mia', 'Lee', '$2a$10$uzkUnRUdmgF1kKTXk/eYA.uWj53mcOw8gHtBb5XcAqwa8W8nAymXy', 'mia.lee@example.com', '1415566778'),
-(17, 'Benjamin', 'Walker', '$2a$10$sThso1mDLWjbT7b/5oUlAOtwsjFq9VZhSwkODcV6nyGkjE1eP6D8y', 'benjamin.walker@example.com', '1516677889'),
-(18, 'Harper', 'Hall', '$2a$10$P7w8Jr7wQUciUN8shbbQ9.Wq24hMmve0ivD.CVSTxEu7OtVG9RZ8C', 'harper.hall@example.com', '1617788990'),
-(19, 'Ethan', 'Allen', '$2a$10$1LK2L8hC.kjDJGb5kpF3B.fI9RcKksO7hU8QjvtyD.LmsP56tEPaC', 'ethan.allen@example.com', '1718899001'),
-(20, 'Ella', 'Young', '$2a$10$EgPp/5VkX9HVLD5G14CW6.zHTF/QWQl1PtJAwXuUlVV7oLTdk9px.', 'ella.young@example.com', '1819900112'),
-(21, 'Mason', 'King', '$2a$10$eD67KOQoISATem2Rf43i8uAefY4hO1Zz5RO6r7.vUKnfsokCrOfEe', 'mason.king@example.com', '1920011223'),
-(22, 'Scarlett', 'Wright', '$2a$10$3RkaY8VoT7VgpAQYbbiEcu9f0QHZcCzntEK9XDUZZyDxWE.7iX2qW', 'scarlett.wright@example.com', '2021123344'),
-(23, 'Jack', 'Lopez', '$2a$10$MKXJfXE1FA.Vc.LSI7P.tu6RpM/10ctQp5/FbRcp9hZndhgDWhAuW', 'jack.lopez@example.com', '2122234455'),
-(24, 'Grace', 'Green', '$2a$10$hGoLb/zSgqlopWFEzH9mM.dqxkDCm2tI8LDFbIaoY5sAUm.ADLqoy', 'grace.green@example.com', '2223345566'),
-(25, 'Alexander', 'Scott', '$2a$10$fpdpRfpK9vHF6TaqiCdXL.DCOHkO6t5kbhvxtOPzzYZpKwqOHLdEuW', 'alexander.scott@example.com', '2324456677'),
-(26, 'Isabella', 'Baker', '$2a$10$FGVIEBCY8aTVFup7.TBuS.JTiMw6yN7dxLXLDwb9DiVhZWB5UVxoC', 'isabella.baker@example.com', '2425567788'),
-(27, 'Sebastian', 'Gonzalez', '$2a$10$RtyVZT7X6WOCBMHZ8sFZQucX.oX9zoMnWRA7zVvS8l8GB2YO.x6Zy', 'sebastian.gonzalez@example.com', '2526678899'),
-(28, 'Victoria', 'Nelson', '$2a$10$V0Fdd6.vV2gfp.ZZ9FizGOIHImUkn1uDmiNEd2EQHFMZxhvGDa2pK', 'victoria.nelson@example.com', '2627789900'),
-(29, 'Samuel', 'Carter', '$2a$10$4JHgp9nvEDq1SyqH8XfIS.yvIBeZjgeLC0J3pKqXIaC.mxfokx5Xq', 'samuel.carter@example.com', '2728899001'),
-(30, 'Hannah', 'Mitchell', '$2a$10$ZGxn45xBkVkK7fSgnBozveuc/K8oLRWXELf4XlUsTOF3kOSAWXjiy', 'hannah.mitchell@example.com', '2829900112'),
-(31, 'Jacob', 'Perez', '$2a$10$61XVXOtvs.lQZPu94IK6JufhfW0PGvbTldjR8fPiSHlO.cwQHy86y', 'jacob.perez@example.com', '2930011223'),
-(32, 'Evelyn', 'Roberts', '$2a$10$nMZj57p2nszZBqPpyGHd8elHXPzmXazkIj.DGdNOAQPYyRPw8gQkG', 'evelyn.roberts@example.com', '3031123344'),
-(33, 'Logan', 'Turner', '$2a$10$hwi.NiMGH2QAFuT77FzxueUC50eDOO.wW4sHCp5tkccuD2lNvl54C', 'logan.turner@example.com', '3132234455'),
-(34, 'Chloe', 'Phillips', '$2a$10$wGtDaGrg/D.zlRzyKJljm.Jv50FMbh1vIQVPp8fRb3BZJMPkxHQhC', 'chloe.phillips@example.com', '3233345566'),
-(35, 'David', 'Campbell', '$2a$10$AKKiH/KT/UanE52TlXshQe7k3WV55zLzDA3UJni8yIO1a.VdFTVuW', 'david.campbell@example.com', '3334456677'),
-(36, 'Ella', 'Parker', '$2a$10$5a9XyNpQbmL6dwPUOtBO9urwOTmgqsQWghVx4rUJ9SmE9mFSPzO.i', 'ella.parker@example.com', '3435567788'),
-(37, 'James', 'EPICKUPs', '$2a$10$TtHM0U4ndG9syheGNifpeOdC7Lv06rYxCsLgHp5DF0jjeQWZ4gRLy', 'james.ePICKUPs@example.com', '3536678899'),
-(38, 'Luna', 'Edwards', '$2a$10$L/YpOi5pDfRR40WZ5muTKOtdXNNO38mPQp0iz95Stm8GZjAEohzY.', 'luna.edwards@example.com', '3637789900'),
-(39, 'Joseph', 'Collins', '$2a$10$EwzYkNL0jbRTH9bQlSxo7ezmsTh3gSJeTBPDlUJhehCZ7rsyeqS7y', 'joseph.collins@example.com', '3738899001'),
-(40, 'Zoe', 'Stewart', '$2a$10$tS5dMuEKXcx.kW4CWThcDehuGLsp9IHMzCLD.PCJHFpQnsZgyZ/oa', 'zoe.stewart@example.com', '3839900112'),
-(41, 'Daniel', 'Sanchez', '$2a$10$.VWTRUdzAy8y73iDdDNiH.rCxqaZImUk9.jRjmzjNHCerOORcq1Sm', 'daniel.sanchez@example.com', '3930011223'),
-(42, 'Layla', 'Morris', '$2a$10$0ZZK.4FPLWy1ANw3mmdAu.ZlRMR57RvJHwoUgY4DoCs9HK8clwb4u', 'layla.morris@example.com', '4031123344'),
-(43, 'Matthew', 'Murphy', '$2a$10$/yF2GV6c1/M4BFx2HLlXLud.WO0AiMvVp5bIdSdbQykLMwECLT3S.', 'matthew.murphy@example.com', '4132234455'),
-(44, 'Avery', 'Cook', '$2a$10$3V06zDlQ5rn/J5VAPvHCmOD4EY8dDHdiUpGZLV.4pI4sc12JlJLOe', 'avery.cook@example.com', '4233345566'),
-(45, 'Elijah', 'Kim', '$2a$10$LX9sJmNhNjOd10uGZl8Us./XLuf/jEBMTKh/MkyESlq/rCLAD2VhW', 'elijah.kim@example.com', '4334456677'),
-(46, 'Sofia', 'Rivera', '$2a$10$Gmy0Zpvs3JLlKkgxsPRwA.Q2X/zeb0.YfD/V3mHeeYz.JSH3dIPhK', 'sofia.rivera@example.com', '4435567788'),
-(47, 'Mason', 'Morgan', '$2a$10$fp1yBeAuqQ0yVmApSwfbhOgHqcX9K6JgFgUkoEPaUqwhd8mMJ1JwC', 'mason.morgan@example.com', '4536678899'),
-(48, 'Lily', 'Reed', '$2a$10$TzT2QsJHV/IT7FVE82ZjzOjTHN8oaPEUdnMI80ytJP6.m82kPnSe.', 'lily.reed@example.com', '4637789900'),
-(49, 'William', 'Bailey', '$2a$10$bsC4rfYqgKO6mSyRLRa0huSAlPZybmSBOcQQo8snQv3g7mUZqTfBy', 'william.bailey@example.com', '4738899001'),
-(50, 'Ricardo', 'Martins', '$2a$10$uORFTnPPlT5v0PKwR09yFuqUHHgyItfgMjWB/BHdvEZKH1FVOkBG6', 'ricardo.martins@example.com', '9988776655');
+INSERT INTO users (first_name, last_name, password, contact_email, contact_phone, location) VALUES ('John', 'Doe', 'password123', 'john.doe@example.com', '1234567890', 'New York');
+INSERT INTO users (first_name, last_name, password, contact_email, contact_phone, location) VALUES ('Jane', 'Smith', 'password456', 'jane.smith@example.com', '0987654321', 'Los Angeles');
+INSERT INTO users (first_name, last_name, password, contact_email, contact_phone, location) VALUES ('Alice', 'Johnson', 'password789', 'alice.johnson@example.com', '1122334455', 'Chicago');
+INSERT INTO users (first_name, last_name, password, contact_email, contact_phone, location) VALUES ('Bob', 'Brown', 'password101', 'bob.brown@example.com', '5566778899', 'Houston');
+INSERT INTO users (first_name, last_name, password, contact_email, contact_phone, location) VALUES ('Charlie', 'Wilson', 'password202', 'charlie.wilson@example.com', '6677889900', 'Miami');
+INSERT INTO users (first_name, last_name, password, contact_email, contact_phone, location) VALUES ('Emily', 'Davis', 'password303', 'emily.davis@example.com', '2233445566', NULL);
+INSERT INTO users (first_name, last_name, password, contact_email, contact_phone, location) VALUES ('Frank', 'Miller', 'password404', 'frank.miller@example.com', '3344556677', 'San Francisco');
+INSERT INTO users (first_name, last_name, password, contact_email, contact_phone, location) VALUES ('Grace', 'Taylor', 'password505', 'grace.taylor@example.com', '4455667788', 'Seattle');
+INSERT INTO users (first_name, last_name, password, contact_email, contact_phone, location) VALUES ('Hannah', 'Anderson', 'password606', 'hannah.anderson@example.com', '5566778890', NULL);
+INSERT INTO users (first_name, last_name, password, contact_email, contact_phone, location) VALUES ('Ian', 'Thomas', 'password707', 'ian.thomas@example.com', '6677889901', 'Boston');
+INSERT INTO users (first_name, last_name, password, contact_email, contact_phone, location) VALUES ('Jack', 'Moore', 'password808', 'jack.moore@example.com', '7788990011', 'San Diego');
+INSERT INTO users (first_name, last_name, password, contact_email, contact_phone, location) VALUES ('Katie', 'Jackson', 'password909', 'katie.jackson@example.com', '8899001122', 'Denver');
+INSERT INTO users (first_name, last_name, password, contact_email, contact_phone, location) VALUES ('Luke', 'White', 'password010', 'luke.white@example.com', '9900112233', 'Atlanta');
+INSERT INTO users (first_name, last_name, password, contact_email, contact_phone, location) VALUES ('Mia', 'Harris', 'password111', 'mia.harris@example.com', '1010102020', NULL);
+INSERT INTO users (first_name, last_name, password, contact_email, contact_phone, location) VALUES ('Noah', 'Martin', 'password121', 'noah.martin@example.com', '2121213030', 'Austin');
+INSERT INTO users (first_name, last_name, password, contact_email, contact_phone, location) VALUES ('Olivia', 'Lee', 'password131', 'olivia.lee@example.com', '3232324040', 'Phoenix');
+INSERT INTO users (first_name, last_name, password, contact_email, contact_phone, location) VALUES ('Peter', 'Walker', 'password141', 'peter.walker@example.com', '4343435050', 'Las Vegas');
+INSERT INTO users (first_name, last_name, password, contact_email, contact_phone, location) VALUES ('Quinn', 'Young', 'password151', 'quinn.young@example.com', '5454546060', NULL);
+INSERT INTO users (first_name, last_name, password, contact_email, contact_phone, location) VALUES ('Rachel', 'King', 'password161', 'rachel.king@example.com', '6565657070', 'Philadelphia');
+INSERT INTO users (first_name, last_name, password, contact_email, contact_phone, location) VALUES ('Sam', 'Green', 'password171', 'sam.green@example.com', '7676768080', 'Detroit');
 
--- Inserting 70 Cars
-INSERT INTO cars
-(id, make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
-VALUES
-(1, 'Toyota', 'Corolla', 'NEW', 25000.0, 'HATCHBACK', '2023-01-01', 0, 'GASOLINE', 'MANUAL', 'RED', 4, 1800, 140, 1),
-(2, 'Honda', 'Civic', 'USED', 22000.0, 'HATCHBACK', '2021-05-12', 10000, 'GASOLINE', 'AUTOMATIC', 'BLUE', 4, 2000, 150, 2),
-(3, 'Ford', 'Focus', 'NEW', 23000.0, 'HATCHBACK', '2023-01-10', 0, 'DIESEL', 'MANUAL', 'WHITE', 4, 1600, 130, 3),
-(4, 'BMW', '3 Series', 'USED', 35000.0, 'ESTATE', '2019-11-25', 15000, 'GASOLINE', 'AUTOMATIC', 'BLACK', 4, 2500, 220, 4),
-(5, 'Mercedes-Benz', 'C-Class', 'NEW', 40000.0, 'ESTATE', '2023-01-20', 0, 'DIESEL', 'AUTOMATIC', 'SILVER', 4, 2200, 200, 5),
-(6, 'Audi', 'A4', 'USED', 30000.0, 'ESTATE', '2022-07-14', 20000, 'GASOLINE', 'MANUAL', 'GREY', 4, 2100, 190, 6),
-(7, 'Volkswagen', 'Golf', 'NEW', 27000.0, 'HATCHBACK', '2023-01-30', 0, 'GASOLINE', 'AUTOMATIC', 'BLUE', 4, 1800, 160, 7),
-(8, 'Tesla', 'Model 3', 'USED', 45000.0, 'COUPE', '2022-05-10', 5000, 'ELECTRIC', 'AUTOMATIC', 'WHITE', 4, 0, 300, 8),
-(9, 'Chevrolet', 'Malibu', 'NEW', 24000.0, 'HATCHBACK', '2023-02-05', 0, 'GASOLINE', 'AUTOMATIC', 'GREY', 4, 2400, 220, 9),
-(10, 'Volvo', 'XC90', 'USED', 60000.0, 'SUV', '2020-06-21', 20000, 'DIESEL', 'AUTOMATIC', 'BLUE', 5, 3200, 300, 10),
-(11, 'Jeep', 'Grand Cherokee', 'NEW', 50000.0, 'SUV', '2023-02-15', 0, 'DIESEL', 'AUTOMATIC', 'SILVER', 5, 3000, 290, 11),
-(12, 'Subaru', 'Outback', 'USED', 32000.0, 'ESTATE', '2021-09-05', 5000, 'GASOLINE', 'MANUAL', 'WHITE', 5, 2500, 200, 12),
-(13, 'Nissan', 'Altima', 'NEW', 22000.0, 'HATCHBACK', '2023-02-25', 0, 'GASOLINE', 'AUTOMATIC', 'BLACK', 4, 2400, 180, 13),
-(14, 'Mazda', 'CX-5', 'USED', 25000.0, 'SUV', '2020-12-17', 15000, 'DIESEL', 'AUTOMATIC', 'RED', 5, 2600, 230, 14),
-(15, 'Hyundai', 'Tucson', 'NEW', 28000.0, 'SUV', '2023-03-05', 0, 'HYBRID', 'AUTOMATIC', 'BLUE', 5, 2400, 200, 15),
-(16, 'Kia', 'Sportage', 'USED', 21000.0, 'SUV', '2021-04-10', 20000, 'GASOLINE', 'MANUAL', 'SILVER', 5, 2400, 170, 16),
-(17, 'Dodge', 'Charger', 'NEW', 35000.0, 'COUPE', '2023-03-15', 0, 'GASOLINE', 'AUTOMATIC', 'BLACK', 4, 3500, 300, 17),
-(18, 'Lexus', 'RX', 'USED', 45000.0, 'SUV', '2021-08-22', 25000, 'HYBRID', 'AUTOMATIC', 'WHITE', 5, 3500, 280, 18),
-(19, 'Acura', 'TLX', 'NEW', 37000.0, 'HATCHBACK', '2023-03-25', 0, 'GASOLINE', 'AUTOMATIC', 'RED', 4, 2500, 250, 19),
-(20, 'Cadillac', 'Escalade', 'USED', 60000.0, 'SUV', '2019-10-05', 30000, 'DIESEL', 'AUTOMATIC', 'BLUE', 5, 3800, 400, 20),
-(21, 'Infiniti', 'Q50', 'NEW', 42000.0, 'HATCHBACK', '2023-04-01', 0, 'GASOLINE', 'AUTOMATIC', 'WHITE', 4, 3000, 270, 21),
-(22, 'Porsche', '911', 'USED', 90000.0, 'COUPE', '2021-12-03', 5000, 'GASOLINE', 'AUTOMATIC', 'BLACK', 2, 3800, 500, 22),
-(23, 'Jaguar', 'F-Pace', 'NEW', 55000.0, 'SUV', '2023-04-10', 0, 'DIESEL', 'AUTOMATIC', 'GREY', 5, 3000, 400, 23),
-(24, 'Land Rover', 'Range Rover', 'USED', 85000.0, 'SUV', '2022-07-14', 10000, 'DIESEL', 'AUTOMATIC', 'SILVER', 5, 4200, 450, 24),
-(25, 'Ferrari', '488', 'NEW', 250000.0, 'COUPE', '2023-04-20', 0, 'GASOLINE', 'AUTOMATIC', 'RED', 2, 3900, 600, 25),
-(26, 'Lamborghini', 'Huracan', 'USED', 280000.0, 'COUPE', '2021-09-05', 2000, 'GASOLINE', 'AUTOMATIC', 'GREEN', 2, 5200, 640, 26),
-(27, 'McLaren', '720S', 'NEW', 300000.0, 'COUPE', '2023-04-30', 0, 'GASOLINE', 'AUTOMATIC', 'ORANGE', 2, 4000, 710, 27),
-(28, 'Aston Martin', 'DB11', 'USED', 200000.0, 'COUPE', '2022-03-01', 3000, 'GASOLINE', 'AUTOMATIC', 'BLUE', 2, 5200, 600, 28),
-(29, 'Bentley', 'Continental', 'NEW', 220000.0, 'COUPE', '2023-05-05', 0, 'GASOLINE', 'AUTOMATIC', 'SILVER', 2, 6000, 700, 29),
-(30, 'Rolls-Royce', 'Ghost', 'USED', 350000.0, 'HATCHBACK', '2021-11-09', 5000, 'GASOLINE', 'AUTOMATIC', 'BLACK', 4, 6800, 600, 30),
-(31, 'Toyota', 'Camry', 'NEW', 26000.0, 'SALOON', '2023-05-15', 0, 'GASOLINE', 'AUTOMATIC', 'WHITE', 4, 2500, 200, 31),
-(32, 'Honda', 'Accord', 'USED', 24000.0, 'SALOON', '2021-06-20', 12000, 'GASOLINE', 'AUTOMATIC', 'GREY', 4, 2300, 190, 32),
-(33, 'Ford', 'Fusion', 'NEW', 25000.0, 'SALOON', '2023-06-01', 0, 'GASOLINE', 'MANUAL', 'RED', 4, 2000, 180, 33),
-(34, 'BMW', '5 Series', 'USED', 55000.0, 'SALOON', '2019-10-17', 20000, 'DIESEL', 'AUTOMATIC', 'BLUE', 4, 3000, 250, 34),
-(35, 'Mercedes-Benz', 'E-Class', 'NEW', 60000.0, 'SALOON', '2023-06-10', 0, 'GASOLINE', 'AUTOMATIC', 'SILVER', 4, 3500, 290, 35),
-(36, 'Audi', 'A6', 'USED', 50000.0, 'SALOON', '2022-04-22', 15000, 'GASOLINE', 'MANUAL', 'GREY', 4, 3000, 270, 36),
-(37, 'Volkswagen', 'Passat', 'NEW', 26000.0, 'SALOON', '2023-06-20', 0, 'GASOLINE', 'AUTOMATIC', 'BLUE', 4, 2000, 160, 37),
-(38, 'Tesla', 'Model S', 'USED', 80000.0, 'SALOON', '2022-01-12', 5000, 'ELECTRIC', 'AUTOMATIC', 'WHITE', 4, 0, 350, 38),
-(39, 'Chevrolet', 'Impala', 'NEW', 27000.0, 'SALOON', '2023-06-25', 0, 'GASOLINE', 'AUTOMATIC', 'GREY', 4, 2600, 230, 39),
-(40, 'Hyundai', 'Sonata', 'USED', 23000.0, 'SALOON', '2021-03-18', 10000, 'GASOLINE', 'AUTOMATIC', 'RED', 4, 2200, 180, 40),
-(41, 'Kia', 'Optima', 'NEW', 25000.0, 'SALOON', '2023-07-01', 0, 'GASOLINE', 'MANUAL', 'BLACK', 4, 2400, 190, 41),
-(42, 'Dodge', 'Challenger', 'USED', 32000.0, 'COUPE', '2020-08-14', 15000, 'GASOLINE', 'AUTOMATIC', 'BLUE', 2, 5700, 305, 42),
-(43, 'Nissan', 'Maxima', 'NEW', 33000.0, 'SALOON', '2023-07-10', 0, 'GASOLINE', 'AUTOMATIC', 'WHITE', 4, 3500, 300, 43),
-(44, 'Mazda', 'Mazda3', 'USED', 22000.0, 'HATCHBACK', '2022-09-10', 8000, 'GASOLINE', 'MANUAL', 'GREY', 4, 2000, 150, 44),
-(45, 'Subaru', 'Impreza', 'NEW', 23000.0, 'HATCHBACK', '2023-07-20', 0, 'GASOLINE', 'AUTOMATIC', 'RED', 4, 2000, 155, 45),
-(46, 'Toyota', 'RAV4', 'USED', 30000.0, 'SUV', '2021-04-15', 15000, 'HYBRID', 'AUTOMATIC', 'SILVER', 5, 2500, 200, 46),
-(47, 'Honda', 'CR-V', 'NEW', 32000.0, 'SUV', '2023-07-30', 0, 'GASOLINE', 'AUTOMATIC', 'BLUE', 5, 2500, 210, 47),
-(48, 'Ford', 'Escape', 'USED', 27000.0, 'SUV', '2021-02-20', 20000, 'GASOLINE', 'AUTOMATIC', 'WHITE', 5, 2400, 180, 48),
-(49, 'Chevrolet', 'Equinox', 'NEW', 29000.0, 'SUV', '2023-08-05', 0, 'GASOLINE', 'AUTOMATIC', 'GREY', 5, 2500, 190, 49),
-(50, 'Jeep', 'Cherokee', 'USED', 28000.0, 'SUV', '2021-10-12', 18000, 'DIESEL', 'AUTOMATIC', 'RED', 5, 2500, 200, 50),
-(51, 'Nissan', 'Rogue', 'NEW', 30000.0, 'SUV', '2023-08-15', 0, 'GASOLINE', 'AUTOMATIC', 'SILVER', 5, 2500, 195, 1),
-(52, 'Hyundai', 'Kona', 'USED', 24000.0, 'SUV', '2020-06-01', 25000, 'GASOLINE', 'MANUAL', 'BLUE', 5, 2000, 170, 2),
-(53, 'Kia', 'Seltos', 'NEW', 27000.0, 'SUV', '2023-08-25', 0, 'GASOLINE', 'AUTOMATIC', 'WHITE', 5, 2400, 185, 3),
-(54, 'Volkswagen', 'Tiguan', 'USED', 29000.0, 'SUV', '2021-04-14', 12000, 'DIESEL', 'AUTOMATIC', 'GREY', 5, 2500, 220, 4),
-(55, 'Mazda', 'CX-30', 'NEW', 28000.0, 'SUV', '2023-09-01', 0, 'GASOLINE', 'AUTOMATIC', 'RED', 5, 2500, 200, 5),
-(56, 'Chrysler', 'Pacifica', 'USED', 40000.0, 'PICKUP', '2022-08-17', 10000, 'GASOLINE', 'AUTOMATIC', 'BLACK', 4, 3000, 250, 6),
-(57, 'Toyota', 'Sienna', 'NEW', 35000.0, 'PICKUP', '2023-09-10', 0, 'HYBRID', 'AUTOMATIC', 'WHITE', 4, 2500, 215, 7),
-(58, 'Honda', 'Odyssey', 'USED', 37000.0, 'PICKUP', '2021-05-25', 15000, 'GASOLINE', 'AUTOMATIC', 'BLUE', 4, 3500, 270, 8),
-(59, 'Dodge', 'Caravan', 'NEW', 30000.0, 'PICKUP', '2023-09-15', 0, 'GASOLINE', 'AUTOMATIC', 'SILVER', 4, 3000, 240, 9),
-(60, 'Chrysler', 'Voyager', 'USED', 29000.0, 'PICKUP', '2021-06-10', 12000, 'GASOLINE', 'AUTOMATIC', 'RED', 4, 2500, 200, 10),
-(61, 'Ford', 'Transit', 'NEW', 45000.0, 'PICKUP', '2023-09-20', 0, 'GASOLINE', 'AUTOMATIC', 'BLACK', 4, 3000, 300, 11),
-(62, 'Mercedes-Benz', 'Metris', 'USED', 48000.0, 'PICKUP', '2021-07-01', 8000, 'GASOLINE', 'AUTOMATIC', 'GREY', 4, 2500, 260, 12),
-(63, 'Ram', 'ProMaster', 'NEW', 55000.0, 'PICKUP', '2023-09-25', 0, 'GASOLINE', 'AUTOMATIC', 'WHITE', 4, 3000, 280, 13),
-(64, 'Chevrolet', 'Express', 'USED', 35000.0, 'PICKUP', '2022-04-30', 9000, 'GASOLINE', 'AUTOMATIC', 'BLUE', 4, 3000, 230, 14),
-(65, 'Nissan', 'NV3500', 'NEW', 40000.0, 'PICKUP', '2023-10-01', 0, 'GASOLINE', 'AUTOMATIC', 'SILVER', 4, 3000, 250, 15),
-(66, 'Volkswagen', 'Caddy', 'USED', 38000.0, 'PICKUP', '2021-08-15', 10000, 'DIESEL', 'AUTOMATIC', 'RED', 4, 2500, 220, 16),
-(67, 'Ram', '1500', 'NEW', 30000.0, 'MPV', '2023-10-05', 0, 'GASOLINE', 'AUTOMATIC', 'WHITE', 4, 3500, 300, 17),
-(68, 'Ford', 'F-150', 'USED', 40000.0, 'MPV', '2020-12-01', 12000, 'GASOLINE', 'AUTOMATIC', 'BLUE', 4, 3500, 320, 18),
-(69, 'Chevrolet', 'Silverado', 'NEW', 35000.0, 'MPV', '2023-10-10', 0, 'DIESEL', 'AUTOMATIC', 'SILVER', 4, 4000, 310, 19),
-(70, 'GMC', 'Sierra', 'USED', 42000.0, 'MPV', '2021-06-10', 15000, 'GASOLINE', 'AUTOMATIC', 'GREY', 4, 3500, 300, 20);
+
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Toyota', 'Camry', 'USED', 15000.00, 'SALOON', '2021-06-15', 50000, 'GASOLINE', 'AUTOMATIC', 'BLACK', 4, 2500, 200, 1);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Ford', 'Mustang', 'NEW', 30000.00, 'COUPE', '2022-09-10', 12000, 'GASOLINE', 'MANUAL', 'RED', 2, 5000, 450, 2);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Honda', 'Civic', 'NEW', 22000.00, 'HATCHBACK', '2023-04-10', 1000, 'GASOLINE', 'MANUAL', 'WHITE', 4, 2000, 150, 3);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('BMW', 'X5', 'NEW', 50000.00, 'SUV', '2022-11-20', 5000, 'HYBRID', 'AUTOMATIC', 'SILVER', 4, 3000, 400, 4);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Chevrolet', 'Malibu', 'USED', 18000.00, 'SALOON', '2020-10-01', 60000, 'GASOLINE', 'AUTOMATIC', 'WHITE', 4, 2500, 200, 5);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Audi', 'A4', 'NEW', 35000.00, 'SALOON', '2023-02-15', 2000, 'GASOLINE', 'MANUAL', 'GREY', 4, 2200, 250, 6);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Tesla', 'Model 3', 'NEW', 45000.00, 'SALOON', '2023-07-22', 3000, 'ELECTRIC', 'AUTOMATIC', 'RED', 4, 0, 300, 7);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Toyota', 'Corolla', 'USED', 12000.00, 'SALOON', '2019-05-10', 70000, 'GASOLINE', 'AUTOMATIC', 'BLUE', 4, 1800, 140, 8);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Ford', 'F-150', 'USED', 30000.00, 'PICKUP', '2019-08-01', 80000, 'DIESEL', 'AUTOMATIC', 'BLUE', 4, 3500, 300, 9);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Hyundai', 'Elantra', 'USED', 14000.00, 'SALOON', '2019-05-30', 50000, 'GASOLINE', 'MANUAL', 'RED', 4, 2000, 180, 10);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Nissan', 'Altima', 'USED', 16000.00, 'SALOON', '2020-08-15', 40000, 'GASOLINE', 'AUTOMATIC', 'WHITE', 4, 2400, 190, 11);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Mercedes', 'GLA', 'NEW', 55000.00, 'SUV', '2023-01-12', 1500, 'HYBRID', 'AUTOMATIC', 'BLACK', 4, 3500, 380, 12);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Chevrolet', 'Impala', 'USED', 13000.00, 'SALOON', '2020-09-10', 65000, 'GASOLINE', 'AUTOMATIC', 'SILVER', 4, 2500, 190, 13);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Mazda', 'CX-5', 'USED', 20000.00, 'SUV', '2020-04-05', 45000, 'GASOLINE', 'AUTOMATIC', 'BLACK', 4, 2200, 240, 14);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Kia', 'Sorento', 'NEW', 37000.00, 'SUV', '2023-08-22', 3000, 'HYBRID', 'AUTOMATIC', 'SILVER', 4, 3000, 350, 15);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Ford', 'Edge', 'USED', 19000.00, 'SUV', '2018-11-23', 90000, 'DIESEL', 'AUTOMATIC', 'BLUE', 4, 3200, 260, 16);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Hyundai', 'Santa Fe', 'USED', 18000.00, 'SUV', '2019-06-30', 60000, 'GASOLINE', 'MANUAL', 'GREY', 4, 2200, 190, 17);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Volkswagen', 'Golf', 'NEW', 25000.00, 'HATCHBACK', '2023-05-20', 3000, 'GASOLINE', 'MANUAL', 'WHITE', 4, 1600, 130, 18);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Honda', 'Accord', 'USED', 17000.00, 'SALOON', '2021-10-25', 55000, 'GASOLINE', 'AUTOMATIC', 'BLACK', 4, 2400, 220, 19);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Jeep', 'Wrangler', 'NEW', 48000.00, 'SUV', '2023-07-15', 2000, 'DIESEL', 'MANUAL', 'RED', 4, 4000, 370, 20);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Dodge', 'Charger', 'USED', 24000.00, 'SALOON', '2020-11-10', 70000, 'GASOLINE', 'AUTOMATIC', 'BLUE', 4, 3500, 400, 1);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Nissan', 'Sentra', 'NEW', 21000.00, 'SALOON', '2023-09-02', 1000, 'GASOLINE', 'MANUAL', 'SILVER', 4, 1800, 160, 2);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Toyota', 'Highlander', 'NEW', 60000.00, 'SUV', '2023-06-15', 4000, 'HYBRID', 'AUTOMATIC', 'WHITE', 4, 3600, 400, 3);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Honda', 'Pilot', 'USED', 22000.00, 'SUV', '2021-02-10', 55000, 'GASOLINE', 'AUTOMATIC', 'BLACK', 4, 3500, 280, 4);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Chevrolet', 'Tahoe', 'NEW', 67000.00, 'SUV', '2023-08-30', 1000, 'DIESEL', 'AUTOMATIC', 'BLUE', 4, 4000, 420, 5);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('BMW', '3 Series', 'USED', 27000.00, 'SALOON', '2020-07-01', 60000, 'GASOLINE', 'MANUAL', 'SILVER', 4, 2000, 220, 6);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Mazda', 'MX-5', 'NEW', 32000.00, 'COUPE', '2023-03-12', 2000, 'GASOLINE', 'MANUAL', 'RED', 2, 1800, 200, 7);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Porsche', 'Cayenne', 'NEW', 80000.00, 'SUV', '2023-10-05', 1000, 'HYBRID', 'AUTOMATIC', 'WHITE', 4, 4000, 450, 8);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Subaru', 'Outback', 'USED', 25000.00, 'ESTATE', '2021-09-15', 40000, 'GASOLINE', 'AUTOMATIC', 'GREEN', 4, 2400, 180, 9);
+INSERT INTO cars (make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
+VALUES ('Volvo', 'XC90', 'NEW', 75000.00, 'SUV', '2023-11-10', 2000, 'HYBRID', 'AUTOMATIC', 'BLACK', 4, 3600, 320, 10);

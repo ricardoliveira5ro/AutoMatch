@@ -1,10 +1,10 @@
 package com.ricardo.autoMatch.service;
 
 import com.ricardo.autoMatch.dto.CarDTO;
+import com.ricardo.autoMatch.dto.UserDTO;
 import com.ricardo.autoMatch.model.Car;
 import com.ricardo.autoMatch.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -44,7 +44,14 @@ public class CarService {
                 car.getDoors(),
                 car.getDisplacement(),
                 car.getHorsePower(),
-                car.getUser().getId()
+                UserDTO.builder()
+                    .id(car.getUser().getId())
+                    .firstName(car.getUser().getFirstName())
+                    .lastName(car.getUser().getLastName())
+                    .contactEmail(car.getUser().getContactEmail())
+                    .contactPhone(car.getUser().getContactPhone())
+                    .location(car.getUser().getLocation())
+                    .build()
         );
     }
 }

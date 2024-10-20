@@ -1,3 +1,5 @@
+import UserModel from "./UserModel";
+
 class CarModel {
     id: number;
     make: string;
@@ -13,10 +15,10 @@ class CarModel {
     doors: number;
     displacement: number;
     horsePower: number;
-    //user: user;
+    user: UserModel;
 
-    constructor (id: number, make: string, model: string, condition: string, price: number, style: string, date: string, 
-        mileage: number, fuelType: string, gearBox: string, color: string, doors: number, displacement: number, horsePower: number) 
+    constructor (id: number, make: string, model: string, condition: string, price: number, style: string, date: string, mileage: number, 
+        fuelType: string, gearBox: string, color: string, doors: number, displacement: number, horsePower: number, user: UserModel) 
     {
         this.id = id;
         this.make = make;
@@ -32,6 +34,7 @@ class CarModel {
         this.doors = doors;
         this.displacement = displacement;
         this.horsePower = horsePower;
+        this.user = user;
     }
 }
 

@@ -48,7 +48,15 @@ export const Recommendations = () => {
                     color: responseData[key].color,
                     doors: responseData[key].doors,
                     displacement: responseData[key].displacement,
-                    horsePower: responseData[key].horsePower
+                    horsePower: responseData[key].horsePower,
+                    user: {
+                        id: responseData[key].user.id,
+                        firstName: responseData[key].user.firstName,
+                        lastName: responseData[key].user.lastName,
+                        contactEmail: responseData[key].user.contactEmail,
+                        contactPhone: responseData[key].user.contactPhone,
+                        location: responseData[key].user.location
+                    }
                 });
             }
 
