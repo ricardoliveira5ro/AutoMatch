@@ -2,6 +2,8 @@ import UserModel from "./UserModel";
 
 class CarModel {
     id: number;
+    title: string;
+    description: string;
     make: string;
     model: string;
     condition: string;
@@ -17,10 +19,13 @@ class CarModel {
     horsePower: number;
     user: UserModel;
 
-    constructor (id: number, make: string, model: string, condition: string, price: number, style: string, date: string, mileage: number, 
-        fuelType: string, gearBox: string, color: string, doors: number, displacement: number, horsePower: number, user: UserModel) 
+    constructor (id: number, title: string, description: string, make: string, model: string, condition: string, 
+        price: number, style: string, date: string, mileage: number, fuelType: string, gearBox: string, color: string, 
+        doors: number, displacement: number, horsePower: number, user: UserModel) 
     {
         this.id = id;
+        this.title = title;
+        this.description = description;
         this.make = make;
         this.model = model;
         this.condition = condition;

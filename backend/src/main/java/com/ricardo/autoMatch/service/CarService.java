@@ -31,6 +31,8 @@ public class CarService {
     private CarDTO convertToCarDTO(Car car) {
         return new CarDTO(
                 car.getId(),
+                car.getTitle(),
+                car.getDescription(),
                 car.getMake(),
                 car.getModel(),
                 car.getCondition().getValue(),

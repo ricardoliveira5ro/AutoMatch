@@ -36,6 +36,8 @@ export const Recommendations = () => {
             for (const key in responseData) {
                 loadedCars.push({
                     id: responseData[key].id,
+                    title: responseData[key].title,
+                    description: responseData[key].description,
                     make: responseData[key].make,
                     model: responseData[key].model,
                     condition: responseData[key].condition,
@@ -94,7 +96,7 @@ export const Recommendations = () => {
                             <img src={require('../../../../images/cars/recommendation-mercedes-E220.jpg')} className="card-img-top img-fluid" alt="Car Image" />
                             <div className="card-body d-flex flex-column justify-content-between">
                                 <div>
-                                    <h5 className="card-title text-white">Mercedes-Benz E 220 d AMG Line</h5>
+                                    <h5 className="card-title text-white">{car.title}</h5>
                                     <p className="card-text text-white">{car.date.split('-')[0]} &nbsp;&#8226;&nbsp; {formatPrice(car.mileage)} km &nbsp;&#8226;&nbsp; {car.fuelType} &nbsp;&#8226;&nbsp; {car.horsePower} hp</p>
                                 </div>
                                 <span className='card-price'>{formatPrice(car.price)} <span>EUR</span></span>
