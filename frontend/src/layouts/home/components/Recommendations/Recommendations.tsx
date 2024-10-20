@@ -3,6 +3,7 @@ import './Recommendations.css';
 import { Link } from 'react-router-dom';
 import CarModel from '../../../../models/CarModel';
 import { SpinnerLoading } from '../../../utils/components/SpinnerLoading/SpinnerLoading';
+import { RecommendationCar } from './components/RecommendationCar/RecommendationCar';
 
 export const Recommendations = () => {
 
@@ -72,38 +73,25 @@ export const Recommendations = () => {
         })
     }, []);
 
-    if (isLoading) {
-        return (
-            <SpinnerLoading />
-        )
-    }
-
-    if (httpError) {
-        return (
-            <div className='container m-5'>
-                <p>{httpError}</p>
-            </div>
-        )
-    }
-
     return (
         <div className='container'>
             <div className='card p-4 recommendations-container'>
                 <h2 className='text-white text-center'>Recommendations</h2>
-                <div className='d-flex flex-wrap justify-content-center align-items-center mt-4' style={{ columnGap: '30px', rowGap: '30px' }}>
-                    {cars.map(car => (
-                        <Link key={car.id} to={`/cars/${car.id}`} className="card card-recommendation">
-                            <img src={require('../../../../images/cars/recommendation-mercedes-E220.jpg')} className="card-img-top img-fluid" alt="Car Image" />
-                            <div className="card-body d-flex flex-column justify-content-between">
-                                <div>
-                                    <h5 className="card-title text-white">{car.title}</h5>
-                                    <p className="card-text text-white">{car.date.split('-')[0]} &nbsp;&#8226;&nbsp; {formatPrice(car.mileage)} km &nbsp;&#8226;&nbsp; {car.fuelType} &nbsp;&#8226;&nbsp; {car.horsePower} hp</p>
-                                </div>
-                                <span className='card-price'>{formatPrice(car.price)} <span>EUR</span></span>
-                            </div>
-                        </Link>
-                    ))}
-                </div>
+                {httpError ? (
+                    <p className='text-white'>{httpError}</p>
+                ) : (
+                    <div className='d-flex flex-wrap justify-content-center align-items-center mt-4' style={{ columnGap: '30px', rowGap: '30px' }}>
+                        {isLoading ? (
+                            <SpinnerLoading />
+                        ) : (
+                            <>
+                                {cars.map(car => (
+                                    <RecommendationCar car={car} formatValueSpace={formatPrice} key={car.id} />
+                                ))}
+                            </>
+                        )}
+                    </div>
+                )}
             </div>
         </div>
     );
