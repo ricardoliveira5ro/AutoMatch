@@ -27,7 +27,7 @@ VALUES ('Ford Mustang 5.0 Ti-VCT GT', '', 'Ford', 'Mustang', 'NEW', 30000.00, 'C
 INSERT INTO cars (title, description, make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
 VALUES ('Honda Civic 2.0 i-VTEC Type-R GT', '', 'Honda', 'Civic', 'NEW', 22000.00, 'HATCHBACK', '2023-04-10', 1000, 'GASOLINE', 'MANUAL', 'WHITE', 4, 2000, 150, 3);
 INSERT INTO cars (title, description, make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
-VALUES ('BMW X5 M Standard', '', 'BMW', 'X', 'NEW', 50000.00, 'SUV', '2022-11-20', 5000, 'HYBRID', 'AUTOMATIC', 'SILVER', 4, 3000, 400, 4);
+VALUES ('BMW X5 M Standard', '', 'BMW', 'X Series', 'NEW', 50000.00, 'SUV', '2022-11-20', 5000, 'HYBRID', 'AUTOMATIC', 'SILVER', 4, 3000, 400, 4);
 INSERT INTO cars (title, description, make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
 VALUES ('Chevrolet Malibu 2.4 LTZ', '', 'Chevrolet', 'Malibu', 'USED', 18000.00, 'SALOON', '2020-10-01', 60000, 'GASOLINE', 'AUTOMATIC', 'WHITE', 4, 2500, 200, 5);
 INSERT INTO cars (title, description, make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
