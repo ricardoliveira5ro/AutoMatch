@@ -62,7 +62,8 @@ export const CarDetails = () => {
                     contactEmail: responseData.user.contactEmail,
                     contactPhone: responseData.user.contactPhone,
                     location: responseData.user.location
-                }
+                },
+                imgCover: responseData.imgCover
             }
 
             setCar(loadedCar);
@@ -97,7 +98,7 @@ export const CarDetails = () => {
             ) : (
                 <>
                     <div className='row g-0 pt-1 pb-3'>
-                        <Carousel />
+                        <Carousel car={car} />
                         <KeyDetails car={car} formatValueSpaces={formatValueSpaces} />
                     </div>
                     <CarKeyInfo car={car} formatValueSpaces={formatValueSpaces} />

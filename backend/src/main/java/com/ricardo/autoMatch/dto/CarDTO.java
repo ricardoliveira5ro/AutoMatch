@@ -29,5 +29,6 @@ public class CarDTO {
     private Integer doors;
     private Integer displacement;
     private Integer horsePower;
+    private String imgCover;
     private UserDTO user;
 }

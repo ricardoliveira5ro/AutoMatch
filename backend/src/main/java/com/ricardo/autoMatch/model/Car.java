@@ -73,7 +73,29 @@ public class Car {
     @Column(name = "horse_power", nullable = false)
     private Integer horsePower;
 
+    @Lob
+    @Column(name = "img_cover")
+    private String imgCover;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    public Car(String title, String description, String make, String model, Condition condition, Float price, Style style, Date date, Integer mileage, FuelType fuelType, GearBox gearBox, Color color, Integer doors, Integer displacement, Integer horsePower) {
+        this.title = title;
+        this.description = description;
+        this.make = make;
+        this.model = model;
+        this.condition = condition;
+        this.price = price;
+        this.style = style;
+        this.date = date;
+        this.mileage = mileage;
+        this.fuelType = fuelType;
+        this.gearBox = gearBox;
+        this.color = color;
+        this.doors = doors;
+        this.displacement = displacement;
+        this.horsePower = horsePower;
+    }
 }

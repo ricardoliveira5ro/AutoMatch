@@ -1,12 +1,20 @@
+import React from 'react';
 import './Carousel.css'
+import CarModel from '../../../../models/CarModel';
 
-export const Carousel = () => {
+export const Carousel: React.FC<{
+    car: CarModel | undefined
+}> = (props) => {
+
+    const carImg = props.car?.imgCover
+        ? `data:image/jpeg;base64, ${props.car.imgCover}`
+        : require('../../../../images/cars/recommendation-mercedes-E220.jpg');
 
     return (
         <div id="carouselExample" className="car-carousel carousel slide col-lg-7 col-12">
             <div className="carousel-inner">
                 <div className="carousel-item active">
-                    <img src={require('../../../../images/cars/recommendation-mercedes-E220.jpg')} className="d-block w-100" alt="..." />
+                    <img src={carImg} className="d-block w-100" alt="..." />
                 </div>
                 <div className="carousel-item">
                     <img src={require('../../../../images/cars/recommendation-mercedes-E220-2.jpg')} className="d-block w-100" alt="..." />
