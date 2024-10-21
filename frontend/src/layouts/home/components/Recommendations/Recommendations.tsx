@@ -59,7 +59,8 @@ export const Recommendations = () => {
                         contactEmail: responseData[key].user.contactEmail,
                         contactPhone: responseData[key].user.contactPhone,
                         location: responseData[key].user.location
-                    }
+                    },
+                    imgCover: responseData[key].imgCover
                 });
             }
 

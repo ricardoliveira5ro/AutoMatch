@@ -18,10 +18,11 @@ class CarModel {
     displacement: number;
     horsePower: number;
     user: UserModel;
+    imgCover: string;
 
     constructor (id: number, title: string, description: string, make: string, model: string, condition: string, 
         price: number, style: string, date: string, mileage: number, fuelType: string, gearBox: string, color: string, 
-        doors: number, displacement: number, horsePower: number, user: UserModel) 
+        doors: number, displacement: number, horsePower: number, user: UserModel, imgCover: string) 
     {
         this.id = id;
         this.title = title;
@@ -40,6 +41,7 @@ class CarModel {
         this.displacement = displacement;
         this.horsePower = horsePower;
         this.user = user;
+        this.imgCover = imgCover;
     }
 }
 
