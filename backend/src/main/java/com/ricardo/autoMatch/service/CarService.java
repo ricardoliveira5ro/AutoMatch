@@ -1,6 +1,7 @@
 package com.ricardo.autoMatch.service;
 
 import com.ricardo.autoMatch.dto.CarDTO;
+import com.ricardo.autoMatch.dto.CarImageDTO;
 import com.ricardo.autoMatch.dto.UserDTO;
 import com.ricardo.autoMatch.model.*;
 import com.ricardo.autoMatch.repository.CarRepository;
@@ -8,6 +9,7 @@ import com.ricardo.autoMatch.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -32,6 +34,7 @@ public class CarService {
         return carRepository.findAll(PageRequest.of(page, size)).stream().map(this::convertToCarDTO).toList();
     }
 
+    @Transactional(readOnly = true)
     public CarDTO getCar(Long id) {
         return convertToCarDTO(carRepository.findById(id).orElseThrow(() -> new RuntimeException("Car not found")));
     }
@@ -45,6 +48,26 @@ public class CarService {
             car.setImgCover(base64Image);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+
+        return convertToCarDTO(carRepository.save(car));
+    }
+
+    public CarDTO createCarV2(List<MultipartFile> files) {
+        Car car = new Car("TEST", "TEST", "TEST", "TEST", Condition.NEW, 1f, Style.COUPE, Date.from(Instant.now()), 1, FuelType.DIESEL, GearBox.AUTOMATIC, Color.BLACK, 1, 1, 1);
+        car.setUser(userRepository.findById(1).orElseThrow(() -> new RuntimeException("User not found")));
+
+        for (MultipartFile file : files) {
+            try {
+                String base64Image = Base64.getEncoder().encodeToString(file.getBytes());
+
+                CarImage carImage = new CarImage(base64Image, files.indexOf(file));
+                carImage.setCar(car);
+
+                car.getCarImages().add(carImage);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         return convertToCarDTO(carRepository.save(car));
@@ -69,6 +92,7 @@ public class CarService {
                 car.getDisplacement(),
                 car.getHorsePower(),
                 car.getImgCover(),
+                car.getCarImages().stream().map(this::convertToCarImageDTO).toList(),
                 UserDTO.builder()
                     .id(car.getUser().getId())
                     .firstName(car.getUser().getFirstName())
@@ -77,6 +101,14 @@ public class CarService {
                     .contactPhone(car.getUser().getContactPhone())
                     .location(car.getUser().getLocation())
                     .build()
+        );
+    }
+
+    private CarImageDTO convertToCarImageDTO(CarImage carImage) {
+        return new CarImageDTO(
+                carImage.getId(),
+                carImage.getImageData(),
+                carImage.getOrder()
         );
     }
 }
