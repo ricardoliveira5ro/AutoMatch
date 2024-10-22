@@ -11,8 +11,8 @@ export const BasicFilters: React.FC<{
                 <div className='container p-0'>
                     <span className="text-white">Make</span>
                 </div>
-                <select className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example">
-                    <option selected>All</option>
+                <select defaultValue={"0"} className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example">
+                    <option value="0">All</option>
                     <option value="1">Mercedes</option>
                     <option value="2">Ferrari</option>
                     <option value="3">Renault</option>
@@ -22,8 +22,8 @@ export const BasicFilters: React.FC<{
                 <div className='container p-0'>
                     <span className="text-white">Model</span>
                 </div>
-                <select className="form-select form-select-sm banner-select shadow-none" aria-label="Default select example" disabled>
-                    <option selected>All</option>
+                <select defaultValue={"0"} className="form-select form-select-sm banner-select shadow-none" aria-label="Default select example" disabled>
+                    <option value="0">All</option>
                     <option value="1">Mercedes</option>
                     <option value="2">Ferrari</option>
                     <option value="3">Renault</option>
@@ -81,8 +81,8 @@ export const BasicFilters: React.FC<{
                 <div className='container p-0'>
                     <span className="text-white">Fuel Type</span>
                 </div>
-                <select className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example">
-                    <option selected>All</option>
+                <select defaultValue={"0"} className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example">
+                    <option value="0">All</option>
                     <option value="1">Gasoline</option>
                     <option value="2">Diesel</option>
                     <option value="3">Hybrid</option>

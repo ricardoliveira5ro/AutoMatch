@@ -70,8 +70,8 @@ export const AdvancedFilters = () => {
                     <div className='container p-0 mb-2'>
                         <span className="text-white">Condition</span>
                     </div>
-                    <select className="form-select form-select-sm banner-select shadow-none" aria-label="Default select example">
-                        <option selected>All</option>
+                    <select defaultValue={"0"} className="form-select form-select-sm banner-select shadow-none" aria-label="Default select example">
+                        <option value="0">All</option>
                         <option value="1">New</option>
                         <option value="2">Old</option>
                     </select>
@@ -80,8 +80,8 @@ export const AdvancedFilters = () => {
                     <div className='container p-0 mb-2'>
                         <span className="text-white">Gear Box</span>
                     </div>
-                    <select className="form-select form-select-sm banner-select shadow-none" aria-label="Default select example">
-                        <option selected>All</option>
+                    <select defaultValue={"0"} className="form-select form-select-sm banner-select shadow-none" aria-label="Default select example">
+                        <option value="0">All</option>
                         <option value="1">Automatic</option>
                         <option value="2">Manual</option>
                     </select>
@@ -108,8 +108,8 @@ export const AdvancedFilters = () => {
                     <div className='container p-0 mb-2'>
                         <span className="text-white">Color</span>
                     </div>
-                    <select className="form-select form-select-sm banner-select shadow-none" aria-label="Default select example">
-                        <option selected>All</option>
+                    <select defaultValue={"0"} className="form-select form-select-sm banner-select shadow-none" aria-label="Default select example">
+                        <option value="0">All</option>
                         <option value="1">Black</option>
                         <option value="2">Blue</option>
                         <option value="3">Grey</option>
