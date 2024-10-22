@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -30,5 +31,6 @@ public class CarDTO {
     private Integer displacement;
     private Integer horsePower;
     private String imgCover;
+    private List<CarImageDTO> images;
     private UserDTO user;
 }

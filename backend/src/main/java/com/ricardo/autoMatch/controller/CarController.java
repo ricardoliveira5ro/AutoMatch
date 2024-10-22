@@ -34,4 +34,9 @@ public class CarController {
     public ResponseEntity<CarDTO> createCar(@RequestParam("image") MultipartFile file) {
         return ResponseEntity.ok(carService.createCar(file));
     }
+
+    @PostMapping("/createWithImages")
+    public ResponseEntity<CarDTO> createCarWithImages(@RequestParam("images") List<MultipartFile> files) {
+        return ResponseEntity.ok(carService.createCarV2(files));
+    }
 }
