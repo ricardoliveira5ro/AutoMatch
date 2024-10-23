@@ -1,6 +1,7 @@
 package com.ricardo.autoMatch.controller;
 
 import com.ricardo.autoMatch.dto.CarDTO;
+import com.ricardo.autoMatch.dto.CarDetailsDTO;
 import com.ricardo.autoMatch.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,7 @@ public class CarController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CarDTO> getCarById(@PathVariable int id) {
+    public ResponseEntity<CarDetailsDTO> getCarById(@PathVariable int id) {
         return ResponseEntity.ok(carService.getCar((long) id));
     }
 

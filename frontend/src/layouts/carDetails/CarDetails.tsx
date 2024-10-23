@@ -62,8 +62,7 @@ export const CarDetails = () => {
                     contactEmail: responseData.user.contactEmail,
                     contactPhone: responseData.user.contactPhone,
                     location: responseData.user.location
-                },
-                imgCover: responseData.imgCover
+                }
             }
 
             setCar(loadedCar);

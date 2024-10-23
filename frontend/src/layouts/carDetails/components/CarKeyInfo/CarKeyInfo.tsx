@@ -27,7 +27,7 @@ export const CarKeyInfo: React.FC<{
             <div className='d-flex flex-column justify-content-center align-items-center'>
                 <i className="bi bi-calendar-event lh-1" style={{ color: 'white' }}></i>
                 <p className='text-white mb-2 fs-6'>Year</p>
-                <span className='text-white fs-5'>{props.car?.date.split('-')[0]}</span>
+                <span className='text-white fs-5'>{props.car?.date?.split('-')[0]}</span>
             </div>
             <div className='d-flex flex-column justify-content-center align-items-center'>
                 <i className="bi bi-ev-front lh-1" style={{ color: 'white' }}></i>

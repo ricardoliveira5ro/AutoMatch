@@ -21,14 +21,14 @@ export const KeyDetails: React.FC<{
                     <p className='fs-6'>{props.car?.model}</p>
                     <span className='fs-4' style={{ color: 'var(--color-main-orange)' }}>{props.formatValueSpaces(props.car?.price)} €</span>
                     <hr className='text-white'></hr>
-                    <span>{props.car?.user.firstName} {props.car?.user.lastName}</span>
-                    <p>{props.car?.user.location}</p>
+                    <span>{props.car?.user?.firstName} {props.car?.user?.lastName}</span>
+                    <p>{props.car?.user?.location}</p>
                 </div>
                 <div>
                     <div className='d-flex flex-row justify-content-between mb-4'>
                         <div>
                             <i className="bi bi-telephone-fill me-2" style={{ color: 'var(--color-main-orange)' }}></i>
-                            <span>{props.car?.user.contactPhone}</span>
+                            <span>{props.car?.user?.contactPhone}</span>
                         </div>
                         <a onClick={toggleFavorite}>
                             <i className={`bi me-2 ${isFavorite ? 'bi-star-fill' : 'bi-star'}`} style={{ color: 'yellow' }}></i>

@@ -16,7 +16,7 @@ export const RecommendationCar: React.FC<{
             <div className="card-body d-flex flex-column justify-content-between">
                 <div>
                     <h5 className="card-title text-white">{props.car.title}</h5>
-                    <p className="card-text text-white">{props.car.date.split('-')[0]} &nbsp;&#8226;&nbsp; {props.formatValueSpace(props.car.mileage)} km &nbsp;&#8226;&nbsp; {props.car.fuelType} &nbsp;&#8226;&nbsp; {props.car.horsePower} hp</p>
+                    <p className="card-text text-white">{props.car.date?.split('-')[0]} &nbsp;&#8226;&nbsp; {props.formatValueSpace(props.car.mileage)} km &nbsp;&#8226;&nbsp; {props.car.fuelType} &nbsp;&#8226;&nbsp; {props.car.horsePower} hp</p>
                 </div>
                 <span className='card-price'>{props.formatValueSpace(props.car.price)} <span>EUR</span></span>
             </div>
