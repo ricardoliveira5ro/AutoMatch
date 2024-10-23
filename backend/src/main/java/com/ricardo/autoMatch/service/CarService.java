@@ -1,6 +1,7 @@
 package com.ricardo.autoMatch.service;
 
 import com.ricardo.autoMatch.dto.CarDTO;
+import com.ricardo.autoMatch.dto.CarDetailsDTO;
 import com.ricardo.autoMatch.dto.CarImageDTO;
 import com.ricardo.autoMatch.dto.UserDTO;
 import com.ricardo.autoMatch.model.*;
@@ -35,8 +36,8 @@ public class CarService {
     }
 
     @Transactional(readOnly = true)
-    public CarDTO getCar(Long id) {
-        return convertToCarDTO(carRepository.findById(id).orElseThrow(() -> new RuntimeException("Car not found")));
+    public CarDetailsDTO getCar(Long id) {
+        return convertToCarDetailsDTO(carRepository.findById(id).orElseThrow(() -> new RuntimeException("Car not found")));
     }
 
     public CarDTO createCar(MultipartFile file) {
@@ -77,6 +78,19 @@ public class CarService {
         return new CarDTO(
                 car.getId(),
                 car.getTitle(),
+                car.getPrice(),
+                car.getDate(),
+                car.getMileage(),
+                car.getFuelType().getValue(),
+                car.getHorsePower(),
+                car.getImgCover()
+        );
+    }
+
+    private CarDetailsDTO convertToCarDetailsDTO(Car car) {
+        return new CarDetailsDTO(
+                car.getId(),
+                car.getTitle(),
                 car.getDescription(),
                 car.getMake(),
                 car.getModel(),
@@ -91,7 +105,6 @@ public class CarService {
                 car.getDoors(),
                 car.getDisplacement(),
                 car.getHorsePower(),
-                car.getImgCover(),
                 car.getCarImages().stream().map(this::convertToCarImageDTO).toList(),
                 UserDTO.builder()
                     .id(car.getUser().getId())

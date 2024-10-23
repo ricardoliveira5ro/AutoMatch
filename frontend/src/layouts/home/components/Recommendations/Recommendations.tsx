@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import './Recommendations.css';
-import { Link } from 'react-router-dom';
 import CarModel from '../../../../models/CarModel';
 import { SpinnerLoading } from '../../../utils/components/SpinnerLoading/SpinnerLoading';
 import { RecommendationCar } from './components/RecommendationCar/RecommendationCar';
@@ -38,28 +37,11 @@ export const Recommendations = () => {
                 loadedCars.push({
                     id: responseData[key].id,
                     title: responseData[key].title,
-                    description: responseData[key].description,
-                    make: responseData[key].make,
-                    model: responseData[key].model,
-                    condition: responseData[key].condition,
                     price: responseData[key].price,
-                    style: responseData[key].style,
                     date: responseData[key].date,
                     mileage: responseData[key].mileage,
                     fuelType: responseData[key].fuelType,
-                    gearBox: responseData[key].gearBox,
-                    color: responseData[key].color,
-                    doors: responseData[key].doors,
-                    displacement: responseData[key].displacement,
                     horsePower: responseData[key].horsePower,
-                    user: {
-                        id: responseData[key].user.id,
-                        firstName: responseData[key].user.firstName,
-                        lastName: responseData[key].user.lastName,
-                        contactEmail: responseData[key].user.contactEmail,
-                        contactPhone: responseData[key].user.contactPhone,
-                        location: responseData[key].user.location
-                    },
                     imgCover: responseData[key].imgCover
                 });
             }
