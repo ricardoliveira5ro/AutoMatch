@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.time.Instant;
 import java.util.Base64;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -129,7 +130,9 @@ public class CarService {
                 car.getDoors(),
                 car.getDisplacement(),
                 car.getHorsePower(),
-                car.getCarImages().stream().map(this::convertToCarImageDTO).toList(),
+                car.getCarImages().stream()
+                        .sorted(Comparator.comparing(CarImage::getOrder))
+                        .map(carImage -> Base64.getEncoder().encodeToString(carImage.getImageData())).toList(),
                 UserDTO.builder()
                     .id(car.getUser().getId())
                     .firstName(car.getUser().getFirstName())
@@ -138,14 +141,6 @@ public class CarService {
                     .contactPhone(car.getUser().getContactPhone())
                     .location(car.getUser().getLocation())
                     .build()
-        );
-    }
-
-    private CarImageDTO convertToCarImageDTO(CarImage carImage) {
-        return new CarImageDTO(
-                carImage.getId(),
-                Base64.getEncoder().encodeToString(carImage.getImageData()),
-                carImage.getOrder()
         );
     }
 }
