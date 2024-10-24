@@ -45,8 +45,8 @@ public class CarService {
         car.setUser(userRepository.findById(1).orElseThrow(() -> new RuntimeException("User not found")));
 
         try {
-            String base64Image = Base64.getEncoder().encodeToString(file.getBytes());
-            car.setImgCover(base64Image);
+            //String base64Image = Base64.getEncoder().encodeToString(file.getBytes());
+            car.setImgCover(file.getBytes());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -60,9 +60,9 @@ public class CarService {
 
         for (MultipartFile file : files) {
             try {
-                String base64Image = Base64.getEncoder().encodeToString(file.getBytes());
+                //String base64Image = Base64.getEncoder().encodeToString(file.getBytes());
 
-                CarImage carImage = new CarImage(base64Image, files.indexOf(file));
+                CarImage carImage = new CarImage(file.getBytes(), files.indexOf(file));
                 carImage.setCar(car);
 
                 car.getCarImages().add(carImage);
@@ -74,6 +74,30 @@ public class CarService {
         return convertToCarDTO(carRepository.save(car));
     }
 
+    public String seedData(List<MultipartFile> files) {
+        Car car = new Car("Ford Mustang 5.0 Ti-VCT GT", "", "Ford", "Mustang", Condition.USED, 78900f, Style.COUPE, Date.from(Instant.now()), 81000, FuelType.GASOLINE, GearBox.MANUAL, Color.GREEN, 2, 4951, 450);
+        car.setUser(userRepository.findById(1).orElseThrow(() -> new RuntimeException("User not found")));
+
+        try {
+            car.setImgCover(files.getFirst().getBytes());
+
+            for (MultipartFile file : files) {
+                //String base64Image = Base64.getEncoder().encodeToString(file.getBytes());
+
+                CarImage carImage = new CarImage(file.getBytes(), files.indexOf(file));
+                carImage.setCar(car);
+
+                car.getCarImages().add(carImage);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        carRepository.save(car);
+
+        return "Seeded successfully";
+    }
+
     private CarDTO convertToCarDTO(Car car) {
         return new CarDTO(
                 car.getId(),
@@ -83,7 +107,7 @@ public class CarService {
                 car.getMileage(),
                 car.getFuelType().getValue(),
                 car.getHorsePower(),
-                car.getImgCover()
+                Base64.getEncoder().encodeToString(car.getImgCover())
         );
     }
 
@@ -120,7 +144,7 @@ public class CarService {
     private CarImageDTO convertToCarImageDTO(CarImage carImage) {
         return new CarImageDTO(
                 carImage.getId(),
-                carImage.getImageData(),
+                Base64.getEncoder().encodeToString(carImage.getImageData()),
                 carImage.getOrder()
         );
     }

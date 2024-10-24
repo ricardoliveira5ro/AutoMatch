@@ -77,7 +77,7 @@ public class Car {
 
     @Lob
     @Column(name = "img_cover")
-    private String imgCover;
+    private byte[] imgCover;
 
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CarImage> carImages = new ArrayList<>();
