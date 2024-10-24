@@ -30,6 +30,6 @@ public class CarDetailsDTO {
     private Integer doors;
     private Integer displacement;
     private Integer horsePower;
-    private List<CarImageDTO> images;
+    private List<String> images;
     private UserDTO user;
 }

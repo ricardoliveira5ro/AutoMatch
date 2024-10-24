@@ -6,31 +6,16 @@ export const Carousel: React.FC<{
     car: CarModel | undefined
 }> = (props) => {
 
-    const carImg = props.car?.imgCover
-        ? `data:image/jpeg;base64, ${props.car.imgCover}`
-        : require('../../../../images/cars/recommendation-mercedes-E220.jpg');
+    const carImages = props.car?.images || [];
 
     return (
         <div id="carouselExample" className="car-carousel carousel slide col-lg-7 col-12">
             <div className="carousel-inner">
-                <div className="carousel-item active">
-                    <img src={carImg} className="d-block w-100" alt="..." />
-                </div>
-                <div className="carousel-item">
-                    <img src={require('../../../../images/cars/recommendation-mercedes-E220-2.jpg')} className="d-block w-100" alt="..." />
-                </div>
-                <div className="carousel-item">
-                    <img src={require('../../../../images/cars/recommendation-mercedes-E220-3.jpg')} className="d-block w-100" alt="..." />
-                </div>
-                <div className="carousel-item ">
-                    <img src={require('../../../../images/cars/recommendation-mercedes-E220-4.jpg')} className="d-block w-100" alt="..." />
-                </div>
-                <div className="carousel-item">
-                    <img src={require('../../../../images/cars/recommendation-mercedes-E220-5.jpg')} className="d-block w-100" alt="..." />
-                </div>
-                <div className="carousel-item">
-                    <img src={require('../../../../images/cars/recommendation-mercedes-E220-6.jpg')} className="d-block w-100" alt="..." />
-                </div>
+                {carImages.map((carImage, index) => (
+                    <div key={index} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+                        <img src={`data:image/jpeg;base64,${carImage}`} className="d-block w-100" alt={`Car Image ${index + 1}`}/>
+                    </div>
+                ))}
             </div>
             <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
