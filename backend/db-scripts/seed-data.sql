@@ -21,9 +21,9 @@ INSERT INTO users (first_name, last_name, password, contact_email, contact_phone
 
 
 INSERT INTO cars (title, description, make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
-VALUES ('Toyota Camry 2.5 Hybrid Luxury', '', 'Toyota', 'Camry', 'USED', 15000.00, 'SALOON', '2021-06-15', 50000, 'GASOLINE', 'AUTOMATIC', 'BLACK', 4, 2500, 200, 1);
+VALUES ('Ford Mustang 5.0 Ti-VCT GT', '', 'Ford', 'Mustang', 'USED', 78900.00, 'COUPE', '2022-09-10', 81000, 'GASOLINE', 'MANUAL', 'GREEN', 2, 4951, 450, 1);
 INSERT INTO cars (title, description, make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
-VALUES ('Ford Mustang 5.0 Ti-VCT GT', '', 'Ford', 'Mustang', 'NEW', 30000.00, 'COUPE', '2022-09-10', 12000, 'GASOLINE', 'MANUAL', 'RED', 2, 5000, 450, 2);
+VALUES ('Toyota Camry 2.5 Hybrid Luxury', '', 'Toyota', 'Camry', 'USED', 15000.00, 'SALOON', '2021-06-15', 50000, 'GASOLINE', 'AUTOMATIC', 'BLACK', 4, 2500, 200, 2);
 INSERT INTO cars (title, description, make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)
 VALUES ('Honda Civic 2.0 i-VTEC Type-R GT', '', 'Honda', 'Civic', 'NEW', 22000.00, 'HATCHBACK', '2023-04-10', 1000, 'GASOLINE', 'MANUAL', 'WHITE', 4, 2000, 150, 3);
 INSERT INTO cars (title, description, make, model, condition, price, style, date, mileage, fuel_type, gear_box, color, doors, displacement, horse_power, user_id)

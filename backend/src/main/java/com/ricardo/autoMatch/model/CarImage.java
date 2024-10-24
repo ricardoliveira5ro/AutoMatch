@@ -20,7 +20,7 @@ public class CarImage {
 
     @Lob
     @Column(name = "image_data")
-    private String imageData;
+    private byte[] imageData;
 
     @Column(name = "order_image")
     private Integer order;
@@ -29,7 +29,7 @@ public class CarImage {
     @JoinColumn(name = "car_id")
     private Car car;
 
-    public CarImage(String imageData, Integer order) {
+    public CarImage(byte[] imageData, Integer order) {
         this.imageData = imageData;
         this.order = order;
     }

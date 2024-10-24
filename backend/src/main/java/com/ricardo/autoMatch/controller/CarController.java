@@ -40,4 +40,9 @@ public class CarController {
     public ResponseEntity<CarDTO> createCarWithImages(@RequestParam("images") List<MultipartFile> files) {
         return ResponseEntity.ok(carService.createCarV2(files));
     }
+
+    @PostMapping("/seed-data")
+    public ResponseEntity<String> seedData(@RequestParam("images") List<MultipartFile> files) {
+        return ResponseEntity.ok(carService.seedData(files));
+    }
 }
