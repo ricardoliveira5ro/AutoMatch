@@ -12,5 +12,26 @@
     "contactEmail": "jane.smith@example.com",
     "contactPhone": "0987654321",
     "location": "Los Angeles"
+  },
+  {
+    "firstName": "Alice",
+    "lastName": "Johnson",
+    "contactEmail": "alice.johnson@example.com",
+    "contactPhone": "1122334455",
+    "location": "Chicago"
+  },
+  {
+    "firstName": "Bob",
+    "lastName": "Brown",
+    "contactEmail": "bob.brown@example.com",
+    "contactPhone": "5566778899",
+    "location": "Houston"
+  },
+  {
+    "firstName": "Charlie",
+    "lastName": "Wilson",
+    "contactEmail": "charlie.wilson@example.com",
+    "contactPhone": "6677889900",
+    "location": "Miami"
   }
 ]
