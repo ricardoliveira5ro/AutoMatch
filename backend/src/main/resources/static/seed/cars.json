@@ -1,0 +1,29 @@
+[
+  {
+    "title": "Ford Mustang 5.0 Ti-VCT GT",
+    "description": "Vehicle in pristine condition with a complete service history from the manufacturer. It is equipped with a wide range of features.\\n\\nAt our dealership, you will find highly professional staff who offer detailed and thorough assistance throughout the process of purchasing your vehicle.\\n\\nWe ensure that all our vehicles are in excellent condition, accompanied by their full maintenance history. Additionally, they undergo a rigorous and specialized inspection at our workshop.\\n\\nAdvantages of purchasing a vehicle with us:\\n- Delivery with a full inspection, paint reconditioning (if necessary), and cleaning.\\n- Warranty of up to 3 years, including roadside assistance and a replacement vehicle in the event of a breakdown.\\n- Trade-ins accepted.\\n- Nationwide delivery, including islands (by mutual agreement).\\n- Financing available for up to 120 months, with or without a down payment, quickly and without hassle.\\n\\nVisit our official website at www.standexample.com to see all the vehicles we have available.\\n\\nOur dealership is open every day, with Sunday visits by appointment.\\n\\nThis advertisement was published through an automated system; all details must be confirmed with management.",
+    "make": "Ford",
+    "model": "Mustang",
+    "condition": "USED",
+    "price": 78000,
+    "style": "COUPE",
+    "date": "2019-05-01",
+    "mileage": 81000,
+    "fuelType": "GASOLINE",
+    "gearBox": "MANUAL",
+    "color": "GREEN",
+    "doors": 2,
+    "displacement": 4951,
+    "horsePower": 450,
+    "userId": 1,
+    "imagesPaths": [
+      "static/seed/images/mustang-1.png",
+      "static/seed/images/mustang-2.png",
+      "static/seed/images/mustang-3.png",
+      "static/seed/images/mustang-4.png",
+      "static/seed/images/mustang-5.png",
+      "static/seed/images/mustang-6.png",
+      "static/seed/images/mustang-7.png"
+    ]
+  }
+]
