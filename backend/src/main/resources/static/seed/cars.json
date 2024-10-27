@@ -25,5 +25,106 @@
       "static/seed/images/mustang-6.png",
       "static/seed/images/mustang-7.png"
     ]
+  },
+  {
+    "title": "Toyota Camry 2.5 Hybrid Luxury",
+    "description": "Private Vehicle\\nBrand warranty valid until 2029, with a complete service history.\\n\\nThis vehicle is in excellent condition, Luxury version, nearly fully equipped with all possible extras for this model.\\nProtected with transparent PPF film on areas most prone to scratches, and all windows are tinted except for the windshield.\\n\\nMain Features:\\n- Keyless Entry - keyless opening/closing\\n- Electric Steering Wheel\\n- Electric Rear Seats with control console (curtains, temperature, sound, etc.)\\n- Head-Up Display - projects information onto the windshield\\n- JBL Sound System with Subwoofer and 9 speakers\\n- Comprehensive Active Safety Systems: Lane Keep Assist, Adaptive Cruise Control, Emergency Braking, Collision/Blind Spot 360° Warning, Hold system, and more\\n- Automatic Headlights and High Beams\\n- Heated Seats\\n- Suspension and Steering with Three Settings (Eco, Normal, Sport)\\n- Wireless Smartphone Charging",
+    "make": "Toyota",
+    "model": "Camry",
+    "condition": "USED",
+    "price": 31000,
+    "style": "SALOON",
+    "date": "2019-10-01",
+    "mileage": 131000,
+    "fuelType": "HYBRID",
+    "gearBox": "AUTOMATIC",
+    "color": "BLACK",
+    "doors": 4,
+    "displacement": 2487,
+    "horsePower": 218,
+    "userId": 2,
+    "imagesPaths": [
+      "static/seed/images/camry-1.png",
+      "static/seed/images/camry-2.png",
+      "static/seed/images/camry-3.png",
+      "static/seed/images/camry-4.png",
+      "static/seed/images/camry-5.png"
+    ]
+  },
+  {
+    "title": "Honda Civic 2.0 i-VTEC Type-R GT",
+    "description": "Complete Honda Service History\\n\\nThis model was manufactured without a factory-installed particulate filter, offering a more dynamic, sporty sound.\\n\\nGT Version (all available factory extras included)\\n\\nHighlighted Features:\\n- Miltek Exhaust System\\n- Maxton Front Canards\\n- 20” Alloy Wheels\\n- And more…",
+    "make": "Honda",
+    "model": "Civic",
+    "condition": "NEW",
+    "price": 65000,
+    "style": "HATCHBACK",
+    "date": "2020-08-01",
+    "mileage": 521,
+    "fuelType": "GASOLINE",
+    "gearBox": "MANUAL",
+    "color": "WHITE",
+    "doors": 4,
+    "displacement": 1996,
+    "horsePower": 320,
+    "userId": 3,
+    "imagesPaths": [
+      "static/seed/images/civic-1.png",
+      "static/seed/images/civic-2.png",
+      "static/seed/images/civic-3.png",
+      "static/seed/images/civic-4.png"
+    ]
+  },
+  {
+    "title": "BMW X5 M Standard",
+    "description": "The listing does not contain a description. Please contact the seller for more information.",
+    "make": "BMW",
+    "model": "X Series",
+    "condition": "USED",
+    "price": 78900,
+    "style": "SUV",
+    "date": "2015-08-01",
+    "mileage": 98500,
+    "fuelType": "GASOLINE",
+    "gearBox": "AUTOMATIC",
+    "color": "BLACK",
+    "doors": 4,
+    "displacement": 4395,
+    "horsePower": 575,
+    "userId": 4,
+    "imagesPaths": [
+      "static/seed/images/X5-1.png",
+      "static/seed/images/X5-2.png",
+      "static/seed/images/X5-3.png",
+      "static/seed/images/X5-4.png",
+      "static/seed/images/X5-5.png"
+    ]
+  },
+  {
+    "title": "Chevrolet Malibu 2.4 LTZ",
+    "description": "Service Information\\n- Service completed\\n- MFK (vehicle inspection) will be newly done at the time of sale\\n- Includes delivery costs, highway vignette, fuel, and a 6-month warranty",
+    "make": "Chevrolet",
+    "model": "Malibu",
+    "condition": "USED",
+    "price": 11900,
+    "style": "SALOON",
+    "date": "2013-03-01",
+    "mileage": 38600,
+    "fuelType": "GASOLINE",
+    "gearBox": "AUTOMATIC",
+    "color": "WHITE",
+    "doors": 4,
+    "displacement": 2384,
+    "horsePower": 167,
+    "userId": 5,
+    "imagesPaths": [
+      "static/seed/images/malibu-1.png",
+      "static/seed/images/malibu-2.png",
+      "static/seed/images/malibu-3.png",
+      "static/seed/images/malibu-4.png",
+      "static/seed/images/malibu-5.png",
+      "static/seed/images/malibu-6.png",
+      "static/seed/images/malibu-7.png"
+    ]
   }
 ]
