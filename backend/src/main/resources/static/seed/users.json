@@ -61,5 +61,12 @@
     "contactEmail": "hannah.anderson@example.com",
     "contactPhone": "5566778890",
     "location": null
+  },
+  {
+    "firstName": "Andreas",
+    "lastName": "Corby",
+    "contactEmail": "andreas.corby@example.com",
+    "contactPhone": "3234116789",
+    "location": "London"
   }
 ]
