@@ -126,5 +126,29 @@
       "static/seed/images/malibu-6.png",
       "static/seed/images/malibu-7.png"
     ]
+  },
+  {
+    "title": "Audi A4 2.0 TDi Advance",
+    "description": "The listing does not contain a description. Please contact the seller for more information.",
+    "make": "Audi",
+    "model": "A4",
+    "condition": "USED",
+    "price": 16950,
+    "style": "SALOON",
+    "date": "2013-03-01",
+    "mileage": 221576,
+    "fuelType": "DIESEL",
+    "gearBox": "MANUAL",
+    "color": "GREY",
+    "doors": 4,
+    "displacement": 1968,
+    "horsePower": 150,
+    "userId": 6,
+    "imagesPaths": [
+      "static/seed/images/audi-a4-1.png",
+      "static/seed/images/audi-a4-2.png",
+      "static/seed/images/audi-a4-3.png",
+      "static/seed/images/audi-a4-4.png"
+    ]
   }
 ]
