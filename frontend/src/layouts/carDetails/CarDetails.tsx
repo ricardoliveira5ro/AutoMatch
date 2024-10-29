@@ -11,15 +11,6 @@ import { SpinnerLoading } from '../utils/components/SpinnerLoading/SpinnerLoadin
 
 export const CarDetails = () => {
 
-    const formatValueSpaces = (value: number) => {
-        return new Intl.NumberFormat('en-US', {
-            style: 'decimal',
-            maximumFractionDigits: 0,
-        })
-            .format(value)
-            .replace(/,/g, ' ');
-    };
-
     const [car, setCar] = useState<CarModel>()
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState(null);
@@ -99,9 +90,9 @@ export const CarDetails = () => {
                 <>
                     <div className='row g-0 pt-1 pb-3'>
                         <Carousel car={car} />
-                        <KeyDetails car={car} formatValueSpaces={formatValueSpaces} />
+                        <KeyDetails car={car} />
                     </div>
-                    <CarKeyInfo car={car} formatValueSpaces={formatValueSpaces} />
+                    <CarKeyInfo car={car} />
                     <CarDescription car={car} />
                 </>
             )}

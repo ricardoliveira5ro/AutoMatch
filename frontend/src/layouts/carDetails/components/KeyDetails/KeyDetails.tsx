@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './KeyDetails.css'
 import CarModel from '../../../../models/CarModel';
+import { formatValueSpaces } from '../../../utils/functions';
 
 export const KeyDetails: React.FC<{
-    car: CarModel | undefined,
-    formatValueSpaces: any
+    car: CarModel | undefined
 }> = (props) => {
 
     const [isFavorite, setIsFavorite] = useState(false);
@@ -19,7 +19,7 @@ export const KeyDetails: React.FC<{
                 <div>
                     <span className='fs-5'>{props.car?.title}</span>
                     <p className='fs-6'>{props.car?.model}</p>
-                    <span className='fs-4' style={{ color: 'var(--color-main-orange)' }}>{props.formatValueSpaces(props.car?.price)} €</span>
+                    <span className='fs-4' style={{ color: 'var(--color-main-orange)' }}>{formatValueSpaces(props.car?.price || 0)} €</span>
                     <hr className='text-white'></hr>
                     <span>{props.car?.user?.firstName} {props.car?.user?.lastName}</span>
                     <p>{props.car?.user?.location}</p>
