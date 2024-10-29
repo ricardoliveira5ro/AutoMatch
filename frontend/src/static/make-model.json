@@ -1,0 +1,202 @@
+[
+    {
+        "id": 1,
+        "make": "BMW",
+        "models": [
+            {
+                "id": 1,
+                "model": "1 Series"
+            },
+            {
+                "id": 2,
+                "model": "2 Series"
+            },
+            {
+                "id": 3,
+                "model": "3 Series"
+            },
+            {
+                "id": 4,
+                "model": "4 Series"
+            },
+            {
+                "id": 5,
+                "model": "5 Series"
+            },
+            {
+                "id": 6,
+                "model": "6 Series"
+            },
+            {
+                "id": 7,
+                "model": "7 Series"
+            },
+            {
+                "id": 8,
+                "model": "8 Series"
+            },
+            {
+                "id": 9,
+                "model": "i Series"
+            },
+            {
+                "id": 10,
+                "model": "X Series"
+            },
+            {
+                "id": 11,
+                "model": "Z Series"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "make": "Mercedes-Benz",
+        "models": [
+            {
+                "id": 1,
+                "model": "Class A"
+            },
+            {
+                "id": 2,
+                "model": "Class B"
+            },
+            {
+                "id": 3,
+                "model": "Class C"
+            },
+            {
+                "id": 4,
+                "model": "Class CL"
+            },
+            {
+                "id": 5,
+                "model": "Class CLA"
+            },
+            {
+                "id": 6,
+                "model": "Class CLC"
+            },
+            {
+                "id": 7,
+                "model": "Class CLE"
+            },
+            {
+                "id": 8,
+                "model": "Class CLK"
+            },
+            {
+                "id": 9,
+                "model": "Class CLS"
+            },
+            {
+                "id": 10,
+                "model": "Class E"
+            },
+            {
+                "id": 11,
+                "model": "Class G"
+            },
+            {
+                "id": 12,
+                "model": "Class GL"
+            },
+            {
+                "id": 13,
+                "model": "Class GLA"
+            },
+            {
+                "id": 14,
+                "model": "Class GLB"
+            },
+            {
+                "id": 15,
+                "model": "Class GLC"
+            },
+            {
+                "id": 16,
+                "model": "Class GLE"
+            },
+            {
+                "id": 17,
+                "model": "Class GLK"
+            },
+            {
+                "id": 18,
+                "model": "Class GLS"
+            },
+            {
+                "id": 19,
+                "model": "Class M"
+            },
+            {
+                "id": 20,
+                "model": "Class R"
+            },
+            {
+                "id": 21,
+                "model": "Class S"
+            },
+            {
+                "id": 22,
+                "model": "Class SL"
+            },
+            {
+                "id": 23,
+                "model": "Class SLC"
+            },
+            {
+                "id": 24,
+                "model": "Class SLK"
+            },
+            {
+                "id": 25,
+                "model": "Class T"
+            },
+            {
+                "id": 26,
+                "model": "Class V"
+            },
+            {
+                "id": 27,
+                "model": "Class X"
+            },
+            {
+                "id": 28,
+                "model": "EQA"
+            },
+            {
+                "id": 29,
+                "model": "EQB"
+            },
+            {
+                "id": 30,
+                "model": "EQC"
+            },
+            {
+                "id": 31,
+                "model": "EQE"
+            },
+            {
+                "id": 32,
+                "model": "EQS"
+            },
+            {
+                "id": 33,
+                "model": "EQT"
+            },
+            {
+                "id": 34,
+                "model": "EQV"
+            },
+            {
+                "id": 35,
+                "model": "Class SLS"
+            },
+            {
+                "id": 36,
+                "model": "AMG GT"
+            }
+        ]
+    }
+]

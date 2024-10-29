@@ -1,7 +1,15 @@
 import { Link } from 'react-router-dom';
 import './Banner.css';
+import make_models_data from '../../../../static/make-model.json';
+import { useState } from 'react';
 
 export const Banner = () => {
+    const [models, setModels] = useState<{ id: number; model: string }[]>([]);
+
+    const makeChange = (e: any) => {
+        const filteredMake = make_models_data.filter(data => { return data.make === e.target.value })[0];
+        setModels(filteredMake ? filteredMake.models : []);
+    }
 
     return (
         <div className="background-wrapper position-relative">
@@ -13,22 +21,22 @@ export const Banner = () => {
                             <div className='container p-0'>
                                 <span className="text-white">Make</span>
                             </div>
-                            <select defaultValue={"0"} className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example">
+                            <select defaultValue={"0"} onChange={makeChange} className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example">
                                 <option value="0">All</option>
-                                <option value="1">Mercedes</option>
-                                <option value="2">Ferrari</option>
-                                <option value="3">Renault</option>
+                                {make_models_data.map(data => (
+                                    <option key={data.id} value={data.make}>{data.make}</option>
+                                ))}
                             </select>
                         </div>
                         <div className='col d-flex flex-column align-items-center'>
                             <div className='container p-0'>
                                 <span className="text-white">Model</span>
                             </div>
-                            <select defaultValue={"0"} className="form-select form-select-sm banner-select shadow-none" aria-label="Default select example" disabled>
+                            <select defaultValue={"0"} className="form-select form-select-sm banner-select shadow-none" aria-label="Default select example">
                                 <option value="0">All</option>
-                                <option value="1">Mercedes</option>
-                                <option value="2">Ferrari</option>
-                                <option value="3">Renault</option>
+                                {models.map(item => (
+                                    <option key={item.id} value={item.model}>{item.model}</option>
+                                ))}
                             </select>
                         </div>
                         <div className='col d-none d-md-flex flex-column align-items-center'>
