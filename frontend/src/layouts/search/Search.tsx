@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Search.css';
 import { useState } from 'react';
 import { BasicFilters } from './components/BasicFilters/BasicFilters';
@@ -7,6 +7,9 @@ import { CardCard } from '../utils/components/CarCard/CarCard';
 
 export const Search = () => {
 
+    const location = useLocation();
+    const searchQuery = location.state?.searchQuery || '';
+    
     const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
 
     const toggleAdvancedFilters = () => {

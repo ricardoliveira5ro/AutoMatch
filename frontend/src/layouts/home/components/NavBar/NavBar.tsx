@@ -1,7 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import './NavBar.css';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 export const NavBar = () => {
+
+    const [searchQuery, setSearchQuery] = useState('');
 
     return (
         <nav className="navbar navbar-dark">
@@ -11,10 +15,12 @@ export const NavBar = () => {
                 </a>
                 <div className='d-none d-lg-flex'>
                     <div className="input-group input-group-sm">
-                        <input type="text" className="form-control shadow-none border" placeholder="Any make, model..." aria-label="Any make, model..." aria-describedby="home-search" />
-                        <button className="btn btn-outline-secondary" type="button" id="home-search">
+                        <input type="text" placeholder="Any make, model..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} 
+                            className="form-control shadow-none border" aria-label="Any make, model..." aria-describedby="home-search" 
+                        />
+                        <Link to={'/search'} state={{searchQuery: searchQuery}} className="btn btn-outline-secondary" id="home-search">
                             <i className="bi bi-search"></i>
-                        </button>
+                        </Link>
                     </div>
                 </div>
                 <div className='d-flex align-items-center'>
