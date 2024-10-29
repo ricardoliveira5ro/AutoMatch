@@ -1,10 +1,10 @@
 import React from 'react'
 import CarModel from '../../../../../../models/CarModel';
 import { Link } from 'react-router-dom';
+import { formatValueSpaces } from '../../../../../utils/functions';
 
 export const RecommendationCar: React.FC<{
-    car: CarModel,
-    formatValueSpace: any
+    car: CarModel
 }> = (props) => {
 
     const carImg = props.car.imgCover ? `data:image/jpeg;base64,${props.car.imgCover}` :
@@ -16,9 +16,9 @@ export const RecommendationCar: React.FC<{
             <div className="card-body d-flex flex-column justify-content-between">
                 <div>
                     <h5 className="card-title text-white">{props.car.title}</h5>
-                    <p className="card-text text-white">{props.car.date?.split('-')[0]} &nbsp;&#8226;&nbsp; {props.formatValueSpace(props.car.mileage)} km &nbsp;&#8226;&nbsp; {props.car.fuelType} &nbsp;&#8226;&nbsp; {props.car.horsePower} hp</p>
+                    <p className="card-text text-white">{props.car.date?.split('-')[0]} &nbsp;&#8226;&nbsp; {formatValueSpaces(props.car.mileage || 0)} km &nbsp;&#8226;&nbsp; {props.car.fuelType} &nbsp;&#8226;&nbsp; {props.car.horsePower} hp</p>
                 </div>
-                <span className='card-price'>{props.formatValueSpace(props.car.price)} <span>EUR</span></span>
+                <span className='card-price'>{formatValueSpaces(props.car.price || 0)} <span>EUR</span></span>
             </div>
         </Link>
     );

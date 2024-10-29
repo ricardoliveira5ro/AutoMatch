@@ -6,15 +6,6 @@ import { RecommendationCar } from './components/RecommendationCar/Recommendation
 
 export const Recommendations = () => {
 
-    const formatPrice = (price: number) => {
-        return new Intl.NumberFormat('en-US', {
-            style: 'decimal',
-            maximumFractionDigits: 0,
-        })
-            .format(price)
-            .replace(/,/g, ' ');
-    };
-
     const [cars, setCars] = useState<CarModel[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState(null);
@@ -69,7 +60,7 @@ export const Recommendations = () => {
                         ) : (
                             <>
                                 {cars.map(car => (
-                                    <RecommendationCar car={car} formatValueSpace={formatPrice} key={car.id} />
+                                    <RecommendationCar car={car} key={car.id} />
                                 ))}
                             </>
                         )}

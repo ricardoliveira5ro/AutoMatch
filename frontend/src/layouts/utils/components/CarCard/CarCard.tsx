@@ -1,16 +1,8 @@
 import { Link } from 'react-router-dom';
 import './CarCard.css'
+import { formatValueSpaces } from '../../functions';
 
 export const CardCard = () => {
-
-    const formatValueSpaces = (value: number) => {
-        return new Intl.NumberFormat('en-US', {
-            style: 'decimal',
-            maximumFractionDigits: 0,
-        })
-            .format(value)
-            .replace(/,/g, ' ');
-    };
 
     const carId = 1;
 
