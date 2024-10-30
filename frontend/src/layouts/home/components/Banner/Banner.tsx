@@ -1,7 +1,9 @@
-import { Link } from 'react-router-dom';
 import './Banner.css';
-import make_models_data from '../../../../static/make-model.json';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
+
+import make_models_data from '../../../../static/make-model.json';
+import fuelType_data from '../../../../static/fuel-type.json';
 
 export const Banner = () => {
 
@@ -84,13 +86,11 @@ export const Banner = () => {
                             <div className='container p-0'>
                                 <span className="text-white">Fuel Type</span>
                             </div>
-                            <select defaultValue={"0"} className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example">
-                                <option value="0">All</option>
-                                <option value="1">Gasoline</option>
-                                <option value="2">Diesel</option>
-                                <option value="3">Hybrid</option>
-                                <option value="4">Electric</option>
-                                <option value="5">Hydrogen</option>
+                            <select defaultValue={"All"} className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example">
+                                <option value="All">All</option>
+                                {fuelType_data.map(item => (
+                                    <option key={item.id} value={item.fuelType}>{item.fuelType}</option>
+                                ))}
                             </select>
                         </div>
                         <div className='col-1 d-flex d-md-none justify-content-center align-items-center banner-advanced' >
