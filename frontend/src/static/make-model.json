@@ -3,200 +3,336 @@
         "id": 1,
         "make": "BMW",
         "models": [
-            {
-                "id": 1,
-                "model": "1 Series"
-            },
-            {
-                "id": 2,
-                "model": "2 Series"
-            },
-            {
-                "id": 3,
-                "model": "3 Series"
-            },
-            {
-                "id": 4,
-                "model": "4 Series"
-            },
-            {
-                "id": 5,
-                "model": "5 Series"
-            },
-            {
-                "id": 6,
-                "model": "6 Series"
-            },
-            {
-                "id": 7,
-                "model": "7 Series"
-            },
-            {
-                "id": 8,
-                "model": "8 Series"
-            },
-            {
-                "id": 9,
-                "model": "i Series"
-            },
-            {
-                "id": 10,
-                "model": "X Series"
-            },
-            {
-                "id": 11,
-                "model": "Z Series"
-            }
+            {"id": 1, "model": "1 Series"},
+            {"id": 2, "model": "2 Series"},
+            {"id": 3, "model": "3 Series"},
+            {"id": 4, "model": "4 Series"},
+            {"id": 5, "model": "5 Series"},
+            {"id": 6, "model": "6 Series"},
+            {"id": 7, "model": "7 Series"},
+            {"id": 8, "model": "8 Series"},
+            {"id": 9, "model": "i Series"},
+            {"id": 10, "model": "X Series"},
+            {"id": 11, "model": "Z Series"}
         ]
     },
     {
         "id": 2,
         "make": "Mercedes-Benz",
         "models": [
-            {
-                "id": 1,
-                "model": "Class A"
-            },
-            {
-                "id": 2,
-                "model": "Class B"
-            },
-            {
-                "id": 3,
-                "model": "Class C"
-            },
-            {
-                "id": 4,
-                "model": "Class CL"
-            },
-            {
-                "id": 5,
-                "model": "Class CLA"
-            },
-            {
-                "id": 6,
-                "model": "Class CLC"
-            },
-            {
-                "id": 7,
-                "model": "Class CLE"
-            },
-            {
-                "id": 8,
-                "model": "Class CLK"
-            },
-            {
-                "id": 9,
-                "model": "Class CLS"
-            },
-            {
-                "id": 10,
-                "model": "Class E"
-            },
-            {
-                "id": 11,
-                "model": "Class G"
-            },
-            {
-                "id": 12,
-                "model": "Class GL"
-            },
-            {
-                "id": 13,
-                "model": "Class GLA"
-            },
-            {
-                "id": 14,
-                "model": "Class GLB"
-            },
-            {
-                "id": 15,
-                "model": "Class GLC"
-            },
-            {
-                "id": 16,
-                "model": "Class GLE"
-            },
-            {
-                "id": 17,
-                "model": "Class GLK"
-            },
-            {
-                "id": 18,
-                "model": "Class GLS"
-            },
-            {
-                "id": 19,
-                "model": "Class M"
-            },
-            {
-                "id": 20,
-                "model": "Class R"
-            },
-            {
-                "id": 21,
-                "model": "Class S"
-            },
-            {
-                "id": 22,
-                "model": "Class SL"
-            },
-            {
-                "id": 23,
-                "model": "Class SLC"
-            },
-            {
-                "id": 24,
-                "model": "Class SLK"
-            },
-            {
-                "id": 25,
-                "model": "Class T"
-            },
-            {
-                "id": 26,
-                "model": "Class V"
-            },
-            {
-                "id": 27,
-                "model": "Class X"
-            },
-            {
-                "id": 28,
-                "model": "EQA"
-            },
-            {
-                "id": 29,
-                "model": "EQB"
-            },
-            {
-                "id": 30,
-                "model": "EQC"
-            },
-            {
-                "id": 31,
-                "model": "EQE"
-            },
-            {
-                "id": 32,
-                "model": "EQS"
-            },
-            {
-                "id": 33,
-                "model": "EQT"
-            },
-            {
-                "id": 34,
-                "model": "EQV"
-            },
-            {
-                "id": 35,
-                "model": "Class SLS"
-            },
-            {
-                "id": 36,
-                "model": "AMG GT"
-            }
+            {"id": 1, "model": "Class A"},
+            {"id": 2, "model": "Class B"},
+            {"id": 3, "model": "Class C"},
+            {"id": 4, "model": "Class CL"},
+            {"id": 5, "model": "Class CLA"},
+            {"id": 6, "model": "Class CLC"},
+            {"id": 7, "model": "Class CLE"},
+            {"id": 8, "model": "Class CLK"},
+            {"id": 9, "model": "Class CLS"},
+            {"id": 10, "model": "Class E"},
+            {"id": 11, "model": "Class G"},
+            {"id": 12, "model": "Class GL"},
+            {"id": 13, "model": "Class GLA"},
+            {"id": 14, "model": "Class GLB"},
+            {"id": 15, "model": "Class GLC"},
+            {"id": 16, "model": "Class GLE"},
+            {"id": 17, "model": "Class GLK"},
+            {"id": 18, "model": "Class GLS"},
+            {"id": 19, "model": "Class M"},
+            {"id": 20, "model": "Class R"},
+            {"id": 21, "model": "Class S"},
+            {"id": 22, "model": "Class SL"},
+            {"id": 23, "model": "Class SLC"},
+            {"id": 24, "model": "Class SLK"},
+            {"id": 25, "model": "Class T"},
+            {"id": 26, "model": "Class V"},
+            {"id": 27, "model": "Class X"},
+            {"id": 28, "model": "EQA"},
+            {"id": 29, "model": "EQB"},
+            {"id": 30, "model": "EQC"},
+            {"id": 31, "model": "EQE"},
+            {"id": 32, "model": "EQS"},
+            {"id": 33, "model": "EQT"},
+            {"id": 34, "model": "EQV"},
+            {"id": 35, "model": "Class SLS"},
+            {"id": 36, "model": "AMG GT"}
         ]
+    },
+    {
+        "id": 3,
+        "make": "Volkswagen",
+        "models": []
+    },
+    {
+        "id": 4,
+        "make": "Audi",
+        "models": []
+    },
+    {
+        "id": 5,
+        "make": "Ford",
+        "models": []
+    },
+    {
+        "id": 6,
+        "make": "Toyota",
+        "models": []
+    },
+    {
+        "id": 7,
+        "make": "Fiat",
+        "models": []
+    },
+    {
+        "id": 8,
+        "make": "SEAT",
+        "models": []
+    },
+    {
+        "id": 9,
+        "make": "Abarth",
+        "models": [
+            {"id": 1, "model": "124 Spider"},
+            {"id": 2, "model": "500"},
+            {"id": 3, "model": "500C"},
+            {"id": 4, "model": "500e"},
+            {"id": 5, "model": "500e C"},
+            {"id": 6, "model": "595"},
+            {"id": 7, "model": "595C"},
+            {"id": 8, "model": "695"},
+            {"id": 9, "model": "695C"},
+            {"id": 10, "model": "Grande Punto"},
+            {"id": 11, "model": "Punto Evo"}
+        ]
+    },
+    {
+        "id": 10,
+        "make": "Alfa Romeo",
+        "models": []
+    },
+    {
+        "id": 11,
+        "make": "Alpine",
+        "models": []
+    },
+    {
+        "id": 12,
+        "make": "Aston Martin",
+        "models": []
+    },
+    {
+        "id": 13,
+        "make": "Bentley",
+        "models": []
+    },
+    {
+        "id": 14,
+        "make": "Brabus",
+        "models": []
+    },
+    {
+        "id": 15,
+        "make": "Bugatti",
+        "models": []
+    },
+    {
+        "id": 16,
+        "make": "BYD",
+        "models": []
+    },
+    {
+        "id": 17,
+        "make": "Chevrolet",
+        "models": []
+    },
+    {
+        "id": 18,
+        "make": "Chrysler",
+        "models": []
+    },
+    {
+        "id": 19,
+        "make": "Citroën",
+        "models": []
+    },
+    {
+        "id": 20,
+        "make": "Cupra",
+        "models": []
+    },
+    {
+        "id": 21,
+        "make": "Dacia",
+        "models": []
+    },
+    {
+        "id": 22,
+        "make": "Dodge",
+        "models": []
+    },
+    {
+        "id": 23,
+        "make": "DS",
+        "models": []
+    },
+    {
+        "id": 24,
+        "make": "Ferrari",
+        "models": []
+    },
+    {
+        "id": 25,
+        "make": "Fisker",
+        "models": []
+    },
+    {
+        "id": 26,
+        "make": "Honda",
+        "models": []
+    },
+    {
+        "id": 27,
+        "make": "Hyundai",
+        "models": []
+    },
+    {
+        "id": 28,
+        "make": "Iveco",
+        "models": []
+    },
+    {
+        "id": 29,
+        "make": "Jaguar",
+        "models": []
+    },
+    {
+        "id": 30,
+        "make": "Jeep",
+        "models": []
+    },
+    {
+        "id": 31,
+        "make": "Kia",
+        "models": []
+    },
+    {
+        "id": 32,
+        "make": "Lamborghini",
+        "models": []
+    },
+    {
+        "id": 33,
+        "make": "Lancia",
+        "models": []
+    },
+    {
+        "id": 34,
+        "make": "Land Rover",
+        "models": []
+    },
+    {
+        "id": 35,
+        "make": "Lexus",
+        "models": []
+    },
+    {
+        "id": 36,
+        "make": "Lotus",
+        "models": []
+    },
+    {
+        "id": 37,
+        "make": "Maserati",
+        "models": []
+    },
+    {
+        "id": 38,
+        "make": "Maybach",
+        "models": []
+    },
+    {
+        "id": 39,
+        "make": "Mazda",
+        "models": []
+    },
+    {
+        "id": 40,
+        "make": "McLaren",
+        "models": []
+    },
+    {
+        "id": 41,
+        "make": "MINI",
+        "models": []
+    },
+    {
+        "id": 42,
+        "make": "Mitsubishi",
+        "models": []
+    },
+    {
+        "id": 43,
+        "make": "Opel",
+        "models": []
+    },
+    {
+        "id": 44,
+        "make": "Peugeot",
+        "models": []
+    },
+    {
+        "id": 45,
+        "make": "Polestar",
+        "models": []
+    },
+    {
+        "id": 46,
+        "make": "Porsche",
+        "models": []
+    },
+    {
+        "id": 47,
+        "make": "Renault",
+        "models": []
+    },
+    {
+        "id": 48,
+        "make": "Rolls Royce",
+        "models": []
+    },
+    {
+        "id": 49,
+        "make": "Rover",
+        "models": []
+    },
+    {
+        "id": 50,
+        "make": "Skoda",
+        "models": []
+    },
+    {
+        "id": 51,
+        "make": "Smart",
+        "models": []
+    },
+    {
+        "id": 52,
+        "make": "Subaru",
+        "models": []
+    },
+    {
+        "id": 53,
+        "make": "Suzuki",
+        "models": []
+    },
+    {
+        "id": 54,
+        "make": "Tesla",
+        "models": []
+    },
+    {
+        "id": 55,
+        "make": "Volvo",
+        "models": []
     }
 ]
