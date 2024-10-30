@@ -4,11 +4,23 @@ import make_models_data from '../../../../static/make-model.json';
 import { useState } from 'react';
 
 export const Banner = () => {
+
+    const [selectedModel, setSelectedModel] = useState("All");
     const [models, setModels] = useState<{ id: number; model: string }[]>([]);
+    const [isModelDisabled, setIsModelDisabled] = useState(true);
 
     const makeChange = (e: any) => {
-        const filteredMake = make_models_data.filter(data => { return data.make === e.target.value })[0];
-        setModels(filteredMake ? filteredMake.models : []);
+
+        if (e.target.value === "All") {
+            setModels([]);
+            setIsModelDisabled(true);
+
+        } else {
+            const filteredMake = make_models_data.find(data => data.make === e.target.value);
+            setModels(filteredMake ? filteredMake.models : []);
+            setIsModelDisabled(false)
+            setSelectedModel("All");
+        }
     }
 
     return (
@@ -21,8 +33,8 @@ export const Banner = () => {
                             <div className='container p-0'>
                                 <span className="text-white">Make</span>
                             </div>
-                            <select defaultValue={"0"} onChange={makeChange} className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example">
-                                <option value="0">All</option>
+                            <select defaultValue={"All"} onChange={makeChange} className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example">
+                                <option value="All">All</option>
                                 {make_models_data.map(data => (
                                     <option key={data.id} value={data.make}>{data.make}</option>
                                 ))}
@@ -32,8 +44,10 @@ export const Banner = () => {
                             <div className='container p-0'>
                                 <span className="text-white">Model</span>
                             </div>
-                            <select defaultValue={"0"} className="form-select form-select-sm banner-select shadow-none" aria-label="Default select example">
-                                <option value="0">All</option>
+                            <select value={selectedModel} disabled={isModelDisabled} onChange={(e) => {setSelectedModel(e.target.value);}}
+                                className="form-select form-select-sm banner-select shadow-none" aria-label="Default select example"
+                            >
+                                <option value="All">All</option>
                                 {models.map(item => (
                                     <option key={item.id} value={item.model}>{item.model}</option>
                                 ))}
