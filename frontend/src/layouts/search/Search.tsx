@@ -8,7 +8,16 @@ import { CardCard } from '../utils/components/CarCard/CarCard';
 export const Search = () => {
 
     const location = useLocation();
-    const searchQuery = location.state?.searchQuery || '';
+    const filters = {
+        make: location.state?.make || "All",
+        model: location.state?.model || "All",
+        fuelType: location.state?.fuelType || "All",
+        year: location.state?.year || "",
+        mileage: location.state?.mileage || "",
+        maxPrice: location.state?.maxPrice || "",
+        horsePower: location.state?.horsePower || "",
+        searchQuery: location.state?.searchQuery || ""
+    }
     
     const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
 

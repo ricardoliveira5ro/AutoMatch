@@ -6,24 +6,35 @@ import make_models_data from '../../../../static/make-model.json';
 import fuelType_data from '../../../../static/fuel-type.json';
 
 export const Banner = () => {
-
+    
+    /* ---------- Filter inputs ------------ */
+    const [selectedMake, setSelectedMake] = useState("All");
     const [selectedModel, setSelectedModel] = useState("All");
+    const [selectedFuelType, setSelectedFuelType] = useState("All");
+    const [year, setYear] = useState("");
+    const [mileage, setMileage] = useState("");
+    const [maxPrice, setMaxPrice] = useState("");
+    const [horsePower, setHorsePower] = useState("");
+
+    /* ---------- Make <--> Model logic ------------ */
     const [models, setModels] = useState<{ id: number; model: string }[]>([]);
     const [isModelDisabled, setIsModelDisabled] = useState(true);
-
+    
     const makeChange = (e: any) => {
-
-        if (e.target.value === "All") {
+        const newSelectedMake = e.target.value;
+        setSelectedMake(newSelectedMake)
+        
+        if (newSelectedMake === "All") {
             setModels([]);
             setIsModelDisabled(true);
-
+            
         } else {
-            const filteredMake = make_models_data.find(data => data.make === e.target.value);
+            const filteredMake = make_models_data.find(data => data.make === newSelectedMake);
             setModels(filteredMake ? filteredMake.models : []);
             setIsModelDisabled(false)
             setSelectedModel("All");
         }
-    }
+    }    
 
     return (
         <div className="background-wrapper position-relative">
@@ -35,7 +46,7 @@ export const Banner = () => {
                             <div className='container p-0'>
                                 <span className="text-white">Make</span>
                             </div>
-                            <select defaultValue={"All"} onChange={makeChange} className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example">
+                            <select value={selectedMake} onChange={makeChange} className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example">
                                 <option value="All">All</option>
                                 {make_models_data.map(data => (
                                     <option key={data.id} value={data.make}>{data.make}</option>
@@ -46,7 +57,7 @@ export const Banner = () => {
                             <div className='container p-0'>
                                 <span className="text-white">Model</span>
                             </div>
-                            <select value={selectedModel} disabled={isModelDisabled} onChange={(e) => {setSelectedModel(e.target.value);}}
+                            <select value={selectedModel} disabled={isModelDisabled} onChange={e => setSelectedModel(e.target.value)}
                                 className="form-select form-select-sm banner-select shadow-none" aria-label="Default select example"
                             >
                                 <option value="All">All</option>
@@ -59,13 +70,13 @@ export const Banner = () => {
                             <div className='container p-0'>
                                 <span className="text-white">Year</span>
                             </div>
-                            <input type="number" className="banner-input" placeholder="--" aria-label="Year" aria-describedby="year" />
+                            <input value={year} onChange={e => setYear(e.target.value)} type="number" className="banner-input" placeholder="--" aria-label="Year" aria-describedby="year" />
                         </div>
                         <div className='col d-none d-md-flex flex-column align-items-center'>
                             <div className='container p-0'>
                                 <span className="text-white">Mileage</span>
                             </div>
-                            <input type="number" className="banner-input" placeholder="KM" aria-label="Mileage" aria-describedby="mileage" />
+                            <input value={mileage} onChange={e => setMileage(e.target.value)} type="number" className="banner-input" placeholder="KM" aria-label="Mileage" aria-describedby="mileage" />
                         </div>
                     </div>
 
@@ -74,19 +85,21 @@ export const Banner = () => {
                             <div className='container p-0'>
                                 <span className="text-white">Price (Max.)</span>
                             </div>
-                            <input type="number" className="banner-input" placeholder="€" aria-label="Horse Power" aria-describedby="horsepower" />
+                            <input value={maxPrice} onChange={e => setMaxPrice(e.target.value)} type="number" className="banner-input" placeholder="€" aria-label="Price (Max.)" aria-describedby="priceMax" />
                         </div>
                         <div className='col d-none d-md-flex flex-column align-items-center'>
                             <div className='container p-0'>
                                 <span className="text-white">Horse Power</span>
                             </div>
-                            <input type="number" className="banner-input" placeholder="HP" aria-label="Horse Power" aria-describedby="horsepower" />
+                            <input value={horsePower} onChange={e => setHorsePower(e.target.value)} type="number" className="banner-input" placeholder="HP" aria-label="Horse Power" aria-describedby="horsepower" />
                         </div>
                         <div className='col d-none d-md-flex flex-column align-items-center'>
                             <div className='container p-0'>
                                 <span className="text-white">Fuel Type</span>
                             </div>
-                            <select defaultValue={"All"} className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example">
+                            <select value={selectedFuelType} onChange={e => setSelectedFuelType(e.target.value)} 
+                                className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example"
+                            >
                                 <option value="All">All</option>
                                 {fuelType_data.map(item => (
                                     <option key={item.id} value={item.fuelType}>{item.fuelType}</option>
@@ -100,7 +113,11 @@ export const Banner = () => {
                             </a>
                         </div>
                         <div className='col d-flex flex-column justify-content-end align-items-center'>
-                            <Link to='/search' type="button" className="btn btn-sm btn-banner-search text-white">Search</Link>
+                            <Link to={'/search'} 
+                                state={{make: selectedMake, model: selectedModel, fuelType: selectedFuelType, year: year, mileage: mileage, maxPrice: maxPrice, horsePower: horsePower}} 
+                                type="button" className="btn btn-sm btn-banner-search text-white">
+                                Search
+                            </Link>
                         </div>
                     </div>
                 </div>
