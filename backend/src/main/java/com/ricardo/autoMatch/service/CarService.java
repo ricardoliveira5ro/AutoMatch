@@ -2,7 +2,6 @@ package com.ricardo.autoMatch.service;
 
 import com.ricardo.autoMatch.dto.CarDTO;
 import com.ricardo.autoMatch.dto.CarDetailsDTO;
-import com.ricardo.autoMatch.dto.CarImageDTO;
 import com.ricardo.autoMatch.dto.UserDTO;
 import com.ricardo.autoMatch.model.*;
 import com.ricardo.autoMatch.repository.CarRepository;
@@ -15,10 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.Instant;
-import java.util.Base64;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class CarService {
@@ -43,7 +39,14 @@ public class CarService {
 
     @Transactional(readOnly = true)
     public List<CarDTO> getRecommendedCars(int page, int size) {
-        return carRepository.findByRecommendedTrue(PageRequest.of(page, size)).stream().map(this::convertToCarDTO).toList();
+        List<Car> recommended = carRepository.findByRecommendedTrue();
+
+        Collections.shuffle(recommended);
+
+        int start = page * size;
+        int end = Math.min(start + size, recommended.size());
+
+        return recommended.subList(start, end).stream().map(this::convertToCarDTO).toList();
     }
 
     public CarDTO createCar(MultipartFile file) {
