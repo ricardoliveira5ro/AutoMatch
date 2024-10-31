@@ -41,8 +41,13 @@ public class CarService {
         return convertToCarDetailsDTO(carRepository.findById(id).orElseThrow(() -> new RuntimeException("Car not found")));
     }
 
+    @Transactional(readOnly = true)
+    public List<CarDTO> getRecommendedCars(int page, int size) {
+        return carRepository.findByRecommendedTrue(PageRequest.of(page, size)).stream().map(this::convertToCarDTO).toList();
+    }
+
     public CarDTO createCar(MultipartFile file) {
-        Car car = new Car("TEST", "TEST", "TEST", "TEST", Condition.NEW, 1f, Style.COUPE, Date.from(Instant.now()), 1, FuelType.DIESEL, GearBox.AUTOMATIC, Color.BLACK, 1, 1, 1);
+        Car car = new Car("TEST", "TEST", "TEST", "TEST", Condition.NEW, 1f, Style.COUPE, Date.from(Instant.now()), 1, FuelType.DIESEL, GearBox.AUTOMATIC, Color.BLACK, 1, 1, 1, true);
         car.setUser(userRepository.findById(1).orElseThrow(() -> new RuntimeException("User not found")));
 
         try {
@@ -56,7 +61,7 @@ public class CarService {
     }
 
     public CarDTO createCarV2(List<MultipartFile> files) {
-        Car car = new Car("TEST", "TEST", "TEST", "TEST", Condition.NEW, 1f, Style.COUPE, Date.from(Instant.now()), 1, FuelType.DIESEL, GearBox.AUTOMATIC, Color.BLACK, 1, 1, 1);
+        Car car = new Car("TEST", "TEST", "TEST", "TEST", Condition.NEW, 1f, Style.COUPE, Date.from(Instant.now()), 1, FuelType.DIESEL, GearBox.AUTOMATIC, Color.BLACK, 1, 1, 1, true);
         car.setUser(userRepository.findById(1).orElseThrow(() -> new RuntimeException("User not found")));
 
         for (MultipartFile file : files) {
@@ -76,7 +81,7 @@ public class CarService {
     }
 
     public String seedData(List<MultipartFile> files) {
-        Car car = new Car("Ford Mustang 5.0 Ti-VCT GT", "", "Ford", "Mustang", Condition.USED, 78900f, Style.COUPE, Date.from(Instant.now()), 81000, FuelType.GASOLINE, GearBox.MANUAL, Color.GREEN, 2, 4951, 450);
+        Car car = new Car("Ford Mustang 5.0 Ti-VCT GT", "", "Ford", "Mustang", Condition.USED, 78900f, Style.COUPE, Date.from(Instant.now()), 81000, FuelType.GASOLINE, GearBox.MANUAL, Color.GREEN, 2, 4951, 450, true);
         car.setUser(userRepository.findById(1).orElseThrow(() -> new RuntimeException("User not found")));
 
         try {
@@ -108,7 +113,8 @@ public class CarService {
                 car.getMileage(),
                 car.getFuelType().getValue(),
                 car.getHorsePower(),
-                Base64.getEncoder().encodeToString(car.getImgCover())
+                Base64.getEncoder().encodeToString(car.getImgCover()),
+                car.isRecommended()
         );
     }
 
