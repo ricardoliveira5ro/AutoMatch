@@ -15,6 +15,7 @@
     "doors": 2,
     "displacement": 4951,
     "horsePower": 450,
+    "recommended": true,
     "userId": 1,
     "imagesPaths": [
       "static/seed/images/mustang-1.png",
@@ -42,6 +43,7 @@
     "doors": 4,
     "displacement": 2487,
     "horsePower": 218,
+    "recommended": false,
     "userId": 2,
     "imagesPaths": [
       "static/seed/images/camry-1.png",
@@ -67,6 +69,7 @@
     "doors": 4,
     "displacement": 1996,
     "horsePower": 320,
+    "recommended": true,
     "userId": 3,
     "imagesPaths": [
       "static/seed/images/civic-1.png",
@@ -91,6 +94,7 @@
     "doors": 4,
     "displacement": 4395,
     "horsePower": 575,
+    "recommended": true,
     "userId": 4,
     "imagesPaths": [
       "static/seed/images/X5-1.png",
@@ -116,6 +120,7 @@
     "doors": 4,
     "displacement": 2384,
     "horsePower": 167,
+    "recommended": false,
     "userId": 5,
     "imagesPaths": [
       "static/seed/images/malibu-1.png",
@@ -143,6 +148,7 @@
     "doors": 4,
     "displacement": 1968,
     "horsePower": 150,
+    "recommended": false,
     "userId": 6,
     "imagesPaths": [
       "static/seed/images/audi-a4-1.png",
@@ -167,6 +173,7 @@
     "doors": 4,
     "displacement": 0,
     "horsePower": 238,
+    "recommended": true,
     "userId": 7,
     "imagesPaths": [
       "static/seed/images/tesla-1.png",
@@ -195,6 +202,7 @@
     "doors": 4,
     "displacement": 1798,
     "horsePower": 140,
+    "recommended": false,
     "userId": 8,
     "imagesPaths": [
       "static/seed/images/corolla-1.png",
@@ -220,6 +228,7 @@
     "doors": 2,
     "displacement": 6210,
     "horsePower": 416,
+    "recommended": false,
     "userId": 9,
     "imagesPaths": [
       "static/seed/images/f-150-1.png",
@@ -246,6 +255,7 @@
     "doors": 2,
     "displacement": 3696,
     "horsePower": 500,
+    "recommended": true,
     "userId": 10,
     "imagesPaths": [
       "static/seed/images/nismo-1.png",
@@ -273,6 +283,7 @@
     "doors": 4,
     "displacement": 1591,
     "horsePower": 130,
+    "recommended": false,
     "userId": 1,
     "imagesPaths": [
       "static/seed/images/elantra-1.png",
@@ -300,6 +311,7 @@
     "doors": 4,
     "displacement": 1332,
     "horsePower": 218,
+    "recommended": true,
     "userId": 2,
     "imagesPaths": [
       "static/seed/images/gla-1.png",
@@ -326,6 +338,7 @@
     "doors": 2,
     "displacement": 1995,
     "horsePower": 150,
+    "recommended": true,
     "userId": 3,
     "imagesPaths": [
       "static/seed/images/218d-1.png",
@@ -352,6 +365,7 @@
     "doors": 4,
     "displacement": 1998,
     "horsePower": 165,
+    "recommended": false,
     "userId": 4,
     "imagesPaths": [
       "static/seed/images/mazda-1.png",
@@ -377,6 +391,7 @@
     "doors": 4,
     "displacement": 2199,
     "horsePower": 197,
+    "recommended": false,
     "userId": 5,
     "imagesPaths": [
       "static/seed/images/kia-1.png",
@@ -406,6 +421,7 @@
     "doors": 4,
     "displacement": 1995,
     "horsePower": 238,
+    "recommended": false,
     "userId": 6,
     "imagesPaths": [
       "static/seed/images/ford-edge-1.png",
@@ -433,6 +449,7 @@
     "doors": 2,
     "displacement": 1499,
     "horsePower": 362,
+    "recommended": true,
     "userId": 7,
     "imagesPaths": [
       "static/seed/images/i8-1.png",
@@ -458,6 +475,7 @@
     "doors": 4,
     "displacement": 1332,
     "horsePower": 218,
+    "recommended": true,
     "userId": 8,
     "imagesPaths": [
       "static/seed/images/cla-1.png",
@@ -486,6 +504,7 @@
     "doors": 4,
     "displacement": 2995,
     "horsePower": 462,
+    "recommended": true,
     "userId": 9,
     "imagesPaths": [
       "static/seed/images/cayenne-1.png",
@@ -513,6 +532,7 @@
     "doors": 4,
     "displacement": 999,
     "horsePower": 110,
+    "recommended": false,
     "userId": 10,
     "imagesPaths": [
       "static/seed/images/golf-1.png",

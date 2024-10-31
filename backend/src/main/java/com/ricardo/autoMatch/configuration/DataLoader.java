@@ -80,7 +80,8 @@ public class DataLoader implements CommandLineRunner {
                     Color.valueOf((String) carData.get("color")),
                     Integer.parseInt(String.valueOf(carData.get("doors"))),
                     Integer.parseInt(String.valueOf(carData.get("displacement"))),
-                    Integer.parseInt(String.valueOf(carData.get("horsePower")))
+                    Integer.parseInt(String.valueOf(carData.get("horsePower"))),
+                    Boolean.valueOf(String.valueOf(carData.get("recommended")))
                 );
 
                 User user = userRepository.findById(Integer.parseInt(String.valueOf(carData.get("userId")))).orElseThrow();

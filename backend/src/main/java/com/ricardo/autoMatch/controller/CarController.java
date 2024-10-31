@@ -26,6 +26,11 @@ public class CarController {
         return ResponseEntity.ok(carService.getAllCars(page, size));
     }
 
+    @GetMapping("/recommended")
+    public ResponseEntity<List<CarDTO>> getRecommendedCars(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size) {
+        return ResponseEntity.ok(carService.getRecommendedCars(page, size));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<CarDetailsDTO> getCarById(@PathVariable int id) {
         return ResponseEntity.ok(carService.getCar((long) id));

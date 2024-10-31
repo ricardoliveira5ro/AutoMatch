@@ -22,4 +22,5 @@ public class CarDTO {
     private String fuelType;
     private Integer horsePower;
     private String imgCover;
+    private boolean recommended;
 }
