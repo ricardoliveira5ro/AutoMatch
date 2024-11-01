@@ -49,6 +49,12 @@ public class CarService {
         return recommended.subList(start, end).stream().map(this::convertToCarDTO).toList();
     }
 
+    @Transactional(readOnly = true)
+    public List<CarDTO> getFilteredCars(String make, String model, FuelType fuelType, String year, Integer mileage, Float maxPrice, Integer horsePower, String searchQuery) {
+        return carRepository.findFiltered(make, model, fuelType, mileage, horsePower, searchQuery)
+                .stream().map(this::convertToCarDTO).toList();
+    }
+
     public CarDTO createCar(MultipartFile file) {
         Car car = new Car("TEST", "TEST", "TEST", "TEST", Condition.NEW, 1f, Style.COUPE, Date.from(Instant.now()), 1, FuelType.DIESEL, GearBox.AUTOMATIC, Color.BLACK, 1, 1, 1, true);
         car.setUser(userRepository.findById(1).orElseThrow(() -> new RuntimeException("User not found")));
@@ -116,7 +122,7 @@ public class CarService {
                 car.getMileage(),
                 car.getFuelType().getValue(),
                 car.getHorsePower(),
-                Base64.getEncoder().encodeToString(car.getImgCover()),
+                //Base64.getEncoder().encodeToString(car.getImgCover()),
                 car.isRecommended()
         );
     }
