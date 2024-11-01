@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './NavBar.css';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
@@ -6,6 +6,13 @@ import { useState } from 'react';
 export const NavBar = () => {
 
     const [searchQuery, setSearchQuery] = useState('');
+
+    const navigate = useNavigate();
+    const handleSearchSubmit = (e: any) => {
+        if (e.key === 'Enter') {
+            navigate('/search', { state: { searchQuery: searchQuery } });
+        }
+    }
 
     return (
         <nav className="navbar navbar-dark">
@@ -16,7 +23,7 @@ export const NavBar = () => {
                 <div className='d-none d-lg-flex'>
                     <div className="input-group input-group-sm">
                         <input type="text" placeholder="Any make, model..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} 
-                            className="form-control shadow-none border" aria-label="Any make, model..." aria-describedby="home-search" 
+                            onKeyDown={handleSearchSubmit} className="form-control shadow-none border" aria-label="Any make, model..." aria-describedby="home-search" 
                         />
                         <Link to={'/search'} state={{searchQuery: searchQuery}} className="btn btn-outline-secondary" id="home-search">
                             <i className="bi bi-search"></i>
