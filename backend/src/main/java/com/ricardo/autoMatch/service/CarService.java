@@ -121,8 +121,10 @@ public class CarService {
                 car.getDate(),
                 car.getMileage(),
                 car.getFuelType().getValue(),
+                car.getGearBox().getValue(),
+                car.getDisplacement(),
                 car.getHorsePower(),
-                //Base64.getEncoder().encodeToString(car.getImgCover()),
+                Base64.getEncoder().encodeToString(car.getImgCover()),
                 car.isRecommended()
         );
     }

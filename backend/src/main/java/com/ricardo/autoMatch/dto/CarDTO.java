@@ -20,7 +20,9 @@ public class CarDTO {
     private Date date;
     private Integer mileage;
     private String fuelType;
+    private String gearBox;
+    private Integer displacement;
     private Integer horsePower;
-    //private String imgCover;
+    private String imgCover;
     private boolean recommended;
 }

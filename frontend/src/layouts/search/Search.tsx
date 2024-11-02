@@ -5,6 +5,7 @@ import { BasicFilters } from './components/BasicFilters/BasicFilters';
 import { AdvancedFilters } from './components/AdvancedFilters/AdvancedFilters';
 import { CardCard } from '../utils/components/CarCard/CarCard';
 import CarModel from '../../models/CarModel';
+import { SpinnerLoading } from '../utils/components/SpinnerLoading/SpinnerLoading';
 
 export const Search = () => {
 
@@ -46,8 +47,10 @@ export const Search = () => {
                     date: responseData[key].date,
                     mileage: responseData[key].mileage,
                     fuelType: responseData[key].fuelType,
-                    horsePower: responseData[key].horsePower
-                    //imgCover: responseData[key].imgCover
+                    gearBox: responseData[key].gearBox,
+                    displacement: responseData[key].displacement,
+                    horsePower: responseData[key].horsePower,
+                    imgCover: responseData[key].imgCover
                 });
             }
 
@@ -80,7 +83,22 @@ export const Search = () => {
             <BasicFilters toggleAdvancedFilters={toggleAdvancedFilters}/>
             {showAdvancedFilters && <AdvancedFilters/>}
 
-            <CardCard />
+            {httpError ? (
+                <p className='text-white'>{httpError}</p>
+            ) : (
+                <>
+                {isLoading ? (
+                    <SpinnerLoading />
+                ) : (
+                    <>
+                        {cars.map(car => (
+                            <CardCard key={car.id} car={car} />
+                        ))}
+                    </>
+                )}
+                </>
+            )}
+
         </div>
     );
 }
