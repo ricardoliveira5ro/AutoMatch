@@ -50,8 +50,8 @@ public class CarService {
     }
 
     @Transactional(readOnly = true)
-    public List<CarDTO> getFilteredCars(String make, String model, FuelType fuelType, String year, Integer mileage, Float maxPrice, Integer horsePower, String searchQuery) {
-        return carRepository.findFiltered(make, model, fuelType, mileage, horsePower, searchQuery)
+    public List<CarDTO> getFilteredCars(String make, String model, FuelType fuelType, Integer year, Integer maxMileage, Float maxPrice, Integer minHorsePower, String searchQuery) {
+        return carRepository.findFiltered(make, model, fuelType, year, maxMileage, maxPrice, minHorsePower, searchQuery)
                 .stream().map(this::convertToCarDTO).toList();
     }
 

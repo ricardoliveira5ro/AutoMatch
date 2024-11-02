@@ -1,26 +1,68 @@
 import { Link, useLocation } from 'react-router-dom';
 import './Search.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BasicFilters } from './components/BasicFilters/BasicFilters';
 import { AdvancedFilters } from './components/AdvancedFilters/AdvancedFilters';
 import { CardCard } from '../utils/components/CarCard/CarCard';
+import CarModel from '../../models/CarModel';
 
 export const Search = () => {
 
     const location = useLocation();
     const filters = {
-        make: location.state?.make || "All",
-        model: location.state?.model || "All",
-        fuelType: location.state?.fuelType || "All",
-        year: location.state?.year || "",
-        mileage: location.state?.mileage || "",
-        maxPrice: location.state?.maxPrice || "",
-        horsePower: location.state?.horsePower || "",
+        make: location.state?.make,
+        model: location.state?.model,
+        fuelType: location.state?.fuelType,
+        year: location.state?.year,
+        maxMileage: location.state?.maxMileage,
+        maxPrice: location.state?.maxPrice,
+        minHorsePower: location.state?.minHorsePower,
         searchQuery: location.state?.searchQuery || ""
     }
-    
-    const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
 
+    const [cars, setCars] = useState<CarModel[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [httpError, setHttpError] = useState(null);
+
+    useEffect(() => {
+        const fetchCars = async () => {
+            const baseUrl: string = "http://localhost:8080/api/cars/search";
+            const url: string = `${baseUrl}?make=${filters.make}&model=${filters.model}&fuelType=${filters.fuelType}&year=${filters.year}&maxMileage=${filters.maxMileage}&maxPrice=${filters.maxPrice}&minHorsePower=${filters.minHorsePower}&searchQuery=${filters.searchQuery}`
+
+            const response = await fetch(url);
+
+            if (!response.ok) {
+                throw new Error('Something went wrong!');
+            }
+
+            const responseData = await response.json();
+            const loadedCars: CarModel[] = [];
+
+            for (const key in responseData) {
+                loadedCars.push({
+                    id: responseData[key].id,
+                    title: responseData[key].title,
+                    price: responseData[key].price,
+                    date: responseData[key].date,
+                    mileage: responseData[key].mileage,
+                    fuelType: responseData[key].fuelType,
+                    horsePower: responseData[key].horsePower
+                    //imgCover: responseData[key].imgCover
+                });
+            }
+
+            setCars(loadedCars);
+            setIsLoading(false);
+        };
+
+        fetchCars().catch((error: any) => {
+            setIsLoading(false);
+            setHttpError(error.message);
+        })
+    }, []);
+    
+
+    const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
     const toggleAdvancedFilters = () => {
         setShowAdvancedFilters(prevState => !prevState);
     };

@@ -42,20 +42,29 @@ public class CarController {
                                                @RequestParam(value = "model", required = false) String modelParam,
                                                @RequestParam(value = "fuelType", required = false) String fuelTypeParam,
                                                @RequestParam(value = "year", required = false) String yearParam,
-                                               @RequestParam(value = "mileage", required = false) String mileageParam,
+                                               @RequestParam(value = "maxMileage", required = false) String maxMileageParam,
                                                @RequestParam(value = "maxPrice", required = false) String maxPriceParam,
-                                               @RequestParam(value = "housePower", required = false) String horsePowerParam,
+                                               @RequestParam(value = "minHorsePower", required = false) String minHorsePowerParam,
                                                @RequestParam(value = "searchQuery", required = false) String searchQueryParam) {
 
-        String make = (makeParam != null) ? makeParam.toUpperCase() : null;
-        String model = (modelParam != null) ? modelParam.toUpperCase() : null;
-        FuelType fuelType = (fuelTypeParam != null) ? FuelType.valueOf(fuelTypeParam.toUpperCase()) : null;
-        Integer mileage = (mileageParam != null) ? Integer.parseInt(mileageParam) : null;
-        Float maxPrice = (maxPriceParam != null) ? Float.parseFloat(maxPriceParam) : null;
-        Integer horsePower = (horsePowerParam != null) ? Integer.parseInt(horsePowerParam) : null;
-        String searchQuery = (searchQueryParam != null) ? searchQueryParam.toUpperCase() : null;
+        String make = (makeParam != null && !makeParam.equalsIgnoreCase("ALL")) ?
+                            makeParam.toUpperCase() : null;
+        String model = (modelParam != null && !modelParam.equalsIgnoreCase("ALL")) ?
+                            modelParam.toUpperCase() : null;
+        FuelType fuelType = (fuelTypeParam != null && !fuelTypeParam.equalsIgnoreCase("ALL")) ?
+                            FuelType.valueOf(fuelTypeParam.toUpperCase()) : null;
+        Integer year = (yearParam != null && !yearParam.isEmpty()) ?
+                            Integer.parseInt(yearParam) : null;
+        Integer maxMileage = (maxMileageParam != null && !maxMileageParam.isEmpty()) ?
+                            Integer.parseInt(maxMileageParam) : null;
+        Float maxPrice = (maxPriceParam != null && !maxPriceParam.isEmpty()) ?
+                            Float.parseFloat(maxPriceParam) : null;
+        Integer minHorsePower = (minHorsePowerParam != null && !minHorsePowerParam.isEmpty()) ?
+                            Integer.parseInt(minHorsePowerParam) : null;
+        String searchQuery = (searchQueryParam != null && !searchQueryParam.isEmpty()) ?
+                            searchQueryParam.toUpperCase() : null;
 
-        return ResponseEntity.ok(carService.getFilteredCars(make, model, fuelType, yearParam, mileage, maxPrice, horsePower, searchQuery));
+        return ResponseEntity.ok(carService.getFilteredCars(make, model, fuelType, year, maxMileage, maxPrice, minHorsePower, searchQuery));
     }
 
     @PostMapping("/create")

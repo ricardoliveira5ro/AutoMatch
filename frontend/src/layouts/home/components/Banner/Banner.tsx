@@ -12,9 +12,9 @@ export const Banner = () => {
     const [selectedModel, setSelectedModel] = useState("All");
     const [selectedFuelType, setSelectedFuelType] = useState("All");
     const [year, setYear] = useState("");
-    const [mileage, setMileage] = useState("");
+    const [maxMileage, setMaxMileage] = useState("");
     const [maxPrice, setMaxPrice] = useState("");
-    const [horsePower, setHorsePower] = useState("");
+    const [minHorsePower, setMinHorsePower] = useState("");
 
     /* ---------- Make <--> Model logic ------------ */
     const [models, setModels] = useState<{ id: number; model: string }[]>([]);
@@ -74,9 +74,9 @@ export const Banner = () => {
                         </div>
                         <div className='col d-none d-md-flex flex-column align-items-center'>
                             <div className='container p-0'>
-                                <span className="text-white">Mileage</span>
+                                <span className="text-white">Mileage (Max.)</span>
                             </div>
-                            <input value={mileage} onChange={e => setMileage(e.target.value)} type="number" className="banner-input" placeholder="KM" aria-label="Mileage" aria-describedby="mileage" />
+                            <input value={maxMileage} onChange={e => setMaxMileage(e.target.value)} type="number" className="banner-input" placeholder="KM" aria-label="Mileage (Max.)" aria-describedby="mileageMax" />
                         </div>
                     </div>
 
@@ -91,7 +91,7 @@ export const Banner = () => {
                             <div className='container p-0'>
                                 <span className="text-white">Horse Power</span>
                             </div>
-                            <input value={horsePower} onChange={e => setHorsePower(e.target.value)} type="number" className="banner-input" placeholder="HP" aria-label="Horse Power" aria-describedby="horsepower" />
+                            <input value={minHorsePower} onChange={e => setMinHorsePower(e.target.value)} type="number" className="banner-input" placeholder="HP (Min.)" aria-label="Horse Power (Min.)" aria-describedby="horsepowerMin" />
                         </div>
                         <div className='col d-none d-md-flex flex-column align-items-center'>
                             <div className='container p-0'>
@@ -114,7 +114,7 @@ export const Banner = () => {
                         </div>
                         <div className='col d-flex flex-column justify-content-end align-items-center'>
                             <Link to={'/search'} 
-                                state={{make: selectedMake, model: selectedModel, fuelType: selectedFuelType, year: year, mileage: mileage, maxPrice: maxPrice, horsePower: horsePower}} 
+                                state={{make: selectedMake, model: selectedModel, fuelType: selectedFuelType, year: year, maxMileage: maxMileage, maxPrice: maxPrice, minHorsePower: minHorsePower}} 
                                 type="button" className="btn btn-sm btn-banner-search text-white">
                                 Search
                             </Link>
