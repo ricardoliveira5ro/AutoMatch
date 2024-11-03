@@ -34,11 +34,11 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        if (userRepository.findAll().isEmpty()) {
+        if (userRepository.count() == 0) {
             userSeedData();
         }
 
-        if (carRepository.findAll().isEmpty()) {
+        if (carRepository.count() == 0) {
             carSeedData();
         }
     }

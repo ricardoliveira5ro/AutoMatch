@@ -5,40 +5,27 @@ import fuelType_data from '../../../../static/fuel-type.json';
 
 export const BasicFilters: React.FC<{
     toggleAdvancedFilters: any,
-    initialFiltersInputs: any
+    filters: any,
+    onFilterChange: (name: string, value: string) => void
 }> = (props) => {
 
-    /* ---------- Filter inputs ------------ */
-    const [selectedMake, setSelectedMake] = useState(props.initialFiltersInputs.make);
-    const [selectedModel, setSelectedModel] = useState(props.initialFiltersInputs.model);
-    const [selectedFuelType, setSelectedFuelType] = useState(props.initialFiltersInputs.fuelType);
-    const [minYear, setMinYear] = useState(props.initialFiltersInputs.minYear);
-    const [maxYear, setMaxYear] = useState(props.initialFiltersInputs.maxYear);
-    const [minPrice, setMinPrice] = useState(props.initialFiltersInputs.minPrice);
-    const [maxPrice, setMaxPrice] = useState(props.initialFiltersInputs.maxPrice);
-    const [minMileage, setMinMileage] = useState(props.initialFiltersInputs.minMileage);
-    const [maxMileage, setMaxMileage] = useState(props.initialFiltersInputs.maxMileage);
-    const [minHorsePower, setMinHorsePower] = useState(props.initialFiltersInputs.minHorsePower);
-    const [maxHorsePower, setMaxHorsePower] = useState(props.initialFiltersInputs.maxHorsePower);
-
-
-    /* ---------- Make <--> Model logic ------------ */
+    /* ---------- Make <--> Model logic ------------ { toggleAdvancedFilters, filters, onFilterChange } */
     const [models, setModels] = useState<{ model: string }[]>([]);
     const [isModelDisabled, setIsModelDisabled] = useState(true);
     
-    const makeChange = (e: any) => {
-        const newSelectedMake = e.target.value;
-        setSelectedMake(newSelectedMake)
-        
-        if (newSelectedMake === "All") {
+    const onMakeChange = (e: any) => {
+        const selectedMake = e.target.value;
+        props.onFilterChange('make', selectedMake);
+
+        if (selectedMake === "All") {
             setModels([]);
             setIsModelDisabled(true);
             
         } else {
-            const filteredMake = make_models_data.find(data => data.make === newSelectedMake);
+            const filteredMake = make_models_data.find(data => data.make === selectedMake);
             setModels(filteredMake ? filteredMake.models : []);
             setIsModelDisabled(false)
-            setSelectedModel("All");
+            props.onFilterChange('model', 'All');
         }
     }    
 
@@ -49,7 +36,7 @@ export const BasicFilters: React.FC<{
                 <div className='container p-0'>
                     <span className="text-white">Make</span>
                 </div>
-                <select value={selectedMake} onChange={makeChange} className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example">
+                <select value={props.filters.make} onChange={onMakeChange} className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example">
                     <option value="All">All</option>
                     {make_models_data.map((data, index) => (
                         <option key={index} value={data.make}>{data.make}</option>
@@ -60,7 +47,7 @@ export const BasicFilters: React.FC<{
                 <div className='container p-0'>
                     <span className="text-white">Model</span>
                 </div>
-                <select value={selectedModel} disabled={isModelDisabled} onChange={e => setSelectedModel(e.target.value)}
+                <select value={props.filters.model} disabled={isModelDisabled} onChange={e => props.onFilterChange('model', e.target.value)}
                     className="form-select form-select-sm banner-select shadow-none" aria-label="Default select example"
                 >
                     <option value="All">All</option>
@@ -73,60 +60,60 @@ export const BasicFilters: React.FC<{
                 <div className='container p-0'>
                     <span className="text-white">Year (From)</span>
                 </div>
-                <input value={minYear} onChange={e => setMinYear(e.target.value)} type="number" className="banner-input" placeholder="1990" aria-label="Year" aria-describedby="year-from" />
+                <input value={props.filters.minYear} onChange={e => props.onFilterChange('minYear', e.target.value)} type="number" className="banner-input" placeholder="1990" aria-label="Year" aria-describedby="year-from" />
             </div>
             <div className='d-flex flex-column align-items-center'>
                 <div className='container p-0'>
                     <span className="text-white">Year (To)</span>
                 </div>
-                <input value={maxYear} onChange={e => setMaxYear(e.target.value)} type="number" className="banner-input" placeholder="2024" aria-label="Year" aria-describedby="year-to" />
+                <input value={props.filters.maxYear} onChange={e => props.onFilterChange('maxYear', e.target.value)} type="number" className="banner-input" placeholder="2024" aria-label="Year" aria-describedby="year-to" />
             </div>
             <div className='d-flex flex-column align-items-center'>
                 <div className='container p-0'>
                     <span className="text-white">Price (Min.)</span>
                 </div>
-                <input value={minPrice} onChange={e => setMinPrice(e.target.value)} type="number" className="banner-input" placeholder="€" aria-label="Price Min" aria-describedby="price-min" />
+                <input value={props.filters.minPrice} onChange={e => props.onFilterChange('minPrice', e.target.value)} type="number" className="banner-input" placeholder="€" aria-label="Price Min" aria-describedby="price-min" />
             </div>
             <div className='d-flex flex-column align-items-center'>
                 <div className='container p-0'>
                     <span className="text-white">Price (Max.)</span>
                 </div>
-                <input value={maxPrice} onChange={e => setMaxPrice(e.target.value)} type="number" className="banner-input" placeholder="€" aria-label="Price Max" aria-describedby="price-max" />
+                <input value={props.filters.maxPrice} onChange={e => props.onFilterChange('maxPrice', e.target.value)} type="number" className="banner-input" placeholder="€" aria-label="Price Max" aria-describedby="price-max" />
             </div>
             <div className='d-flex flex-column align-items-center'>
                 <div className='container p-0'>
                     <span className="text-white">Mileage (Min.)</span>
                 </div>
-                <input value={minMileage} onChange={e => setMinMileage(e.target.value)} type="number" className="banner-input" placeholder="KM" aria-label="Mileage Min" aria-describedby="mileage-min" />
+                <input value={props.filters.minMileage} onChange={e => props.onFilterChange('minMileage', e.target.value)} type="number" className="banner-input" placeholder="KM" aria-label="Mileage Min" aria-describedby="mileage-min" />
             </div>
             <div className='d-flex flex-column align-items-center'>
                 <div className='container p-0'>
                     <span className="text-white">Mileage (Max.)</span>
                 </div>
-                <input value={maxMileage} onChange={e => setMaxMileage(e.target.value)} type="number" className="banner-input" placeholder="KM" aria-label="Mileage Max" aria-describedby="mileage-max" />
+                <input value={props.filters.maxMileage} onChange={e => props.onFilterChange('maxMileage', e.target.value)} type="number" className="banner-input" placeholder="KM" aria-label="Mileage Max" aria-describedby="mileage-max" />
             </div>
             <div className='d-flex flex-column align-items-center'>
                 <div className='container p-0'>
                     <span className="text-white">Horse Power (Min.)</span>
                 </div>
-                <input value={minHorsePower} onChange={e => setMinHorsePower(e.target.value)} type="number" className="banner-input" placeholder="HP" aria-label="Horse Power Min" aria-describedby="horsepower-min" />
+                <input value={props.filters.minHorsePower} onChange={e => props.onFilterChange('minHorsePower', e.target.value)} type="number" className="banner-input" placeholder="HP" aria-label="Horse Power Min" aria-describedby="horsepower-min" />
             </div>
             <div className='d-flex flex-column align-items-center'>
                 <div className='container p-0'>
                     <span className="text-white">Horse Power (Max.)</span>
                 </div>
-                <input value={maxHorsePower} onChange={e => setMaxHorsePower(e.target.value)} type="number" className="banner-input" placeholder="HP" aria-label="Horse Power Max" aria-describedby="horsepower-max" />
+                <input value={props.filters.maxHorsePower} onChange={e => props.onFilterChange('maxHorsePower', e.target.value)} type="number" className="banner-input" placeholder="HP" aria-label="Horse Power Max" aria-describedby="horsepower-max" />
             </div>
             <div className='d-flex flex-column align-items-center'>
                 <div className='container p-0'>
                     <span className="text-white">Fuel Type</span>
                 </div>
-                <select value={selectedFuelType} onChange={e => setSelectedFuelType(e.target.value)}
+                <select value={props.filters.fuelType} onChange={e => props.onFilterChange('fuelType', e.target.value)}
                     className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example"
                 >
                     <option value="All">All</option>
-                    {fuelType_data.map(item => (
-                        <option key={item.id} value={item.fuelType}>{item.fuelType}</option>
+                    {fuelType_data.map((item, index) => (
+                        <option key={index} value={item.fuelType}>{item.fuelType}</option>
                     ))}
                 </select>
             </div>

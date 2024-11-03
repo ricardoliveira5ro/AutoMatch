@@ -9,9 +9,9 @@ import { SpinnerLoading } from '../utils/components/SpinnerLoading/SpinnerLoadin
 
 export const Search = () => {
 
-    /* ---------- Initial filters ------------ */
+    /* ---------- Filters ------------ */
     const location = useLocation();
-    const filters = {
+    const [filters, setFilters] = useState({
         make: location.state?.make || "All",
         model: location.state?.model || "All",
         fuelType: location.state?.fuelType || "All",
@@ -31,8 +31,14 @@ export const Search = () => {
         doors: "",
         minDisplacement: "",
         maxDisplacement: ""
-    }
+    });
 
+    const handleFilterChange = (name: string, value: string) => {
+        setFilters(prevFilters => ({
+            ...prevFilters,
+            [name]: value
+        }));
+    };
 
     /* ---------- Fetch cars ------------ */
     const [cars, setCars] = useState<CarModel[]>([]);
@@ -80,7 +86,7 @@ export const Search = () => {
             setIsLoading(false);
             setHttpError(error.message);
         })
-    }, []);
+    }, [filters]);
     
 
     /* ---------- Toggle Advanced Filters ------------ */
@@ -96,11 +102,11 @@ export const Search = () => {
                     <i className="bi bi-house-fill" style={{ color: 'white', fontSize: '30px' }}></i>
                     <p className='d-none d-sm-flex text-white ms-3 mb-0'>Home</p>
                 </Link>
-                <button className='btn btn-primary px-5' type='button'>Search</button>
+                <input value={filters.searchQuery} onChange={e => handleFilterChange('searchQuery', e.target.value)} type="text" className="search-query-input" placeholder="Version, Title ex. GTI Turbo ..." aria-label="Search Query" aria-describedby="search-query" />
             </div>
             
-            <BasicFilters toggleAdvancedFilters={toggleAdvancedFilters} initialFiltersInputs={filters}/>
-            {showAdvancedFilters && <AdvancedFilters/>}
+            <BasicFilters toggleAdvancedFilters={toggleAdvancedFilters} filters={filters} onFilterChange={handleFilterChange} />
+            {showAdvancedFilters && <AdvancedFilters filters={filters} onFilterChange={handleFilterChange}/>}
 
             {httpError ? (
                 <p className='text-white'>{httpError}</p>
