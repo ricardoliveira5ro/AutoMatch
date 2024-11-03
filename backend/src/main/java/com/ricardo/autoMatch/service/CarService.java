@@ -50,12 +50,49 @@ public class CarService {
     }
 
     @Transactional(readOnly = true)
-    public List<CarDTO> getFilteredCars(String make, String model, FuelType fuelType, Integer selectedYear, Integer minYear, Integer maxYear,
-                                        Integer minMileage, Integer maxMileage, Float minPrice, Float maxPrice, Integer minHorsePower, Integer maxHorsePower,
-                                        String searchQuery, GearBox gearBox, Condition condition, Color color, Integer doors, Integer minDisplacement, Integer maxDisplacement) {
+    public List<CarDTO> getFilteredCars(Map<String, String> params) {
+        String make = (params.get("make") != null && !params.get("make").equalsIgnoreCase("ALL")) ?
+                params.get("make").toUpperCase() : null;
+        String model = (params.get("model") != null && !params.get("model").equalsIgnoreCase("ALL")) ?
+                params.get("model").toUpperCase() : null;
+        FuelType fuelType = (params.get("fuelType") != null && !params.get("fuelType").equalsIgnoreCase("ALL")) ?
+                FuelType.valueOf(params.get("fuelType").toUpperCase()) : null;
+        Integer selectedYear = (params.get("selectedYear") != null && !params.get("selectedYear").isEmpty()) ?
+                Integer.parseInt(params.get("selectedYear")) : null;
+        Integer minYear = (params.get("minYear") != null && !params.get("minYear").isEmpty()) ?
+                Integer.parseInt(params.get("minYear")) : null;
+        Integer maxYear = (params.get("maxYear") != null && !params.get("maxYear").isEmpty()) ?
+                Integer.parseInt(params.get("maxYear")) : null;
+        Integer minMileage = (params.get("minMileage") != null && !params.get("minMileage").isEmpty()) ?
+                Integer.parseInt(params.get("minMileage")) : null;
+        Integer maxMileage = (params.get("maxMileage") != null && !params.get("maxMileage").isEmpty()) ?
+                Integer.parseInt(params.get("maxMileage")) : null;
+        Float minPrice = (params.get("minPrice") != null && !params.get("minPrice").isEmpty()) ?
+                Float.parseFloat(params.get("minPrice")) : null;
+        Float maxPrice = (params.get("maxPrice") != null && !params.get("maxPrice").isEmpty()) ?
+                Float.parseFloat(params.get("maxPrice")) : null;
+        Integer minHorsePower = (params.get("minHorsePower") != null && !params.get("minHorsePower").isEmpty()) ?
+                Integer.parseInt(params.get("minHorsePower")) : null;
+        Integer maxHorsePower = (params.get("maxHorsePower") != null && !params.get("maxHorsePower").isEmpty()) ?
+                Integer.parseInt(params.get("maxHorsePower")) : null;
+        String searchQuery = (params.get("searchQuery") != null && !params.get("searchQuery").isEmpty()) ?
+                params.get("searchQuery").toUpperCase() : null;
+        GearBox gearBox = (params.get("gearBox") != null && !params.get("gearBox").equalsIgnoreCase("ALL")) ?
+                GearBox.valueOf(params.get("gearBox").toUpperCase()) : null;
+        Condition condition = (params.get("condition") != null && !params.get("condition").equalsIgnoreCase("ALL")) ?
+                Condition.valueOf(params.get("condition").toUpperCase()) : null;
+        Color color = (params.get("color") != null && !params.get("color").equalsIgnoreCase("ALL")) ?
+                Color.valueOf(params.get("color").toUpperCase()) : null;
+        Integer doors = (params.get("doors") != null && !params.get("doors").isEmpty()) ?
+                Integer.parseInt(params.get("doors")) : null;
+        Integer minDisplacement = (params.get("minDisplacement") != null && !params.get("minDisplacement").isEmpty()) ?
+                Integer.parseInt(params.get("minDisplacement")) : null;
+        Integer maxDisplacement = (params.get("maxDisplacement") != null && !params.get("maxDisplacement").isEmpty()) ?
+                Integer.parseInt(params.get("maxDisplacement")) : null;
 
-        return carRepository.findFiltered(make, model, fuelType, selectedYear, minYear, maxYear, minMileage, maxMileage, minPrice, maxPrice, minHorsePower, maxHorsePower,
-                                            searchQuery, gearBox, condition, color, doors, minDisplacement, maxDisplacement)
+
+        return carRepository.findFiltered(make, model, fuelType, selectedYear, minYear, maxYear, minMileage, maxMileage, minPrice, maxPrice,
+                                            minHorsePower, maxHorsePower, searchQuery, gearBox, condition, color, doors, minDisplacement, maxDisplacement)
                 .stream().map(this::convertToCarDTO).toList();
     }
 
