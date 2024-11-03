@@ -114,7 +114,7 @@ export const Banner = () => {
                         </div>
                         <div className='col d-flex flex-column justify-content-end align-items-center'>
                             <Link to={'/search'} 
-                                state={{make: selectedMake, model: selectedModel, fuelType: selectedFuelType, year: year, maxMileage: maxMileage, maxPrice: maxPrice, minHorsePower: minHorsePower}} 
+                                state={{make: selectedMake, model: selectedModel, fuelType: selectedFuelType, selectedYear: year, maxMileage: maxMileage, maxPrice: maxPrice, minHorsePower: minHorsePower}} 
                                 type="button" className="btn btn-sm btn-banner-search text-white">
                                 Search
                             </Link>

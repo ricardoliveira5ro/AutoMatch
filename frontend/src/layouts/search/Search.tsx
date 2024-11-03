@@ -9,18 +9,32 @@ import { SpinnerLoading } from '../utils/components/SpinnerLoading/SpinnerLoadin
 
 export const Search = () => {
 
+    /* ---------- Initial filters ------------ */
     const location = useLocation();
     const filters = {
-        make: location.state?.make,
-        model: location.state?.model,
-        fuelType: location.state?.fuelType,
-        year: location.state?.year,
-        maxMileage: location.state?.maxMileage,
-        maxPrice: location.state?.maxPrice,
-        minHorsePower: location.state?.minHorsePower,
-        searchQuery: location.state?.searchQuery || ""
+        make: location.state?.make || "All",
+        model: location.state?.model || "All",
+        fuelType: location.state?.fuelType || "All",
+        selectedYear: location.state?.selectedYear || "",
+        minYear: "",
+        maxYear: "",
+        minMileage: "",
+        maxMileage: location.state?.maxMileage || "",
+        minPrice: "",
+        maxPrice: location.state?.maxPrice || "",
+        minHorsePower: location.state?.minHorsePower || "",
+        maxHorsePower: "",
+        searchQuery: location.state?.searchQuery || "",
+        gearBox: "All",
+        condition: "All",
+        color: "All",
+        doors: "",
+        minDisplacement: "",
+        maxDisplacement: ""
     }
 
+
+    /* ---------- Fetch cars ------------ */
     const [cars, setCars] = useState<CarModel[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState(null);
@@ -28,7 +42,7 @@ export const Search = () => {
     useEffect(() => {
         const fetchCars = async () => {
             const baseUrl: string = "http://localhost:8080/api/cars/search";
-            const url: string = `${baseUrl}?make=${filters.make}&model=${filters.model}&fuelType=${filters.fuelType}&year=${filters.year}&maxMileage=${filters.maxMileage}&maxPrice=${filters.maxPrice}&minHorsePower=${filters.minHorsePower}&searchQuery=${filters.searchQuery}`
+            const url: string = `${baseUrl}?make=${filters.make}&model=${filters.model}&fuelType=${filters.fuelType}&selectedYear=${filters.selectedYear}&maxMileage=${filters.maxMileage}&maxPrice=${filters.maxPrice}&minHorsePower=${filters.minHorsePower}&searchQuery=${filters.searchQuery}`
 
             const response = await fetch(url);
 
@@ -65,10 +79,32 @@ export const Search = () => {
     }, []);
     
 
+    /* ---------- Toggle Advanced Filters ------------ */
     const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
     const toggleAdvancedFilters = () => {
         setShowAdvancedFilters(prevState => !prevState);
     };
+
+
+    /* ---------- Filter inputs ------------ */
+    const [selectedMake, setSelectedMake] = useState("All");
+    const [selectedModel, setSelectedModel] = useState("All");
+    const [selectedFuelType, setSelectedFuelType] = useState("All");
+    const [selectedCondition, setSelectedCondition] = useState("All");
+    const [selectedGearBox, setSelectedGearBox] = useState("All");
+    const [selectedColor, setSelectedColor] = useState("All");
+    //TODO: selectedStyle
+    const [minYear, setMinYear] = useState("");
+    const [maxYear, setMaxYear] = useState("");
+    const [minPrice, setMinPrice] = useState("");
+    const [maxPrice, setMaxPrice] = useState("");
+    const [minMileage, setMinMileage] = useState("");
+    const [maxMileage, setMaxMileage] = useState("");
+    const [minHorsePower, setMinHorsePower] = useState("");
+    const [maxHorsePower, setMaxHorsePower] = useState("");
+    const [doors, setDoors] = useState("");
+    const [minDisplacement, setMinDisplacement] = useState("");
+    const [maxDisplacement, setMaxDisplacement] = useState("");
 
     return (
         <div className="container d-flex flex-column justify-content-center align-items-center py-4 px-3 px-sm-0" style={{rowGap: '20px'}}>
