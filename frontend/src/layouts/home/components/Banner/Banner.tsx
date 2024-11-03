@@ -17,7 +17,7 @@ export const Banner = () => {
     const [minHorsePower, setMinHorsePower] = useState("");
 
     /* ---------- Make <--> Model logic ------------ */
-    const [models, setModels] = useState<{ id: number; model: string }[]>([]);
+    const [models, setModels] = useState<{ model: string }[]>([]);
     const [isModelDisabled, setIsModelDisabled] = useState(true);
     
     const makeChange = (e: any) => {
@@ -48,8 +48,8 @@ export const Banner = () => {
                             </div>
                             <select value={selectedMake} onChange={makeChange} className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example">
                                 <option value="All">All</option>
-                                {make_models_data.map(data => (
-                                    <option key={data.id} value={data.make}>{data.make}</option>
+                                {make_models_data.map((data, index) => (
+                                    <option key={index} value={data.make}>{data.make}</option>
                                 ))}
                             </select>
                         </div>
@@ -61,8 +61,8 @@ export const Banner = () => {
                                 className="form-select form-select-sm banner-select shadow-none" aria-label="Default select example"
                             >
                                 <option value="All">All</option>
-                                {models.map(item => (
-                                    <option key={item.id} value={item.model}>{item.model}</option>
+                                {models.map((item, index) => (
+                                    <option key={index} value={item.model}>{item.model}</option>
                                 ))}
                             </select>
                         </div>

@@ -42,7 +42,11 @@ export const Search = () => {
     useEffect(() => {
         const fetchCars = async () => {
             const baseUrl: string = "http://localhost:8080/api/cars/search";
-            const url: string = `${baseUrl}?make=${filters.make}&model=${filters.model}&fuelType=${filters.fuelType}&selectedYear=${filters.selectedYear}&maxMileage=${filters.maxMileage}&maxPrice=${filters.maxPrice}&minHorsePower=${filters.minHorsePower}&searchQuery=${filters.searchQuery}`
+            const url: string = `${baseUrl}?make=${filters.make}&model=${filters.model}&fuelType=${filters.fuelType}&selectedYear=${filters.selectedYear}` +
+                `&minYear=${filters.minYear}&maxYear=${filters.maxYear}&minMileage=${filters.minMileage}&maxMileage=${filters.maxMileage}` +
+                `&minPrice=${filters.minPrice}&maxPrice=${filters.maxPrice}&minHorsePower=${filters.minHorsePower}&maxHorsePower=${filters.maxHorsePower}` +
+                `&searchQuery=${filters.searchQuery}&gearBox=${filters.gearBox}&condition=${filters.condition}&color=${filters.color}` +
+                `&doors=${filters.doors}&minDisplacement=${filters.maxDisplacement}&maxDisplacement=${filters.maxDisplacement}`
 
             const response = await fetch(url);
 
@@ -85,27 +89,6 @@ export const Search = () => {
         setShowAdvancedFilters(prevState => !prevState);
     };
 
-
-    /* ---------- Filter inputs ------------ */
-    const [selectedMake, setSelectedMake] = useState("All");
-    const [selectedModel, setSelectedModel] = useState("All");
-    const [selectedFuelType, setSelectedFuelType] = useState("All");
-    const [selectedCondition, setSelectedCondition] = useState("All");
-    const [selectedGearBox, setSelectedGearBox] = useState("All");
-    const [selectedColor, setSelectedColor] = useState("All");
-    //TODO: selectedStyle
-    const [minYear, setMinYear] = useState("");
-    const [maxYear, setMaxYear] = useState("");
-    const [minPrice, setMinPrice] = useState("");
-    const [maxPrice, setMaxPrice] = useState("");
-    const [minMileage, setMinMileage] = useState("");
-    const [maxMileage, setMaxMileage] = useState("");
-    const [minHorsePower, setMinHorsePower] = useState("");
-    const [maxHorsePower, setMaxHorsePower] = useState("");
-    const [doors, setDoors] = useState("");
-    const [minDisplacement, setMinDisplacement] = useState("");
-    const [maxDisplacement, setMaxDisplacement] = useState("");
-
     return (
         <div className="container d-flex flex-column justify-content-center align-items-center py-4 px-3 px-sm-0" style={{rowGap: '20px'}}>
             <div className='d-flex flex-row justify-content-between align-items-center w-100'>
@@ -116,7 +99,7 @@ export const Search = () => {
                 <button className='btn btn-primary px-5' type='button'>Search</button>
             </div>
             
-            <BasicFilters toggleAdvancedFilters={toggleAdvancedFilters}/>
+            <BasicFilters toggleAdvancedFilters={toggleAdvancedFilters} initialFiltersInputs={filters}/>
             {showAdvancedFilters && <AdvancedFilters/>}
 
             {httpError ? (
