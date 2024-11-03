@@ -1,22 +1,7 @@
 [
-    {
-        "id": 1,
-        "fuelType": "Gasoline"
-    },
-    {
-        "id": 2,
-        "fuelType": "Diesel"
-    },
-    {
-        "id": 3,
-        "fuelType": "Hybrid"
-    },
-    {
-        "id": 4,
-        "fuelType": "Electric"
-    },
-    {
-        "id": 5,
-        "fuelType": "Hydrogen"
-    }
+    { "fuelType": "Gasoline" },
+    { "fuelType": "Diesel" },
+    { "fuelType": "Hybrid" },
+    { "fuelType": "Electric" },
+    { "fuelType": "Hydrogen" }
 ]

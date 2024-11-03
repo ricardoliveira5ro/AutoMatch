@@ -1,6 +1,13 @@
+import React from 'react';
 import './AdvancedFilters.css';
+import colors from '../../../../static/colors.json';
+import condition from '../../../../static/condition.json';
+import gearBox from '../../../../static/gear-box.json';
 
-export const AdvancedFilters = () => {
+export const AdvancedFilters: React.FC<{
+    filters: any,
+    onFilterChange: (name: string, value: string) => void
+}> = (props) => {
 
     return (
         <div className='d-flex flex-column justify-content-center align-items-center advanced-filters-container w-100'>
@@ -70,60 +77,57 @@ export const AdvancedFilters = () => {
                     <div className='container p-0 mb-2'>
                         <span className="text-white">Condition</span>
                     </div>
-                    <select defaultValue={"0"} className="form-select form-select-sm banner-select shadow-none" aria-label="Default select example">
-                        <option value="0">All</option>
-                        <option value="1">New</option>
-                        <option value="2">Old</option>
+                    <select value={props.filters.condition} onChange={e => props.onFilterChange('condition', e.target.value)}
+                        className="form-select form-select-sm banner-select shadow-none" aria-label="Default select example"
+                    >
+                        <option value="All">All</option>
+                        {condition.map((item, index) => (
+                            <option key={index} value={item.condition}>{item.condition}</option>
+                        ))}
                     </select>
                 </div>
                 <div className='d-flex flex-column align-items-center'>
                     <div className='container p-0 mb-2'>
                         <span className="text-white">Gear Box</span>
                     </div>
-                    <select defaultValue={"0"} className="form-select form-select-sm banner-select shadow-none" aria-label="Default select example">
-                        <option value="0">All</option>
-                        <option value="1">Automatic</option>
-                        <option value="2">Manual</option>
+                    <select value={props.filters.gearBox} onChange={e => props.onFilterChange('gearBox', e.target.value)}
+                        className="form-select form-select-sm banner-select shadow-none" aria-label="Default select example"
+                    >
+                        <option value="All">All</option>
+                        {gearBox.map((item, index) => (
+                            <option key={index} value={item.gearBox}>{item.gearBox}</option>
+                        ))}
                     </select>
                 </div>
                 <div className='d-flex flex-column align-items-center'>
                     <div className='container p-0 mb-2'>
                         <span className="text-white">Doors</span>
                     </div>
-                    <input type="number" className="banner-input" placeholder="4" aria-label="Doors" aria-describedby="doors" />
+                    <input value={props.filters.doors} onChange={e => props.onFilterChange('doors', e.target.value)} type="number" className="banner-input" placeholder="4" aria-label="Doors" aria-describedby="doors" />
                 </div>
                 <div className='d-flex flex-column align-items-center'>
                     <div className='container p-0 mb-2'>
                         <span className="text-white">Displacement (Min.)</span>
                     </div>
-                    <input type="number" className="banner-input" placeholder="cm3" aria-label="Displacement (Min.)" aria-describedby="displacement-min" />
+                    <input value={props.filters.minDisplacement} onChange={e => props.onFilterChange('minDisplacement', e.target.value)} type="number" className="banner-input" placeholder="cm3" aria-label="Displacement (Min.)" aria-describedby="displacement-min" />
                 </div>
                 <div className='d-flex flex-column align-items-center'>
                     <div className='container p-0 mb-2'>
                         <span className="text-white">Displacement (Max.)</span>
                     </div>
-                    <input type="number" className="banner-input" placeholder="cm3" aria-label="Displacement (Max.)" aria-describedby="displacement-max" />
+                    <input value={props.filters.maxDisplacement} onChange={e => props.onFilterChange('maxDisplacement', e.target.value)} type="number" className="banner-input" placeholder="cm3" aria-label="Displacement (Max.)" aria-describedby="displacement-max" />
                 </div>
                 <div className='d-flex flex-column align-items-center'>
                     <div className='container p-0 mb-2'>
                         <span className="text-white">Color</span>
                     </div>
-                    <select defaultValue={"0"} className="form-select form-select-sm banner-select shadow-none" aria-label="Default select example">
-                        <option value="0">All</option>
-                        <option value="1">Black</option>
-                        <option value="2">Blue</option>
-                        <option value="3">Grey</option>
-                        <option value="4">White</option>
-                        <option value="5">Silver</option>
-                        <option value="6">Red</option>
-                        <option value="7">Green</option>
-                        <option value="8">Beige</option>
-                        <option value="9">Bronze</option>
-                        <option value="10">Gold</option>
-                        <option value="11">Orange</option>
-                        <option value="12">Pink</option>
-                        <option value="13">Purple</option>
-                        <option value="14">Yellow</option>
+                    <select value={props.filters.color} onChange={e => props.onFilterChange('color', e.target.value)}
+                        className="form-select form-select-sm banner-select shadow-none" aria-label="Default select example"
+                    >
+                        <option value="All">All</option>
+                        {colors.map((item, index) => (
+                            <option key={index} value={item.color}>{item.color}</option>
+                        ))}
                     </select>
                 </div>
             </div>

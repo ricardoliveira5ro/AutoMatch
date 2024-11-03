@@ -101,8 +101,8 @@ export const Banner = () => {
                                 className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example"
                             >
                                 <option value="All">All</option>
-                                {fuelType_data.map(item => (
-                                    <option key={item.id} value={item.fuelType}>{item.fuelType}</option>
+                                {fuelType_data.map((item, index) => (
+                                    <option key={index} value={item.fuelType}>{item.fuelType}</option>
                                 ))}
                             </select>
                         </div>

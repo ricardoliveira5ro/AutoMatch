@@ -25,8 +25,8 @@ public interface CarRepository extends JpaRepository<Car, Long> {
             " AND (:minPrice IS NULL OR c.price >= :minPrice)" +
             " AND (:maxPrice IS NULL OR c.price <= :maxPrice)" +
             " AND (:minHorsePower IS NULL OR c.horsePower >= :minHorsePower)" +
-            " AND (:maxHorsePower IS NULL OR c.horsePower <= :minHorsePower)" +
-            " AND (:searchQuery IS NULL OR UPPER(c.description) LIKE %:searchQuery%)" +
+            " AND (:maxHorsePower IS NULL OR c.horsePower <= :maxHorsePower)" +
+            " AND (:searchQuery IS NULL OR (UPPER(c.description) LIKE %:searchQuery% OR UPPER(c.title) LIKE %:searchQuery%))" +
             " AND (:gearBox IS NULL OR c.gearBox = :gearBox)" +
             " AND (:condition IS NULL OR c.condition = :condition)" +
             " AND (:color IS NULL OR c.color = :color)" +
