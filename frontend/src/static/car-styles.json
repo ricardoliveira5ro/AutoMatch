@@ -1,0 +1,34 @@
+[
+    { 
+        "carStyle": "Convertible", 
+        "imgPath": "images/body-style/convertible.png" 
+    },
+    { 
+        "carStyle": "Coupe", 
+        "imgPath": "images/body-style/coupe.png" 
+    },
+    { 
+        "carStyle": "Estate",
+        "imgPath": "images/body-style/estate.png"
+    },
+    { 
+        "carStyle": "Hatchback", 
+        "imgPath": "images/body-style/hatchback.png"
+    },
+    { 
+        "carStyle": "MPV", 
+        "imgPath": "images/body-style/mpv.png" 
+    },
+    { 
+        "carStyle": "Pickup", 
+        "imgPath": "images/body-style/pickup.png" 
+    },
+    { 
+        "carStyle": "Saloon", 
+        "imgPath": "images/body-style/saloon.png" 
+    },
+    { 
+        "carStyle": "SUV", 
+        "imgPath": "images/body-style/suv.png" 
+    }
+]

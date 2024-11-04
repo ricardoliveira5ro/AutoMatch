@@ -89,10 +89,13 @@ public class CarService {
                 Integer.parseInt(params.get("minDisplacement")) : null;
         Integer maxDisplacement = (params.get("maxDisplacement") != null && !params.get("maxDisplacement").isEmpty()) ?
                 Integer.parseInt(params.get("maxDisplacement")) : null;
+        List<Style> styles = (params.get("styles") != null && !params.get("styles").isEmpty()) ?
+                Arrays.stream(params.get("styles").split("-")).map(style -> Style.valueOf(style.toUpperCase())).toList() : null;
 
 
-        return carRepository.findFiltered(make, model, fuelType, selectedYear, minYear, maxYear, minMileage, maxMileage, minPrice, maxPrice,
-                                            minHorsePower, maxHorsePower, searchQuery, gearBox, condition, color, doors, minDisplacement, maxDisplacement)
+        return carRepository.findFiltered(make, model, fuelType, selectedYear, minYear, maxYear, minMileage, maxMileage,
+                                        minPrice, maxPrice, minHorsePower, maxHorsePower, searchQuery, gearBox, condition,
+                                        color, doors, minDisplacement, maxDisplacement, styles)
                 .stream().map(this::convertToCarDTO).toList();
     }
 

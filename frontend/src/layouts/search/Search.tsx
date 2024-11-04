@@ -30,10 +30,11 @@ export const Search = () => {
         color: "All",
         doors: "",
         minDisplacement: "",
-        maxDisplacement: ""
+        maxDisplacement: "",
+        styles: []
     });
 
-    const handleFilterChange = (name: string, value: string) => {
+    const handleFilterChange = (name: string, value: any) => {
         setFilters(prevFilters => ({
             ...prevFilters,
             [name]: value
@@ -52,7 +53,8 @@ export const Search = () => {
                 `&minYear=${filters.minYear}&maxYear=${filters.maxYear}&minMileage=${filters.minMileage}&maxMileage=${filters.maxMileage}` +
                 `&minPrice=${filters.minPrice}&maxPrice=${filters.maxPrice}&minHorsePower=${filters.minHorsePower}&maxHorsePower=${filters.maxHorsePower}` +
                 `&searchQuery=${filters.searchQuery}&gearBox=${filters.gearBox}&condition=${filters.condition}&color=${filters.color}` +
-                `&doors=${filters.doors}&minDisplacement=${filters.maxDisplacement}&maxDisplacement=${filters.maxDisplacement}`
+                `&doors=${filters.doors}&minDisplacement=${filters.maxDisplacement}&maxDisplacement=${filters.maxDisplacement}` +
+                `&styles=${filters.styles.join('-')}`
 
             const response = await fetch(url);
 
