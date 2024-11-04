@@ -32,7 +32,8 @@ public interface CarRepository extends JpaRepository<Car, Long> {
             " AND (:color IS NULL OR c.color = :color)" +
             " AND (:doors IS NULL OR c.doors = :doors)" +
             " AND (:minDisplacement IS NULL OR c.displacement >= :minDisplacement)" +
-            " AND (:maxDisplacement IS NULL OR c.displacement <= :maxDisplacement)"
+            " AND (:maxDisplacement IS NULL OR c.displacement <= :maxDisplacement)" +
+            " AND (:styles IS NULL OR c.style IN (:styles))"
     )
     List<Car> findFiltered(
             @Param("make") String make,
@@ -53,6 +54,7 @@ public interface CarRepository extends JpaRepository<Car, Long> {
             @Param("color") Color color,
             @Param("doors") Integer doors,
             @Param("minDisplacement") Integer minDisplacement,
-            @Param("maxDisplacement") Integer maxDisplacement
+            @Param("maxDisplacement") Integer maxDisplacement,
+            @Param("styles") List<Style> styles
     );
 }
