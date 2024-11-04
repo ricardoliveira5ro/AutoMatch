@@ -43,8 +43,8 @@ export const Search = () => {
     };
 
     /* ---------- Pagination ------------ */
+    const carsPerPage = 5;
     const [currentPage, setCurrentPage] = useState(1);
-    const [carsPerPage] = useState(5);
     const [totalElements, setTotalElements] = useState(1);
 
     /* ---------- Fetch cars ------------ */
@@ -136,7 +136,6 @@ export const Search = () => {
             )}
 
             <Pagination carsPerPage={carsPerPage} totalElements={totalElements} handleChangeCurrentPage={setCurrentPage}></Pagination>
-
         </div>
     );
 }
