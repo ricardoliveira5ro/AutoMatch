@@ -9,7 +9,7 @@ export const BasicFilters: React.FC<{
     onFilterChange: (name: string, value: string) => void
 }> = (props) => {
 
-    /* ---------- Make <--> Model logic ------------ { toggleAdvancedFilters, filters, onFilterChange } */
+    /* ---------- Make <--> Model logic ------------ */
     const [models, setModels] = useState<{ model: string }[]>(make_models_data.find(data => data.make === props.filters.make)?.models || []);
     const [isModelDisabled, setIsModelDisabled] = useState(props.filters.make === "All");
     

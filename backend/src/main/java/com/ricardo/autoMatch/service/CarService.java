@@ -7,6 +7,7 @@ import com.ricardo.autoMatch.model.*;
 import com.ricardo.autoMatch.repository.CarRepository;
 import com.ricardo.autoMatch.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,7 +51,7 @@ public class CarService {
     }
 
     @Transactional(readOnly = true)
-    public List<CarDTO> getFilteredCars(Map<String, String> params) {
+    public Page<CarDTO> getFilteredCars(Map<String, String> params) {
         String make = (params.get("make") != null && !params.get("make").equalsIgnoreCase("ALL")) ?
                 params.get("make").toUpperCase() : null;
         String model = (params.get("model") != null && !params.get("model").equalsIgnoreCase("ALL")) ?
@@ -92,11 +93,13 @@ public class CarService {
         List<Style> styles = (params.get("styles") != null && !params.get("styles").isEmpty()) ?
                 Arrays.stream(params.get("styles").split("-")).map(style -> Style.valueOf(style.toUpperCase())).toList() : null;
 
+        int page = Integer.parseInt(params.get("page"));
+        int size = Integer.parseInt(params.get("size"));
 
         return carRepository.findFiltered(make, model, fuelType, selectedYear, minYear, maxYear, minMileage, maxMileage,
                                         minPrice, maxPrice, minHorsePower, maxHorsePower, searchQuery, gearBox, condition,
-                                        color, doors, minDisplacement, maxDisplacement, styles)
-                .stream().map(this::convertToCarDTO).toList();
+                                        color, doors, minDisplacement, maxDisplacement, styles, PageRequest.of(page, size))
+                            .map(this::convertToCarDTO);
     }
 
     public CarDTO createCar(MultipartFile file) {

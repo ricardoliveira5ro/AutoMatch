@@ -1,0 +1,11 @@
+.pagination {
+    column-gap: 10px;
+}
+
+.page_numbers {
+    background-color: var(--color-main-orange);
+    padding: 5px 12px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
