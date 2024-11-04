@@ -9,7 +9,7 @@ export const CardCard: React.FC<{
 }> = (props) => {
 
     const carImg = props.car?.imgCover ? `data:image/jpeg;base64,${props.car.imgCover}` :
-                    require('../../../../images/cars/recommendation-mercedes-E220.jpg')
+                    require('../../../../images/image-not-available.jpg')
 
     return (
         <Link to={`/cars/${props.car?.id}`} className="card w-100" style={{ backgroundColor: 'var(--color-background-dark-contrast)' }}>
