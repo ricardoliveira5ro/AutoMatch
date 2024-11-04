@@ -2,12 +2,9 @@ package com.ricardo.autoMatch.controller;
 
 import com.ricardo.autoMatch.dto.CarDTO;
 import com.ricardo.autoMatch.dto.CarDetailsDTO;
-import com.ricardo.autoMatch.model.Color;
-import com.ricardo.autoMatch.model.Condition;
-import com.ricardo.autoMatch.model.FuelType;
-import com.ricardo.autoMatch.model.GearBox;
 import com.ricardo.autoMatch.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -42,7 +39,7 @@ public class CarController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<CarDTO>> search(@RequestParam Map<String, String> params) {
+    public ResponseEntity<Page<CarDTO>> search(@RequestParam Map<String, String> params) {
         return ResponseEntity.ok(carService.getFilteredCars(params));
     }
 

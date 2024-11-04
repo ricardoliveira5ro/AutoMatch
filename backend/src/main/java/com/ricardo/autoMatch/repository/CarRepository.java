@@ -1,6 +1,8 @@
 package com.ricardo.autoMatch.repository;
 
 import com.ricardo.autoMatch.model.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -35,7 +37,7 @@ public interface CarRepository extends JpaRepository<Car, Long> {
             " AND (:maxDisplacement IS NULL OR c.displacement <= :maxDisplacement)" +
             " AND (:styles IS NULL OR c.style IN (:styles))"
     )
-    List<Car> findFiltered(
+    Page<Car> findFiltered(
             @Param("make") String make,
             @Param("model") String model,
             @Param("fuelType") FuelType fuelType,
@@ -55,6 +57,7 @@ public interface CarRepository extends JpaRepository<Car, Long> {
             @Param("doors") Integer doors,
             @Param("minDisplacement") Integer minDisplacement,
             @Param("maxDisplacement") Integer maxDisplacement,
-            @Param("styles") List<Style> styles
+            @Param("styles") List<Style> styles,
+            Pageable pageable
     );
 }

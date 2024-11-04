@@ -6,6 +6,7 @@ import { AdvancedFilters } from './components/AdvancedFilters/AdvancedFilters';
 import { CardCard } from '../utils/components/CarCard/CarCard';
 import CarModel from '../../models/CarModel';
 import { SpinnerLoading } from '../utils/components/SpinnerLoading/SpinnerLoading';
+import { Pagination } from '../utils/components/Pagination/Pagination';
 
 export const Search = () => {
 
@@ -41,6 +42,11 @@ export const Search = () => {
         }));
     };
 
+    /* ---------- Pagination ------------ */
+    const [currentPage, setCurrentPage] = useState(1);
+    const [carsPerPage] = useState(5);
+    const [totalElements, setTotalElements] = useState(1);
+
     /* ---------- Fetch cars ------------ */
     const [cars, setCars] = useState<CarModel[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -48,13 +54,15 @@ export const Search = () => {
 
     useEffect(() => {
         const fetchCars = async () => {
+            setIsLoading(true);
+
             const baseUrl: string = "http://localhost:8080/api/cars/search";
             const url: string = `${baseUrl}?make=${filters.make}&model=${filters.model}&fuelType=${filters.fuelType}&selectedYear=${filters.selectedYear}` +
                 `&minYear=${filters.minYear}&maxYear=${filters.maxYear}&minMileage=${filters.minMileage}&maxMileage=${filters.maxMileage}` +
                 `&minPrice=${filters.minPrice}&maxPrice=${filters.maxPrice}&minHorsePower=${filters.minHorsePower}&maxHorsePower=${filters.maxHorsePower}` +
                 `&searchQuery=${filters.searchQuery}&gearBox=${filters.gearBox}&condition=${filters.condition}&color=${filters.color}` +
                 `&doors=${filters.doors}&minDisplacement=${filters.maxDisplacement}&maxDisplacement=${filters.maxDisplacement}` +
-                `&styles=${filters.styles.join('-')}`
+                `&styles=${filters.styles.join('-')}&page=${currentPage-1}&size=${carsPerPage}`
 
             const response = await fetch(url);
 
@@ -65,22 +73,23 @@ export const Search = () => {
             const responseData = await response.json();
             const loadedCars: CarModel[] = [];
 
-            for (const key in responseData) {
+            for (const car of responseData.content) {
                 loadedCars.push({
-                    id: responseData[key].id,
-                    title: responseData[key].title,
-                    price: responseData[key].price,
-                    date: responseData[key].date,
-                    mileage: responseData[key].mileage,
-                    fuelType: responseData[key].fuelType,
-                    gearBox: responseData[key].gearBox,
-                    displacement: responseData[key].displacement,
-                    horsePower: responseData[key].horsePower,
-                    imgCover: responseData[key].imgCover
+                    id: car.id,
+                    title: car.title,
+                    price: car.price,
+                    date: car.date,
+                    mileage: car.mileage,
+                    fuelType: car.fuelType,
+                    gearBox: car.gearBox,
+                    displacement: car.displacement,
+                    horsePower: car.horsePower,
+                    imgCover: car.imgCover
                 });
             }
 
             setCars(loadedCars);
+            setTotalElements(responseData.totalElements);
             setIsLoading(false);
         };
 
@@ -88,7 +97,7 @@ export const Search = () => {
             setIsLoading(false);
             setHttpError(error.message);
         })
-    }, [filters]);
+    }, [filters, currentPage]);
     
 
     /* ---------- Toggle Advanced Filters ------------ */
@@ -125,6 +134,8 @@ export const Search = () => {
                 )}
                 </>
             )}
+
+            <Pagination carsPerPage={carsPerPage} totalElements={totalElements} handleChangeCurrentPage={setCurrentPage}></Pagination>
 
         </div>
     );
