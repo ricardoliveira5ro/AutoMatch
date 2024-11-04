@@ -10,8 +10,8 @@ export const BasicFilters: React.FC<{
 }> = (props) => {
 
     /* ---------- Make <--> Model logic ------------ { toggleAdvancedFilters, filters, onFilterChange } */
-    const [models, setModels] = useState<{ model: string }[]>([]);
-    const [isModelDisabled, setIsModelDisabled] = useState(true);
+    const [models, setModels] = useState<{ model: string }[]>(make_models_data.find(data => data.make === props.filters.make)?.models || []);
+    const [isModelDisabled, setIsModelDisabled] = useState(props.filters.make === "All");
     
     const onMakeChange = (e: any) => {
         const selectedMake = e.target.value;
