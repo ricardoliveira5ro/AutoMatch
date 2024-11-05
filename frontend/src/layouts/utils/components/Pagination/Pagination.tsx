@@ -4,6 +4,7 @@ import './Pagination.css'
 export const Pagination: React.FC<{
     carsPerPage: number,
     totalElements: number,
+    currentPage: number,
     handleChangeCurrentPage: (page: number) => void;
 }> = (props) => {
 
@@ -17,7 +18,9 @@ export const Pagination: React.FC<{
         <div>  
             <ul className="pagination">
                 {paginationNumbers.map((pageNumber) => (
-                    <li key={pageNumber} onClick={() => props.handleChangeCurrentPage(pageNumber)} className="page_numbers">{pageNumber}</li>
+                    <li key={pageNumber} onClick={() => props.handleChangeCurrentPage(pageNumber)} className={`page_numbers ${props.currentPage === pageNumber ? 'active' : ''}`}>
+                        {pageNumber}
+                    </li>
                 ))}
             </ul>
         </div>

@@ -135,7 +135,7 @@ export const Search = () => {
                 </>
             )}
 
-            <Pagination carsPerPage={carsPerPage} totalElements={totalElements} handleChangeCurrentPage={setCurrentPage}></Pagination>
+            <Pagination carsPerPage={carsPerPage} totalElements={totalElements} currentPage={currentPage} handleChangeCurrentPage={setCurrentPage}></Pagination>
         </div>
     );
 }
