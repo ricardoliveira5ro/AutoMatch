@@ -35,7 +35,9 @@ export const NavBar = () => {
                         <i className="bi bi-star-fill" style={{ color: '#83888f' }}></i>
                         <span className='ms-2 text-white'>Favorites</span>
                     </NavLink>
-                    <NavLink to='/login' type="button" className="btn btn-primary btn-sm px-5">Login</NavLink>
+                    <NavLink to={localStorage.getItem("user_access_token") ? `/profile` : `/login`} type="button" className="btn btn-primary btn-sm px-5">
+                        {localStorage.getItem("user_access_token") ? `My Account` : `Login` }
+                    </NavLink>
                 </div>
             </div>
         </nav>

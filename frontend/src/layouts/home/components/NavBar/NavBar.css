@@ -14,3 +14,8 @@
 .btn-primary:hover {
     background-color: #c25004;
 }
+
+
+.btn-primary:active {
+    background-color: var(--color-main-orange) !important;
+}
