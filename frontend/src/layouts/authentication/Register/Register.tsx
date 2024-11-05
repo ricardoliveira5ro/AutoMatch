@@ -10,14 +10,29 @@ export const Register = () => {
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
 
-    const register = () => {
-        // CALL ENDPOINT
-        // REDIRECT TO /login
+    const register = (e: any) => {
+        e.preventDefault();
+
+        fetch("http://localhost:8080/api/users/signup", {
+            method: "POST",
+            body: JSON.stringify({
+                email: email,
+                password: password,
+                firstName: firstName,
+                lastName: lastName,
+                contactPhone: phone
+            })
+        })
+        .then((response) => response.json())
+        .then((result) => {
+            //if STATUS CODE 200 THEN redirect to /login
+            //else display error message
+        });
     }
 
     return (
         <div className="container d-flex justify-content-center align-items-center p-5 p-sm-0" style={{ height: "100vh" }}>
-            <form onSubmit={register} className="d-flex flex-column justify-content-center align-items-center register-container">
+            <form onSubmit={e => {register(e)}} className="d-flex flex-column justify-content-center align-items-center register-container">
                 <i className="bi bi-person-circle"></i>
                 <input value={email} onChange={e => setEmail(e.target.value)} type="text" placeholder="Email" aria-label="Email" aria-describedby="register-email" required />
                 <div className='d-flex flex-row justify-content-between align-items-center w-100'>
