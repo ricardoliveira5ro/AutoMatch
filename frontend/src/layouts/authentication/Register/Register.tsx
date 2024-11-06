@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Register.css';
 import { useState } from 'react';
 
@@ -10,11 +10,14 @@ export const Register = () => {
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
 
+    const navigate = useNavigate();
+
     const register = (e: any) => {
         e.preventDefault();
 
         fetch("http://localhost:8080/api/users/signup", {
             method: "POST",
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 email: email,
                 password: password,
@@ -23,10 +26,19 @@ export const Register = () => {
                 contactPhone: phone
             })
         })
-        .then((response) => response.json())
-        .then((result) => {
-            //if STATUS CODE 200 THEN redirect to /login
-            //else display error message
+        .then(async response => {
+            if (response.ok) {
+                navigate('/login');
+                return;
+            }
+
+            const data = await response.json();
+            const error = data || "Unknown error"
+            
+            return Promise.reject(error)
+        })
+        .catch(error => {
+            alert(error.message)
         });
     }
 
