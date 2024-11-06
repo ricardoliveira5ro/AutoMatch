@@ -3,6 +3,7 @@ package com.ricardo.autoMatch.service;
 import com.ricardo.autoMatch.dto.CarDTO;
 import com.ricardo.autoMatch.dto.CarDetailsDTO;
 import com.ricardo.autoMatch.dto.UserDTO;
+import com.ricardo.autoMatch.exception.NotFoundException;
 import com.ricardo.autoMatch.model.*;
 import com.ricardo.autoMatch.repository.CarRepository;
 import com.ricardo.autoMatch.repository.UserRepository;
@@ -35,7 +36,7 @@ public class CarService {
 
     @Transactional(readOnly = true)
     public CarDetailsDTO getCar(Long id) {
-        return convertToCarDetailsDTO(carRepository.findById(id).orElseThrow(() -> new RuntimeException("Car not found")));
+        return convertToCarDetailsDTO(carRepository.findById(id).orElseThrow(() -> new NotFoundException("Car not found")));
     }
 
     @Transactional(readOnly = true)
@@ -104,7 +105,7 @@ public class CarService {
 
     public CarDTO createCar(MultipartFile file) {
         Car car = new Car("TEST", "TEST", "TEST", "TEST", Condition.NEW, 1f, Style.COUPE, Date.from(Instant.now()), 1, FuelType.DIESEL, GearBox.AUTOMATIC, Color.BLACK, 1, 1, 1, true);
-        car.setUser(userRepository.findById(1).orElseThrow(() -> new RuntimeException("User not found")));
+        car.setUser(userRepository.findById(1).orElseThrow(() -> new NotFoundException("User not found")));
 
         try {
             //String base64Image = Base64.getEncoder().encodeToString(file.getBytes());
@@ -118,7 +119,7 @@ public class CarService {
 
     public CarDTO createCarV2(List<MultipartFile> files) {
         Car car = new Car("TEST", "TEST", "TEST", "TEST", Condition.NEW, 1f, Style.COUPE, Date.from(Instant.now()), 1, FuelType.DIESEL, GearBox.AUTOMATIC, Color.BLACK, 1, 1, 1, true);
-        car.setUser(userRepository.findById(1).orElseThrow(() -> new RuntimeException("User not found")));
+        car.setUser(userRepository.findById(1).orElseThrow(() -> new NotFoundException("User not found")));
 
         for (MultipartFile file : files) {
             try {
@@ -138,7 +139,7 @@ public class CarService {
 
     public String seedData(List<MultipartFile> files) {
         Car car = new Car("Ford Mustang 5.0 Ti-VCT GT", "", "Ford", "Mustang", Condition.USED, 78900f, Style.COUPE, Date.from(Instant.now()), 81000, FuelType.GASOLINE, GearBox.MANUAL, Color.GREEN, 2, 4951, 450, true);
-        car.setUser(userRepository.findById(1).orElseThrow(() -> new RuntimeException("User not found")));
+        car.setUser(userRepository.findById(1).orElseThrow(() -> new NotFoundException("User not found")));
 
         try {
             car.setImgCover(files.getFirst().getBytes());
