@@ -4,6 +4,7 @@ import com.ricardo.autoMatch.dto.LoginRequestDTO;
 import com.ricardo.autoMatch.dto.SignupRequestDTO;
 import com.ricardo.autoMatch.model.User;
 import com.ricardo.autoMatch.repository.UserRepository;
+import com.ricardo.autoMatch.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,6 +26,7 @@ public class UserService {
     }
 
     public User signup(SignupRequestDTO signupRequestDTO) {
+        Utils.validateUserSignupRequest(userRepository, signupRequestDTO);
 
         User user = new User(
                 signupRequestDTO.getFirstName(),
@@ -38,6 +40,8 @@ public class UserService {
     }
 
     public User authenticate(LoginRequestDTO loginRequestDTO) {
+        Utils.validateUserLoginRequest(loginRequestDTO);
+
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequestDTO.getEmail(), loginRequestDTO.getPassword())
         );
