@@ -1,18 +1,15 @@
 package com.ricardo.autoMatch.controller;
 
-import com.ricardo.autoMatch.dto.LoginRequestDTO;
-import com.ricardo.autoMatch.dto.LoginResponseDTO;
-import com.ricardo.autoMatch.dto.SignupRequestDTO;
-import com.ricardo.autoMatch.dto.SignupResponseDTO;
+import com.ricardo.autoMatch.dto.*;
+import com.ricardo.autoMatch.exception.UnauthenticatedException;
 import com.ricardo.autoMatch.model.User;
 import com.ricardo.autoMatch.service.JWTService;
 import com.ricardo.autoMatch.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users")
@@ -52,5 +49,27 @@ public class UserController {
                                         .build();
 
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/profile")
+    public ResponseEntity<UserDTO> getUserInfo() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication.getName().equals("anonymousUser")) {
+            throw new UnauthenticatedException("No user authenticated");
+        }
+
+        return ResponseEntity.ok(convertToUserDTO((User) authentication.getPrincipal()));
+    }
+
+    private UserDTO convertToUserDTO(User user) {
+        return UserDTO.builder()
+                .id(user.getId())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .contactEmail(user.getContactEmail())
+                .contactPhone(user.getContactPhone())
+                .location(user.getLocation())
+                .build();
     }
 }

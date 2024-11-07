@@ -19,7 +19,10 @@ public class GlobalExceptionHandler {
         if (exception instanceof NotFoundException)
             return new ResponseEntity<>(new ErrorResponse(HttpStatus.NOT_FOUND.value(), exception.getMessage()), HttpStatus.NOT_FOUND);
 
-        if (exception instanceof JwtException || exception instanceof BadCredentialsException)
+        if (exception instanceof JwtException ||
+            exception instanceof BadCredentialsException ||
+            exception instanceof UnauthenticatedException
+        )
             return new ResponseEntity<>(new ErrorResponse(HttpStatus.UNAUTHORIZED.value(), exception.getMessage()), HttpStatus.UNAUTHORIZED);
 
         if (exception instanceof InvalidRequestBodyException)
