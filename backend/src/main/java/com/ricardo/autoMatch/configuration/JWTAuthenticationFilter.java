@@ -1,6 +1,7 @@
 package com.ricardo.autoMatch.configuration;
 
 import com.ricardo.autoMatch.service.JWTService;
+import io.jsonwebtoken.JwtException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import jakarta.servlet.FilterChain;
@@ -43,9 +44,9 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
             final String authHeader = request.getHeader("Authorization");
 
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-                //if (!request.getRequestURI().equals("/api/users/login") && !request.getRequestURI().equals("/api/users/signup")) {
-                //    throw new Exception("Authentication token is missing or invalid");
-                //}
+                if (request.getRequestURI().equals("/api/users/profile")) {
+                    throw new JwtException("Authentication token is missing or invalid");
+                }
 
                 filterChain.doFilter(request, response);
                 return;
