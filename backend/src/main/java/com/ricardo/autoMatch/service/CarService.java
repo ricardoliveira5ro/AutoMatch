@@ -4,6 +4,7 @@ import com.ricardo.autoMatch.dto.CarDTO;
 import com.ricardo.autoMatch.dto.CarDetailsDTO;
 import com.ricardo.autoMatch.dto.UserDTO;
 import com.ricardo.autoMatch.exception.NotFoundException;
+import com.ricardo.autoMatch.utils.Utils;
 import com.ricardo.autoMatch.model.*;
 import com.ricardo.autoMatch.repository.CarRepository;
 import com.ricardo.autoMatch.repository.UserRepository;
@@ -103,6 +104,12 @@ public class CarService {
                             .map(this::convertToCarDTO);
     }
 
+    @Transactional(readOnly = true)
+    public List<CarDTO> getActiveListings() {
+        return carRepository.findByUser(Utils.getCurrentUser())
+                                .stream().map(this::convertToCarDTO).toList();
+    }
+
     public CarDTO createCar(MultipartFile file) {
         Car car = new Car("TEST", "TEST", "TEST", "TEST", Condition.NEW, 1f, Style.COUPE, Date.from(Instant.now()), 1, FuelType.DIESEL, GearBox.AUTOMATIC, Color.BLACK, 1, 1, 1, true);
         car.setUser(userRepository.findById(1).orElseThrow(() -> new NotFoundException("User not found")));
@@ -172,7 +179,7 @@ public class CarService {
                 car.getGearBox().getValue(),
                 car.getDisplacement(),
                 car.getHorsePower(),
-                Base64.getEncoder().encodeToString(car.getImgCover()),
+                //Base64.getEncoder().encodeToString(car.getImgCover()),
                 car.isRecommended()
         );
     }

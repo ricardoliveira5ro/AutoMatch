@@ -60,4 +60,6 @@ public interface CarRepository extends JpaRepository<Car, Long> {
             @Param("styles") List<Style> styles,
             Pageable pageable
     );
+
+    List<Car> findByUser(User user);
 }

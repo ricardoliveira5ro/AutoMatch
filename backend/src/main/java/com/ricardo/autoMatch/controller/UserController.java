@@ -1,14 +1,12 @@
 package com.ricardo.autoMatch.controller;
 
+import com.ricardo.autoMatch.utils.Utils;
 import com.ricardo.autoMatch.dto.*;
-import com.ricardo.autoMatch.exception.UnauthenticatedException;
 import com.ricardo.autoMatch.model.User;
 import com.ricardo.autoMatch.service.JWTService;
 import com.ricardo.autoMatch.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -53,13 +51,7 @@ public class UserController {
 
     @GetMapping("/profile")
     public ResponseEntity<UserDTO> getUserInfo() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        if (authentication.getName().equals("anonymousUser")) {
-            throw new UnauthenticatedException("No user authenticated");
-        }
-
-        return ResponseEntity.ok(convertToUserDTO((User) authentication.getPrincipal()));
+        return ResponseEntity.ok(convertToUserDTO(Utils.getCurrentUser()));
     }
 
     private UserDTO convertToUserDTO(User user) {

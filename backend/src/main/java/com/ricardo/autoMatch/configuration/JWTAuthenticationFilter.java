@@ -44,7 +44,9 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
             final String authHeader = request.getHeader("Authorization");
 
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-                if (request.getRequestURI().equals("/api/users/profile")) {
+                if (request.getRequestURI().equals("/api/users/profile") ||
+                    request.getRequestURI().equals("/api/cars/listings")
+                ) {
                     throw new JwtException("Authentication token is missing or invalid");
                 }
 
