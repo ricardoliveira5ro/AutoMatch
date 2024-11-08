@@ -18,7 +18,7 @@ export const Favorites = () => {
                     <i className="bi bi-person-circle fs-3" style={{ color: 'white' }}></i>
                 </div>
             </div>
-            <CarCardsList/>
+            {/* <CardCard /> */}
         </div>
     );
 }

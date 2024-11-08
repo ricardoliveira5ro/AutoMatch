@@ -2,8 +2,61 @@ import { Link } from 'react-router-dom';
 import './Profile.css'
 import { CarCardsList } from '../utils/components/CarCardsList/CarCardsList';
 import { ProfileForm } from './components/ProfileForm/ProfileForm';
+import { useEffect, useState } from 'react';
+import CarModel from '../../models/CarModel';
 
 export const Profile = () => {
+
+    const [cars, setCars] = useState<CarModel[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [httpError, setHttpError] = useState(null);
+
+    useEffect(() => {
+        const fetchCars = async () => {
+            setIsLoading(true);
+
+            const response = await fetch("http://localhost:8080/api/cars/listings", {
+                method: "GET",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem("user_access_token")}`
+                }
+            })
+
+            if (!response.ok) {
+                throw new Error('Something went wrong!');
+            }
+
+            const responseData = await response.json();
+            const loadedCars: CarModel[] = [];
+
+            for (const key in responseData) {
+                loadedCars.push({
+                    id: responseData[key].id,
+                    title: responseData[key].title,
+                    price: responseData[key].price,
+                    date: responseData[key].date,
+                    mileage: responseData[key].mileage,
+                    fuelType: responseData[key].fuelType,
+                    horsePower: responseData[key].horsePower,
+                    imgCover: responseData[key].imgCover
+                });
+            }
+
+            setCars(loadedCars);
+            setIsLoading(false);
+        };
+
+        fetchCars().catch((error: any) => {
+            setIsLoading(false);
+            setHttpError(error.message);
+        })
+    }, []);
+
+    const deleteListing = (car: CarModel) => {
+        //Call Delete listing endpoint
+        setCars(prevCars => prevCars.filter(c => c.id !== car.id));
+    };
 
     return (
         <div className='container py-4'>
@@ -22,7 +75,7 @@ export const Profile = () => {
                         <i className="bi bi-plus-square fs-4" style={{ color: 'white' }}></i>
                     </div>
                 </div>
-                <CarCardsList />
+                <CarCardsList cars={cars} removeCar={deleteListing} />
             </div>
         </div>
     );
