@@ -23,6 +23,6 @@ public class CarDTO {
     private String gearBox;
     private Integer displacement;
     private Integer horsePower;
-    private String imgCover;
+    //private String imgCover;
     private boolean recommended;
 }

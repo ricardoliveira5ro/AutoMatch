@@ -43,6 +43,11 @@ public class CarController {
         return ResponseEntity.ok(carService.getFilteredCars(params));
     }
 
+    @GetMapping("/listings")
+    public ResponseEntity<List<CarDTO>> listings() {
+        return ResponseEntity.ok(carService.getActiveListings());
+    }
+
     @PostMapping("/create")
     public ResponseEntity<CarDTO> createCar(@RequestParam("image") MultipartFile file) {
         return ResponseEntity.ok(carService.createCar(file));
