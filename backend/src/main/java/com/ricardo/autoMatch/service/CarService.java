@@ -179,7 +179,7 @@ public class CarService {
                 car.getGearBox().getValue(),
                 car.getDisplacement(),
                 car.getHorsePower(),
-                //Base64.getEncoder().encodeToString(car.getImgCover()),
+                Base64.getEncoder().encodeToString(car.getImgCover()),
                 car.isRecommended()
         );
     }

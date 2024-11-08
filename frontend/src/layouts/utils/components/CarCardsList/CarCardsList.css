@@ -1,6 +1,9 @@
-.remove-favorite-container {
+.remove-favorite-button {
     background-color: red;
+    border: none;
     border-radius: 5px;
+    height: 100%;
+    width: 100%;
 }
 
 .car-cards-list {
