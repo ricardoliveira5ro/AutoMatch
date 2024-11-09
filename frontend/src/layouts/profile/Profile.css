@@ -25,6 +25,11 @@
     min-width: max-content;
 }
 
+.logout {
+    color: var(--color-main-orange);
+    border-bottom: 1px solid var(--color-main-orange);
+}
+
 @media (max-width: 991px) {
     .email-save-container {
         flex-direction: column !important;

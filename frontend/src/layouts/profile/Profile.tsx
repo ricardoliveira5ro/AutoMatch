@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Profile.css'
 import { CarCardsList } from '../utils/components/CarCardsList/CarCardsList';
 import { ProfileForm } from './components/ProfileForm/ProfileForm';
@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 import CarModel from '../../models/CarModel';
 
 export const Profile = () => {
+
+    const navigate = useNavigate();
 
     const [cars, setCars] = useState<CarModel[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -38,6 +40,8 @@ export const Profile = () => {
                     date: responseData[key].date,
                     mileage: responseData[key].mileage,
                     fuelType: responseData[key].fuelType,
+                    gearBox: responseData[key].gearBox,
+                    displacement: responseData[key].displacement,
                     horsePower: responseData[key].horsePower,
                     imgCover: responseData[key].imgCover
                 });
@@ -58,12 +62,20 @@ export const Profile = () => {
         setCars(prevCars => prevCars.filter(c => c.id !== car.id));
     };
 
+    const logout = () => {
+        localStorage.removeItem("user_access_token");
+        navigate('/');
+    }
+
     return (
         <div className='container py-4'>
-            <Link className='col-1 d-flex flex-row align-items-center back-home px-0 px-sm-3' to='/'>
-                <i className="bi bi-house-fill" style={{ color: 'white', fontSize: '30px' }}></i>
-                <p className='d-flex text-white ms-3 mb-0'>Home</p>
-            </Link>
+            <div className='d-flex justify-content-between align-items-center'>
+                <Link className='col-1 d-flex flex-row align-items-center back-home px-0 px-sm-3' to='/'>
+                    <i className="bi bi-house-fill" style={{ color: 'white', fontSize: '30px' }}></i>
+                    <p className='d-flex text-white ms-3 mb-0'>Home</p>
+                </Link>
+                <a className='logout' onClick={logout}>Logout</a>
+            </div>
             <ProfileForm />
             <hr className='text-white' />
             <div className='mt-5 w-100'>

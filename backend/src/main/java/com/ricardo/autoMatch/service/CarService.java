@@ -107,7 +107,9 @@ public class CarService {
     @Transactional(readOnly = true)
     public List<CarDTO> getActiveListings() {
         return carRepository.findByUser(Utils.getCurrentUser())
-                                .stream().map(this::convertToCarDTO).toList();
+                                .stream()
+                                .sorted(Comparator.comparing(Car::getUpdatedAt))
+                                .map(this::convertToCarDTO).toList();
     }
 
     public CarDTO createCar(MultipartFile file) {
