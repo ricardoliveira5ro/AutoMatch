@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import './ProfileForm.css'
-import CarModel from '../../../../models/CarModel';
 
 export const ProfileForm = () => {
 
@@ -35,7 +34,7 @@ export const ProfileForm = () => {
             return Promise.reject(error)
         })
         .catch(error => {
-            alert(error.message)
+            console.log(error.message);
         });
     }, []);
 
