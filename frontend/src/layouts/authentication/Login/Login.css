@@ -1,3 +1,10 @@
+.top-alert {
+    position: absolute;
+    top: 0;
+    z-index: 1000;
+    margin-top: 10px;
+}
+
 .login-container {
     width: 100%;
     row-gap: 20px;

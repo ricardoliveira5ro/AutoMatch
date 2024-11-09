@@ -4,6 +4,7 @@ import { CarCardsList } from '../utils/components/CarCardsList/CarCardsList';
 import { ProfileForm } from './components/ProfileForm/ProfileForm';
 import { useEffect, useState } from 'react';
 import CarModel from '../../models/CarModel';
+import { SpinnerLoading } from '../utils/components/SpinnerLoading/SpinnerLoading';
 
 export const Profile = () => {
 
@@ -25,11 +26,19 @@ export const Profile = () => {
                 }
             })
 
+            const responseData = await response.json();
+
+            // Unauthorized access
+            if (response.status === 401) {
+                localStorage.removeItem("user_access_token");
+                navigate('/login', { state: { forcedRedirect: responseData.message } });
+                return;
+            }
+
             if (!response.ok) {
                 throw new Error('Something went wrong!');
             }
 
-            const responseData = await response.json();
             const loadedCars: CarModel[] = [];
 
             for (const key in responseData) {
@@ -87,7 +96,17 @@ export const Profile = () => {
                         <i className="bi bi-plus-square fs-4" style={{ color: 'white' }}></i>
                     </div>
                 </div>
-                <CarCardsList cars={cars} removeCar={deleteListing} />
+                {httpError ? (
+                    <p className='text-white'>{httpError}</p>
+                ) : (
+                    <>
+                        {isLoading ? (
+                            <SpinnerLoading />
+                        ) : (
+                            <CarCardsList cars={cars} removeCar={deleteListing} />
+                        )}
+                    </>
+                )}
             </div>
         </div>
     );
