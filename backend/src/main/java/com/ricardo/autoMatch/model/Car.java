@@ -72,7 +72,7 @@ public class Car {
     @Column(name = "doors")
     private Integer doors;
 
-    @Column(name = "displacement", nullable = false)
+    @Column(name = "displacement")
     private Integer displacement;
 
     @Column(name = "horse_power", nullable = false)

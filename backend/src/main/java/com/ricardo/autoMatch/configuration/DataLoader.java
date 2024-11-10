@@ -79,7 +79,7 @@ public class DataLoader implements CommandLineRunner {
                     GearBox.valueOf((String) carData.get("gearBox")),
                     Color.valueOf((String) carData.get("color")),
                     Integer.parseInt(String.valueOf(carData.get("doors"))),
-                    Integer.parseInt(String.valueOf(carData.get("displacement"))),
+                    carData.get("displacement") != null ? Integer.parseInt(String.valueOf(carData.get("displacement"))) : null,
                     Integer.parseInt(String.valueOf(carData.get("horsePower"))),
                     Boolean.valueOf(String.valueOf(carData.get("recommended")))
                 );

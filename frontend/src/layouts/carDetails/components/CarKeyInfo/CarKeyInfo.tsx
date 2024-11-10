@@ -34,11 +34,19 @@ export const CarKeyInfo: React.FC<{
                 <p className='text-white mb-2 fs-6'>Horse Power</p>
                 <span className='text-white fs-5'>{props.car?.horsePower} HP</span>
             </div>
-            <div className='d-flex flex-column justify-content-center align-items-center'>
-                <i className="bi bi-box-seam-fill lh-1" style={{ color: 'white' }}></i>
-                <p className='text-white mb-2 fs-6'>Displacement</p>
-                <span className='text-white fs-5'>{formatValueSpaces(props.car?.displacement || 0)} cm3</span>
-            </div>
+            {props.car?.displacement ? (
+                <div className='d-flex flex-column justify-content-center align-items-center'>
+                    <i className="bi bi-box-seam-fill lh-1" style={{ color: 'white' }}></i>
+                    <p className='text-white mb-2 fs-6'>Displacement</p>
+                    <span className='text-white fs-5'>{formatValueSpaces(props.car?.displacement || 0)} cm3</span>
+                </div>
+            ) : (
+                <div className='d-flex flex-column justify-content-center align-items-center'>
+                    <i className="bi bi-door-closed lh-1" style={{ color: 'white' }}></i>
+                    <p className='text-white mb-2 fs-6'>Doors</p>
+                    <span className='text-white fs-5'>{formatValueSpaces(props.car?.doors || 4)}</span>
+                </div>
+            )}            
             <div className='d-flex flex-column justify-content-center align-items-center'>
                 <i className="bi bi-car-front lh-1" style={{ color: 'white' }}></i>
                 <p className='text-white mb-2 fs-6'>Style</p>

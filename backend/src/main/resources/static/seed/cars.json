@@ -171,7 +171,7 @@
     "gearBox": "AUTOMATIC",
     "color": "WHITE",
     "doors": 4,
-    "displacement": 0,
+    "displacement": null,
     "horsePower": 238,
     "recommended": true,
     "userId": 7,

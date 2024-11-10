@@ -21,7 +21,10 @@ export const CardCard: React.FC<{
                     <div className="car-card-body card-body d-flex flex-row justify-content-between align-items-center h-100" style={{rowGap: '20px'}}>
                         <div className='h-100'>
                             <h5 className="card-title text-white">{props.car?.title}</h5>
-                            <p className="card-text text-white">{formatValueSpaces(props.car?.displacement || 0)} cm3 • {props.car?.horsePower} hp</p>
+                            <p className="card-text text-white">
+                                {props.car?.displacement ? `${formatValueSpaces(props.car.displacement)} cm3 • ` : ""}
+                                {props.car?.horsePower} hp
+                            </p>
                             <div className='d-flex flex-row flex-wrap' style={{ columnGap: '20px', rowGap: '5px' }}>
                                 <div className='d-flex flex-row align-items-center car-card-characteristic'>
                                     <i className="bi bi-speedometer2" style={{ color: 'white' }}></i>
