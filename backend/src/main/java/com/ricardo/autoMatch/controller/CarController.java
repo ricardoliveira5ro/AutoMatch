@@ -38,6 +38,11 @@ public class CarController {
         return ResponseEntity.ok(carService.getCar((long) id));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteCar(@PathVariable int id) {
+        return ResponseEntity.ok(carService.deleteCar((long) id));
+    }
+
     @GetMapping("/search")
     public ResponseEntity<Page<CarDTO>> search(@RequestParam Map<String, String> params) {
         return ResponseEntity.ok(carService.getFilteredCars(params));

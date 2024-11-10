@@ -21,7 +21,8 @@ public class GlobalExceptionHandler {
 
         if (exception instanceof JwtException ||
             exception instanceof BadCredentialsException ||
-            exception instanceof UnauthenticatedException
+            exception instanceof UnauthenticatedException ||
+            exception instanceof UnauthorizedException
         )
             return new ResponseEntity<>(new ErrorResponse(HttpStatus.UNAUTHORIZED.value(), exception.getMessage()), HttpStatus.UNAUTHORIZED);
 
