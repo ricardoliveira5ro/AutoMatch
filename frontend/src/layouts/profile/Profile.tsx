@@ -67,7 +67,26 @@ export const Profile = () => {
     }, []);
 
     const deleteListing = (car: CarModel) => {
-        //Call Delete listing endpoint
+        const deleteCar = async () => {
+            const response = await fetch(`http://localhost:8080/api/cars/${car.id}`, {
+                method: "DELETE",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem("user_access_token")}`
+                }
+            })
+
+            if (!response.ok) {
+                throw new Error('Something went wrong!');
+            }
+        };
+
+        deleteCar().catch((error: any) => {
+            alert("Error deleting car: " + error.message);
+        });
+
+        
+        // Update UI list
         setCars(prevCars => prevCars.filter(c => c.id !== car.id));
     };
 

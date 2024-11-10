@@ -4,6 +4,7 @@ import com.ricardo.autoMatch.dto.CarDTO;
 import com.ricardo.autoMatch.dto.CarDetailsDTO;
 import com.ricardo.autoMatch.dto.UserDTO;
 import com.ricardo.autoMatch.exception.NotFoundException;
+import com.ricardo.autoMatch.exception.UnauthorizedException;
 import com.ricardo.autoMatch.utils.Utils;
 import com.ricardo.autoMatch.model.*;
 import com.ricardo.autoMatch.repository.CarRepository;
@@ -38,6 +39,18 @@ public class CarService {
     @Transactional(readOnly = true)
     public CarDetailsDTO getCar(Long id) {
         return convertToCarDetailsDTO(carRepository.findById(id).orElseThrow(() -> new NotFoundException("Car not found")));
+    }
+
+    public String deleteCar(Long id) {
+        Car car = carRepository.findById(id).orElseThrow(() -> new NotFoundException("Car not found"));
+
+        if (!car.getUser().getId().equals(Utils.getCurrentUser().getId())) {
+            throw new UnauthorizedException("Cannot perform this action");
+        }
+
+        carRepository.delete(car);
+
+        return "Success";
     }
 
     @Transactional(readOnly = true)
