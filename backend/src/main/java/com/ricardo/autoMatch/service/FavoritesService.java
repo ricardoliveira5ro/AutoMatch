@@ -9,6 +9,7 @@ import com.ricardo.autoMatch.repository.FavoritesRepository;
 import com.ricardo.autoMatch.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Base64;
 import java.util.List;
@@ -26,25 +27,27 @@ public class FavoritesService {
         this.carRepository = carRepository;
     }
 
+    @Transactional(readOnly = true)
     public List<CarDTO> getAllFavorites() {
         List<Favorite> favorites = favoritesRepository.findByUser(Utils.getCurrentUser());
 
-        return favorites.stream().map(favorite -> convertToCarDTO(favorite.getCar())).toList();
+        return favorites.stream().map(favorite -> Utils.convertToCarDTO(favorite.getCar())).toList();
     }
 
-    public Favorite addFavorite(Long carId) {
+    public String addFavorite(Long carId) {
         Car car = carRepository.findById(carId).orElseThrow(() -> new NotFoundException("Car not found"));
 
         Optional<Favorite> favorite = favoritesRepository.findByUserAndCar(Utils.getCurrentUser(), car);
-        if (favorite.isPresent()) {
-            return favorite.get();
+
+        if (favorite.isEmpty()) {
+            Favorite newFavorite = new Favorite();
+            newFavorite.setUser(Utils.getCurrentUser());
+            newFavorite.setCar(car);
+
+            favoritesRepository.save(newFavorite);
         }
 
-        Favorite newFavorite = new Favorite();
-        newFavorite.setUser(Utils.getCurrentUser());
-        newFavorite.setCar(car);
-
-        return favoritesRepository.save(newFavorite);
+        return "Success";
     }
 
     public String removeFavorite(Long carId) {
@@ -54,21 +57,5 @@ public class FavoritesService {
         favorite.ifPresent(favoritesRepository::delete);
 
         return "Success";
-    }
-
-    private CarDTO convertToCarDTO(Car car) {
-        return new CarDTO(
-                car.getId(),
-                car.getTitle(),
-                car.getPrice(),
-                car.getDate(),
-                car.getMileage(),
-                car.getFuelType().getValue(),
-                car.getGearBox().getValue(),
-                car.getDisplacement(),
-                car.getHorsePower(),
-                Base64.getEncoder().encodeToString(car.getImgCover()),
-                car.isRecommended()
-        );
     }
 }

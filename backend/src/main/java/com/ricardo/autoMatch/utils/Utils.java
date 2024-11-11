@@ -1,13 +1,17 @@
 package com.ricardo.autoMatch.utils;
 
-import com.ricardo.autoMatch.dto.LoginRequestDTO;
-import com.ricardo.autoMatch.dto.SignupRequestDTO;
+import com.ricardo.autoMatch.dto.*;
 import com.ricardo.autoMatch.exception.InvalidRequestBodyException;
 import com.ricardo.autoMatch.exception.UnauthenticatedException;
+import com.ricardo.autoMatch.model.Car;
+import com.ricardo.autoMatch.model.CarImage;
 import com.ricardo.autoMatch.model.User;
 import com.ricardo.autoMatch.repository.UserRepository;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+
+import java.util.Base64;
+import java.util.Comparator;
 
 public final class Utils {
 
@@ -42,5 +46,64 @@ public final class Utils {
         }
 
         return (User) authentication.getPrincipal();
+    }
+
+    public static CarDTO convertToCarDTO(Car car) {
+        return new CarDTO(
+                car.getId(),
+                car.getTitle(),
+                car.getPrice(),
+                car.getDate(),
+                car.getMileage(),
+                car.getFuelType().getValue(),
+                car.getGearBox().getValue(),
+                car.getDisplacement(),
+                car.getHorsePower(),
+                Base64.getEncoder().encodeToString(car.getImgCover()),
+                car.isRecommended()
+        );
+    }
+
+    public static CarDetailsDTO convertToCarDetailsDTO(Car car) {
+        return new CarDetailsDTO(
+                car.getId(),
+                car.getTitle(),
+                car.getDescription(),
+                car.getMake(),
+                car.getModel(),
+                car.getCondition().getValue(),
+                car.getPrice(),
+                car.getStyle().getValue(),
+                car.getDate(),
+                car.getMileage(),
+                car.getFuelType().getValue(),
+                car.getGearBox().getValue(),
+                car.getColor().getValue(),
+                car.getDoors(),
+                car.getDisplacement(),
+                car.getHorsePower(),
+                car.getCarImages().stream()
+                        .sorted(Comparator.comparing(CarImage::getOrder))
+                        .map(carImage -> Base64.getEncoder().encodeToString(carImage.getImageData())).toList(),
+                UserDTO.builder()
+                        .id(car.getUser().getId())
+                        .firstName(car.getUser().getFirstName())
+                        .lastName(car.getUser().getLastName())
+                        .contactEmail(car.getUser().getContactEmail())
+                        .contactPhone(car.getUser().getContactPhone())
+                        .location(car.getUser().getLocation())
+                        .build()
+        );
+    }
+
+    public static UserDTO convertToUserDTO(User user) {
+        return UserDTO.builder()
+                .id(user.getId())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .contactEmail(user.getContactEmail())
+                .contactPhone(user.getContactPhone())
+                .location(user.getLocation())
+                .build();
     }
 }
