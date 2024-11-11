@@ -92,6 +92,9 @@ public class Car {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Favorite> favorites = new ArrayList<>();
+
     @CreationTimestamp
     @Column(name = "created_at")
     private LocalDateTime createdAt;

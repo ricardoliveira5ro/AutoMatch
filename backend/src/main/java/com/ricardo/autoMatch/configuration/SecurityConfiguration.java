@@ -38,6 +38,7 @@ public class SecurityConfiguration {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/users/profile", "/api/cars/listings").authenticated()
+                        .requestMatchers("/api/favorites/**").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/cars/{id}").authenticated()
                         .anyRequest().permitAll()
                 )
