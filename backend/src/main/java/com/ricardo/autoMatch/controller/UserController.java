@@ -51,17 +51,6 @@ public class UserController {
 
     @GetMapping("/profile")
     public ResponseEntity<UserDTO> getUserInfo() {
-        return ResponseEntity.ok(convertToUserDTO(Utils.getCurrentUser()));
-    }
-
-    private UserDTO convertToUserDTO(User user) {
-        return UserDTO.builder()
-                .id(user.getId())
-                .firstName(user.getFirstName())
-                .lastName(user.getLastName())
-                .contactEmail(user.getContactEmail())
-                .contactPhone(user.getContactPhone())
-                .location(user.getLocation())
-                .build();
+        return ResponseEntity.ok(Utils.convertToUserDTO(Utils.getCurrentUser()));
     }
 }

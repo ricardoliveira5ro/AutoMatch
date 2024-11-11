@@ -1,5 +1,6 @@
 package com.ricardo.autoMatch.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -44,8 +45,8 @@ public class User implements UserDetails {
     @Column(name = "location")
     private String location;
 
-    @OneToMany(mappedBy = "user")
-    private List<Car> cars;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Car> cars = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Favorite> favorites = new ArrayList<>();

@@ -2,7 +2,6 @@ package com.ricardo.autoMatch.service;
 
 import com.ricardo.autoMatch.dto.CarDTO;
 import com.ricardo.autoMatch.dto.CarDetailsDTO;
-import com.ricardo.autoMatch.dto.UserDTO;
 import com.ricardo.autoMatch.exception.NotFoundException;
 import com.ricardo.autoMatch.exception.UnauthorizedException;
 import com.ricardo.autoMatch.utils.Utils;
@@ -33,12 +32,12 @@ public class CarService {
     }
 
     public List<CarDTO> getAllCars(int page, int size) {
-        return carRepository.findAll(PageRequest.of(page, size)).stream().map(this::convertToCarDTO).toList();
+        return carRepository.findAll(PageRequest.of(page, size)).stream().map(Utils::convertToCarDTO).toList();
     }
 
     @Transactional(readOnly = true)
     public CarDetailsDTO getCar(Long id) {
-        return convertToCarDetailsDTO(carRepository.findById(id).orElseThrow(() -> new NotFoundException("Car not found")));
+        return Utils.convertToCarDetailsDTO(carRepository.findById(id).orElseThrow(() -> new NotFoundException("Car not found")));
     }
 
     public String deleteCar(Long id) {
@@ -62,7 +61,7 @@ public class CarService {
         int start = page * size;
         int end = Math.min(start + size, recommended.size());
 
-        return recommended.subList(start, end).stream().map(this::convertToCarDTO).toList();
+        return recommended.subList(start, end).stream().map(Utils::convertToCarDTO).toList();
     }
 
     @Transactional(readOnly = true)
@@ -114,7 +113,7 @@ public class CarService {
         return carRepository.findFiltered(make, model, fuelType, selectedYear, minYear, maxYear, minMileage, maxMileage,
                                         minPrice, maxPrice, minHorsePower, maxHorsePower, searchQuery, gearBox, condition,
                                         color, doors, minDisplacement, maxDisplacement, styles, PageRequest.of(page, size))
-                            .map(this::convertToCarDTO);
+                            .map(Utils::convertToCarDTO);
     }
 
     @Transactional(readOnly = true)
@@ -122,7 +121,7 @@ public class CarService {
         return carRepository.findByUser(Utils.getCurrentUser())
                                 .stream()
                                 .sorted(Comparator.comparing(Car::getUpdatedAt))
-                                .map(this::convertToCarDTO).toList();
+                                .map(Utils::convertToCarDTO).toList();
     }
 
     public CarDTO createCar(MultipartFile file) {
@@ -136,7 +135,7 @@ public class CarService {
             throw new RuntimeException(e);
         }
 
-        return convertToCarDTO(carRepository.save(car));
+        return Utils.convertToCarDTO(carRepository.save(car));
     }
 
     public CarDTO createCarV2(List<MultipartFile> files) {
@@ -156,7 +155,7 @@ public class CarService {
             }
         }
 
-        return convertToCarDTO(carRepository.save(car));
+        return Utils.convertToCarDTO(carRepository.save(car));
     }
 
     public String seedData(List<MultipartFile> files) {
@@ -181,53 +180,5 @@ public class CarService {
         carRepository.save(car);
 
         return "Seeded successfully";
-    }
-
-    private CarDTO convertToCarDTO(Car car) {
-        return new CarDTO(
-                car.getId(),
-                car.getTitle(),
-                car.getPrice(),
-                car.getDate(),
-                car.getMileage(),
-                car.getFuelType().getValue(),
-                car.getGearBox().getValue(),
-                car.getDisplacement(),
-                car.getHorsePower(),
-                Base64.getEncoder().encodeToString(car.getImgCover()),
-                car.isRecommended()
-        );
-    }
-
-    private CarDetailsDTO convertToCarDetailsDTO(Car car) {
-        return new CarDetailsDTO(
-                car.getId(),
-                car.getTitle(),
-                car.getDescription(),
-                car.getMake(),
-                car.getModel(),
-                car.getCondition().getValue(),
-                car.getPrice(),
-                car.getStyle().getValue(),
-                car.getDate(),
-                car.getMileage(),
-                car.getFuelType().getValue(),
-                car.getGearBox().getValue(),
-                car.getColor().getValue(),
-                car.getDoors(),
-                car.getDisplacement(),
-                car.getHorsePower(),
-                car.getCarImages().stream()
-                        .sorted(Comparator.comparing(CarImage::getOrder))
-                        .map(carImage -> Base64.getEncoder().encodeToString(carImage.getImageData())).toList(),
-                UserDTO.builder()
-                    .id(car.getUser().getId())
-                    .firstName(car.getUser().getFirstName())
-                    .lastName(car.getUser().getLastName())
-                    .contactEmail(car.getUser().getContactEmail())
-                    .contactPhone(car.getUser().getContactPhone())
-                    .location(car.getUser().getLocation())
-                    .build()
-        );
     }
 }
