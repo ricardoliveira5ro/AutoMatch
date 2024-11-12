@@ -1,16 +1,45 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './KeyDetails.css'
 import CarModel from '../../../../models/CarModel';
 import { formatValueSpaces } from '../../../utils/functions';
+import { useNavigate } from 'react-router-dom';
 
 export const KeyDetails: React.FC<{
-    car: CarModel | undefined
+    car: CarModel | undefined,
+    isFavorite: boolean
 }> = (props) => {
 
-    const [isFavorite, setIsFavorite] = useState(false);
+    const navigate = useNavigate();
+
+    const [isFavorite, setIsFavorite] = useState(props.isFavorite);
 
     const toggleFavorite = () => {
-        setIsFavorite(!isFavorite);
+        const token = localStorage.getItem("user_access_token");
+        if (!token) {
+            navigate('/login');
+            return;
+        }
+
+        const deleteFavorite = async () => {
+            const response = await fetch(`http://localhost:8080/api/favorites/${props.car?.id}`, {
+                method: isFavorite ? "DELETE" : "POST",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem("user_access_token")}`
+                }
+            })
+
+            if (!response.ok) {
+                throw new Error('Something went wrong!');
+            }
+
+            // Update UI list
+            setIsFavorite(!isFavorite);
+        };
+
+        deleteFavorite().catch((error: any) => {
+            alert("Error toggling favorite: " + error.message);
+        });
     }
 
     return (

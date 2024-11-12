@@ -11,11 +11,13 @@ import { SpinnerLoading } from '../utils/components/SpinnerLoading/SpinnerLoadin
 
 export const CarDetails = () => {
 
+    const { id } = useParams();
+
     const [car, setCar] = useState<CarModel>()
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState(null);
 
-    const { id } = useParams();
+    const [isFavorite, setIsFavorite] = useState(false);
 
     useEffect(() => {
         const fetchCar = async () => {
@@ -68,6 +70,33 @@ export const CarDetails = () => {
 
     }, []);
 
+    useEffect(() => {
+        if (localStorage.getItem("user_access_token") !== undefined) {
+            fetch(`http://localhost:8080/api/favorites/${id}`, {
+                method: "GET",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem("user_access_token")}`
+                }
+            })
+            .then(async response => {
+                const result = await response.json();
+                
+                if (response.ok) {
+                    setIsFavorite(result)
+                    return;
+                }
+    
+                const error = result || "Unknown error"
+                
+                return Promise.reject(error)
+            })
+            .catch(error => {
+                console.log(error.message);
+            });
+        }
+    }, []);
+
     if (isLoading) {
         return (
             <div className='mt-5'>
@@ -90,7 +119,7 @@ export const CarDetails = () => {
                 <>
                     <div className='row g-0 pt-1 pb-3'>
                         <Carousel car={car} />
-                        <KeyDetails car={car} />
+                        <KeyDetails car={car} isFavorite={isFavorite} />
                     </div>
                     <CarKeyInfo car={car} />
                     <CarDescription car={car} />
