@@ -13,6 +13,8 @@ export const Login = () => {
     const login = (e: any) => {
         e.preventDefault();
 
+        localStorage.removeItem("user_access_token");
+
         fetch("http://localhost:8080/api/users/login", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
@@ -21,22 +23,22 @@ export const Login = () => {
                 password: password
             })
         })
-            .then(async response => {
-                const result = await response.json();
+        .then(async response => {
+            const result = await response.json();
 
-                if (response.ok) {
-                    localStorage.setItem("user_access_token", result.token)
-                    navigate('/profile');
-                    return;
-                }
+            if (response.ok) {
+                localStorage.setItem("user_access_token", result.token)
+                navigate('/profile');
+                return;
+            }
 
-                const error = result || "Unknown error"
+            const error = result || "Unknown error"
 
-                return Promise.reject(error)
-            })
-            .catch(error => {
-                alert(error.message)
-            });
+            return Promise.reject(error)
+        })
+        .catch(error => {
+            alert(error.message)
+        });
     }
 
     return (
