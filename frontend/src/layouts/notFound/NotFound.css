@@ -1,0 +1,10 @@
+.back-to-home-not-found {
+    background-color: transparent;
+}
+
+.not-found-home {
+    color: var(--color-main-orange);
+    margin-top: 20px;
+    border: 1px solid var(--color-main-orange);
+    padding: 10px 25px;    
+}

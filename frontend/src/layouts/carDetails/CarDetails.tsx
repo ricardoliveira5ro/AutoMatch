@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Carousel } from './components/Carousel/Carousel';
 import { KeyDetails } from './components/KeyDetails/KeyDetails';
 import { CarKeyInfo } from './components/CarKeyInfo/CarKeyInfo';
@@ -12,6 +12,7 @@ import { SpinnerLoading } from '../utils/components/SpinnerLoading/SpinnerLoadin
 export const CarDetails = () => {
 
     const { id } = useParams();
+    const navigate = useNavigate();
 
     const [car, setCar] = useState<CarModel>()
     const [isLoading, setIsLoading] = useState(true);
@@ -24,6 +25,10 @@ export const CarDetails = () => {
             const url = `http://localhost:8080/api/cars/${id}`
 
             const response = await fetch(url);
+
+            if (response.status === 404) {
+                navigate('*');
+            }
 
             if (!response.ok) {
                 throw new Error('Something went wrong!');
@@ -71,12 +76,14 @@ export const CarDetails = () => {
     }, []);
 
     useEffect(() => {
-        if (localStorage.getItem("user_access_token") !== undefined) {
+        const token = localStorage.getItem("user_access_token");
+
+        if (token) {
             fetch(`http://localhost:8080/api/favorites/${id}`, {
                 method: "GET",
                 headers: { 
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem("user_access_token")}`
+                    'Authorization': `Bearer ${token}`
                 }
             })
             .then(async response => {
