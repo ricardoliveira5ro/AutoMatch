@@ -34,6 +34,13 @@ public class FavoritesService {
         return favorites.stream().map(favorite -> Utils.convertToCarDTO(favorite.getCar())).toList();
     }
 
+    public Boolean isFavorite(Long carId) {
+        Car car = carRepository.findById(carId).orElseThrow(() -> new NotFoundException("Car not found"));
+        Optional<Favorite> favorite = favoritesRepository.findByUserAndCar(Utils.getCurrentUser(), car);
+
+        return favorite.isPresent();
+    }
+
     public String addFavorite(Long carId) {
         Car car = carRepository.findById(carId).orElseThrow(() -> new NotFoundException("Car not found"));
 
