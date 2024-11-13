@@ -1,0 +1,10 @@
+.new-car-form {
+    column-gap: 20px;
+    row-gap: 20px;
+}
+
+.date-picker-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+}

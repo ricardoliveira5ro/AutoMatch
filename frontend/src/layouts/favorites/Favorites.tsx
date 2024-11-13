@@ -14,7 +14,8 @@ export const Favorites = () => {
     const [httpError, setHttpError] = useState(null);
 
     useEffect(() => {
-        if (localStorage.getItem("user_access_token") == undefined) {
+        const token = localStorage.getItem("user_access_token") 
+        if (!token) {
             navigate('/login');
         }
 
@@ -24,7 +25,7 @@ export const Favorites = () => {
                 method: "GET",
                 headers: { 
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem("user_access_token")}`
+                    'Authorization': `Bearer ${token}`
                 }
             })
 
