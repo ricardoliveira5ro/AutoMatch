@@ -9,6 +9,7 @@ import { CarDetails } from './layouts/carDetails/CarDetails';
 import { Favorites } from './layouts/favorites/Favorites';
 import { Profile } from './layouts/profile/Profile';
 import { NotFound } from './layouts/notFound/NotFound';
+import { CarForm } from './layouts/carForm/CarForm';
 
 export const App = () => {
   return (
@@ -22,6 +23,7 @@ export const App = () => {
         <Route path='/cars/:id' element={<CarDetails/>}/>
         <Route path='/favorites' element={<Favorites/>}/>
         <Route path='/profile' element={<Profile/>}/>
+        <Route path='/newListing' element={<CarForm/>}/>
       </Routes>
     </div>
   );

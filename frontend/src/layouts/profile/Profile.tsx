@@ -111,9 +111,9 @@ export const Profile = () => {
                     <div className='col-11'>
                         <h3 className='text-white'>Your active listings</h3>
                     </div>
-                    <div className='col-1 text-center ps-2'>
+                    <a className='col-1 text-center ps-2' onClick={() => navigate('/newListing')}>
                         <i className="bi bi-plus-square fs-4" style={{ color: 'white' }}></i>
-                    </div>
+                    </a>
                 </div>
                 {httpError ? (
                     <p className='text-white'>{httpError}</p>
