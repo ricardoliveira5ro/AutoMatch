@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -18,6 +18,8 @@ export const CarForm = () => {
     const [selectedMake, setSelectedMake] = useState("0");
     const [selectedModel, setSelectedModel] = useState("0");
     const [date, setDate] = useState<Date>();
+    const [images, setImages] = useState([] as any);
+    const [imageURLS, setImageURLs] = useState([]);
 
     /* ---------- Make <--> Model logic ------------ */
     const [models, setModels] = useState<{ model: string }[]>([]);
@@ -39,6 +41,18 @@ export const CarForm = () => {
         }
     }
 
+    useEffect(() => {
+        if (images.length < 1) return;
+        const newImageUrls: any = [];
+        images.forEach((image:any) => newImageUrls.push(URL.createObjectURL(image)));
+        setImageURLs(newImageUrls);
+    }, [images]);
+    
+    function onImageChange(e: any) {
+        setImages([...e.target.files]);
+    }
+
+    
     return (
         <div className='container py-4'>
             <div className='row d-flex align-items-center mb-5'>
@@ -204,9 +218,31 @@ export const CarForm = () => {
                         <input type="number" className="banner-input" placeholder="4" aria-label="Title" aria-describedby="title-from" />
                     </div>
                 </div>
+
+                <div className='row'>
+                    <span className="text-white">Car images</span>
+                    <input type="file" multiple accept="image/*" onChange={onImageChange} className='input-images' id="actual-btn" />
+                    {imageURLS.length != 0 &&
+                        <div id="carouselExample" className="car-form-carousel carousel slide mt-2">
+                            <div className="carousel-inner">
+                                {imageURLS.map((imageSrc, index) => (
+                                    <div key={index} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+                                        <img src={imageSrc} className="d-block w-100" alt={`Car Image ${index + 1}`}/>
+                                    </div>
+                                ))}
+                            </div>
+                            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span className="visually-hidden">Previous</span>
+                            </button>
+                            <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next"  >
+                                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span className="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    }
+                </div>
             </div>
-
-
         </div>
     );
 }
