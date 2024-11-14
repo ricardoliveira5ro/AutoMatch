@@ -8,3 +8,27 @@
     grid-template-columns: 1fr;
     width: 100%;
 }
+
+.car-form-carousel > div {
+    border-radius: 5px;
+}
+
+.car-form-carousel img {
+    height: 65vh;
+    object-fit: cover;
+}
+
+.input-images {
+    color: white;
+    margin-top: 5px;
+}
+
+.input-images::-webkit-file-upload-button {
+    background-color: #35373d;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
