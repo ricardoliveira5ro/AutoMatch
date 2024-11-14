@@ -15,11 +15,23 @@ import './CarForm.css'
 
 export const CarForm = () => {
 
-    const [selectedMake, setSelectedMake] = useState("0");
-    const [selectedModel, setSelectedModel] = useState("0");
+    /* ---------------- Inputs --------------------- */
+    const [title, setTitle] = useState("");
+    const [selectedCondition, setSelectedCondition] = useState("");
+    const [selectedMake, setSelectedMake] = useState("");
+    const [selectedModel, setSelectedModel] = useState("");
+    const [selectedGearBox, setSelectedGearBox] = useState("");
+    const [selectedFuelType, setSelectedFuelType] = useState("");
+    const [selectedStyle, setSelectedStyle] = useState("");
+    const [mileage, setMileage] = useState("");
+    const [price, setPrice] = useState("");
+    const [horsePower, setHorsePower] = useState("");
+    const [displacement, setDisplacement] = useState("");
     const [date, setDate] = useState<Date>();
-    const [images, setImages] = useState([] as any);
+    const [selectedColor, setSelectedColor] = useState("");
+    const [doors, setDoors] = useState("");
     const [imageURLS, setImageURLs] = useState([]);
+    const [description, setDescription] = useState("");
 
     /* ---------- Make <--> Model logic ------------ */
     const [models, setModels] = useState<{ model: string }[]>([]);
@@ -29,7 +41,7 @@ export const CarForm = () => {
         const newSelectedMake = e.target.value;
         setSelectedMake(newSelectedMake)
 
-        if (newSelectedMake === "0") {
+        if (newSelectedMake === "") {
             setModels([]);
             setIsModelDisabled(true);
 
@@ -37,9 +49,12 @@ export const CarForm = () => {
             const filteredMake = make_models_data.find(data => data.make === newSelectedMake);
             setModels(filteredMake ? filteredMake.models : []);
             setIsModelDisabled(false)
-            setSelectedModel("0");
+            setSelectedModel("");
         }
     }
+
+    /* ---------- Uploading images ------------ */
+    const [images, setImages] = useState([] as any);
 
     useEffect(() => {
         if (images.length < 1) return;
@@ -52,9 +67,35 @@ export const CarForm = () => {
         setImages([...e.target.files]);
     }
 
+    /* ---------- Save Listing ------------ */
+    const validate = () => {
+        const inputsNumbers = document.querySelectorAll("input[type=number], input[type=text], select");
+        let invalidInputs = false;
+
+        inputsNumbers.forEach(input => {
+            const inputElement = input as HTMLInputElement;
     
+            if (inputElement.value === "") {
+                inputElement.style.border = "1px solid red";
+                invalidInputs = true;
+            } else {
+                inputElement.style.border = "";
+            }
+        });
+
+
+        if (!invalidInputs) {
+            saveListing();
+        }
+    }
+
+    const saveListing = () => {
+
+    };
+
+
     return (
-        <div className='container py-4'>
+        <form className='container py-4'>
             <div className='row d-flex align-items-center mb-5'>
                 <Link to={'/'} className='col-1 d-flex flex-row align-items-center back-home'>
                     <i className="bi bi-house-fill" style={{ color: 'white', fontSize: '30px' }}></i>
@@ -74,14 +115,14 @@ export const CarForm = () => {
                         <div className='container p-0'>
                             <span className="text-white">Title</span>
                         </div>
-                        <input type="text" className="banner-input" placeholder="Title" aria-label="Title" aria-describedby="title-from" />
+                        <input value={title} onChange={e => setTitle(e.target.value)} type="text" required className="banner-input" placeholder="Title" aria-label="Title" aria-describedby="title-from" />
                     </div>
                     <div className='d-flex flex-column align-items-center col'>
                         <div className='container p-0'>
                             <span className="text-white">Condition</span>
                         </div>
-                        <select className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example">
-                            <option value="0">Select Option</option>
+                        <select value={selectedCondition} onChange={e => setSelectedColor(e.target.value)} required className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example">
+                            <option value="">Select Option</option>
                             {condition.map((data, index) => (
                                 <option key={index} value={data.condition}>{data.condition}</option>
                             ))}
@@ -94,8 +135,8 @@ export const CarForm = () => {
                         <div className='container p-0'>
                             <span className="text-white">Make</span>
                         </div>
-                        <select value={selectedMake} onChange={makeChange} className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example">
-                            <option value="0">Select Option</option>
+                        <select required value={selectedMake} onChange={makeChange} className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example">
+                            <option value="">Select Option</option>
                             {make_models_data.map((data, index) => (
                                 <option key={index} value={data.make}>{data.make}</option>
                             ))}
@@ -105,10 +146,10 @@ export const CarForm = () => {
                         <div className='container p-0'>
                             <span className="text-white">Model</span>
                         </div>
-                        <select value={selectedModel} disabled={isModelDisabled} onChange={e => setSelectedModel(e.target.value)}
+                        <select required value={selectedModel} disabled={isModelDisabled} onChange={e => setSelectedModel(e.target.value)}
                             className="form-select form-select-sm banner-select shadow-none" aria-label="Default select example"
                         >
-                            <option value="0">Select Option</option>
+                            <option value="">Select Option</option>
                             {models.map((item, index) => (
                                 <option key={index} value={item.model}>{item.model}</option>
                             ))}
@@ -118,8 +159,10 @@ export const CarForm = () => {
                         <div className='container p-0'>
                             <span className="text-white">Gear Box</span>
                         </div>
-                        <select className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example">
-                            <option value="0">Select Option</option>
+                        <select required value={selectedGearBox} onChange={e => setSelectedGearBox(e.target.value)} 
+                            className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example"
+                        >
+                            <option value="">Select Option</option>
                             {gearBox.map((data, index) => (
                                 <option key={index} value={data.gearBox}>{data.gearBox}</option>
                             ))}
@@ -132,10 +175,10 @@ export const CarForm = () => {
                         <div className='container p-0'>
                             <span className="text-white">Fuel Type</span>
                         </div>
-                        <select
+                        <select required value={selectedFuelType} onChange={e => setSelectedFuelType(e.target.value)}
                             className="form-select form-select-sm banner-select shadow-none" aria-label="Default select example"
                         >
-                            <option value="0">Select Option</option>
+                            <option value="">Select Option</option>
                             {fuelType_data.map((item, index) => (
                                 <option key={index} value={item.fuelType}>{item.fuelType}</option>
                             ))}
@@ -145,10 +188,10 @@ export const CarForm = () => {
                         <div className='container p-0'>
                             <span className="text-white">Body Style</span>
                         </div>
-                        <select
+                        <select required value={selectedStyle} onChange={e => setSelectedStyle(e.target.value)}
                             className="form-select form-select-sm banner-select shadow-none" aria-label="Default select example"
                         >
-                            <option value="0">Select Option</option>
+                            <option value="">Select Option</option>
                             {carStyles.map((item, index) => (
                                 <option key={index} value={item.carStyle}>{item.carStyle}</option>
                             ))}
@@ -161,25 +204,25 @@ export const CarForm = () => {
                         <div className='container p-0'>
                             <span className="text-white">Price</span>
                         </div>
-                        <input type="number" className="banner-input" placeholder="€" aria-label="Title" aria-describedby="title-from" />
+                        <input value={price} onChange={e => setPrice(e.target.value)} type="number" required className="banner-input" placeholder="€" aria-label="Title" aria-describedby="title-from" />
                     </div>
                     <div className='d-flex flex-column align-items-center col-12 col-md'>
                         <div className='container p-0'>
                             <span className="text-white">Mileage</span>
                         </div>
-                        <input type="number" className="banner-input" placeholder="KM" aria-label="Title" aria-describedby="title-from" />
+                        <input value={mileage} onChange={e => setMileage(e.target.value)} type="number" required className="banner-input" placeholder="KM" aria-label="Title" aria-describedby="title-from" />
                     </div>
                     <div className='d-flex flex-column align-items-center col-12 col-md'>
                         <div className='container p-0'>
                             <span className="text-white">Horse Power</span>
                         </div>
-                        <input type="number" className="banner-input" placeholder="HP" aria-label="Title" aria-describedby="title-from" />
+                        <input value={horsePower} onChange={e => setHorsePower(e.target.value)} type="number" required className="banner-input" placeholder="HP" aria-label="Title" aria-describedby="title-from" />
                     </div>
                     <div className='d-flex flex-column align-items-center col-12 col-md'>
                         <div className='container p-0'>
                             <span className="text-white">Displacement</span>
                         </div>
-                        <input type="number" className="banner-input" placeholder="cm3" aria-label="Title" aria-describedby="title-from" />
+                        <input value={displacement} onChange={e => setDisplacement(e.target.value)} type="number" required className="banner-input" placeholder="cm3" aria-label="Title" aria-describedby="title-from" />
                     </div>
                 </div>
 
@@ -195,6 +238,7 @@ export const CarForm = () => {
                                 selected={date}
                                 onChange={(date) => setDate(date || new Date())}
                                 className="banner-input"
+                                required
                             />
                         </div>
                     </div>
@@ -202,10 +246,10 @@ export const CarForm = () => {
                         <div className='container p-0'>
                             <span className="text-white">Color</span>
                         </div>
-                        <select
+                        <select required value={selectedColor} onChange={e => setSelectedColor(e.target.value)}
                             className="form-select form-select-sm banner-select shadow-none" aria-label="Default select example"
                         >
-                            <option value="0">Select Option</option>
+                            <option value="">Select Option</option>
                             {colors.map((item, index) => (
                                 <option key={index} value={item.color}>{item.color}</option>
                             ))}
@@ -215,13 +259,13 @@ export const CarForm = () => {
                         <div className='container p-0'>
                             <span className="text-white">Doors</span>
                         </div>
-                        <input type="number" className="banner-input" placeholder="4" aria-label="Title" aria-describedby="title-from" />
+                        <input value={doors} onChange={e => setDoors(e.target.value)} type="number" required className="banner-input" placeholder="4" aria-label="Title" aria-describedby="title-from" />
                     </div>
                 </div>
 
                 <div className='row'>
                     <span className="text-white">Car images</span>
-                    <input type="file" multiple accept="image/*" onChange={onImageChange} className='input-images' id="actual-btn" />
+                    <input type="file" required multiple accept="image/*" onChange={onImageChange} className='input-images' />
                     {imageURLS.length != 0 &&
                         <div id="carouselExample" className="car-form-carousel carousel slide mt-2">
                             <div className="carousel-inner">
@@ -242,7 +286,16 @@ export const CarForm = () => {
                         </div>
                     }
                 </div>
+
+                <div className='row'>
+                    <span className="text-white">Description</span>
+                    <div className='mt-2'>
+                        <textarea value={description} onChange={e => setDescription(e.target.value)} name="form-description" id="form-description" className='w-100 text-white p-3'></textarea>
+                    </div>
+                </div>
+
+                <button className='btn btn-primary' onClick={validate}>Save listing</button>
             </div>
-        </div>
+        </form>
     );
 }
