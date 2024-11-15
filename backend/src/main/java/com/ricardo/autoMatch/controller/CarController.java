@@ -55,9 +55,9 @@ public class CarController {
         return ResponseEntity.ok(carService.getActiveListings());
     }
 
-    @PostMapping(value = "/newListing")
-    public ResponseEntity<String> createCar(@RequestPart(value="image") MultipartFile file) {
-        return ResponseEntity.ok(carService.createCar(file));
+    @PostMapping("/newListing")
+    public ResponseEntity<String> createCar(@RequestPart(value="images") List<MultipartFile> images) {
+        return ResponseEntity.ok(carService.createCar(images));
     }
 
     //@PostMapping("/create")
