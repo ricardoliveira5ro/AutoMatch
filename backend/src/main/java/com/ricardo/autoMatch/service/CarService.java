@@ -124,18 +124,25 @@ public class CarService {
                                 .map(Utils::convertToCarDTO).toList();
     }
 
-    public CarDTO createCar(MultipartFile file) {
+    public String createCar(MultipartFile file) {
         Car car = new Car("TEST", "TEST", "TEST", "TEST", Condition.NEW, 1f, Style.COUPE, Date.from(Instant.now()), 1, FuelType.DIESEL, GearBox.AUTOMATIC, Color.BLACK, 1, 1, 1, true);
         car.setUser(userRepository.findById(1).orElseThrow(() -> new NotFoundException("User not found")));
 
         try {
             //String base64Image = Base64.getEncoder().encodeToString(file.getBytes());
             car.setImgCover(file.getBytes());
+
+            CarImage carImage = new CarImage(file.getBytes(), 1);
+            carImage.setCar(car);
+            car.getCarImages().add(carImage);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        return Utils.convertToCarDTO(carRepository.save(car));
+        carRepository.save(car);
+
+        //return Utils.convertToCarDTO(carRepository.save(car));
+        return "OK";
     }
 
     public CarDTO createCarV2(List<MultipartFile> files) {

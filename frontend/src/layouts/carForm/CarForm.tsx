@@ -89,8 +89,49 @@ export const CarForm = () => {
         }
     }
 
-    const saveListing = () => {
+    const saveListing = async () => {
+        const formData = new FormData();
 
+        formData.append('image', images[0]);
+
+        // Append images
+        //imageURLS.map(image => {
+        //    formData.append('images', image);
+        //});
+
+        // Append other fields
+        //formData.append('title', title);
+        //formData.append('condition', selectedCondition);
+        //formData.append('make', selectedMake);
+        //formData.append('model', selectedModel);
+        //formData.append('gearBox', selectedGearBox);
+        //formData.append('fuelType', selectedFuelType);
+        //formData.append('style', selectedStyle);
+        //formData.append('mileage', mileage);
+        //formData.append('price', price);
+        //formData.append('horsePower', horsePower);
+        //formData.append('displacement', displacement);
+        //formData.append('date', date?.toISOString() || '');
+        //formData.append('color', selectedColor);
+        //formData.append('doors', doors);
+        //formData.append('description', description);
+    
+        try {
+            const response = await fetch("http://localhost:8080/api/cars/newListing", {
+                method: "POST",
+                body: formData,
+            });
+    
+            if (!response.ok) {
+                const data = await response.json().catch(() => null);
+                const error = data?.message || `Error: ${response.status}`;
+                throw new Error(error);
+            }
+    
+            console.log("Listing saved successfully!");
+        } catch (error: any) {
+            alert(error.message);
+        }
     };
 
 
@@ -121,7 +162,7 @@ export const CarForm = () => {
                         <div className='container p-0'>
                             <span className="text-white">Condition</span>
                         </div>
-                        <select value={selectedCondition} onChange={e => setSelectedColor(e.target.value)} required className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example">
+                        <select value={selectedCondition} onChange={e => setSelectedCondition(e.target.value)} required className="form-select form-select-sm banner-select shadow-none text-white" aria-label="Default select example">
                             <option value="">Select Option</option>
                             {condition.map((data, index) => (
                                 <option key={index} value={data.condition}>{data.condition}</option>
@@ -266,7 +307,7 @@ export const CarForm = () => {
                 <div className='row'>
                     <span className="text-white">Car images</span>
                     <input type="file" required multiple accept="image/*" onChange={onImageChange} className='input-images' />
-                    {imageURLS.length != 0 &&
+                    {imageURLS.length !== 0 &&
                         <div id="carouselExample" className="car-form-carousel carousel slide mt-2">
                             <div className="carousel-inner">
                                 {imageURLS.map((imageSrc, index) => (
