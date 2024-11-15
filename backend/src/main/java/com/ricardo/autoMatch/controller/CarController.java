@@ -2,9 +2,11 @@ package com.ricardo.autoMatch.controller;
 
 import com.ricardo.autoMatch.dto.CarDTO;
 import com.ricardo.autoMatch.dto.CarDetailsDTO;
+import com.ricardo.autoMatch.dto.CarRequestDTO;
 import com.ricardo.autoMatch.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -53,10 +55,15 @@ public class CarController {
         return ResponseEntity.ok(carService.getActiveListings());
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<CarDTO> createCar(@RequestParam("image") MultipartFile file) {
+    @PostMapping(value = "/newListing")
+    public ResponseEntity<String> createCar(@RequestPart(value="image") MultipartFile file) {
         return ResponseEntity.ok(carService.createCar(file));
     }
+
+    //@PostMapping("/create")
+    //public ResponseEntity<CarDTO> createCar(@RequestParam("image") MultipartFile file) {
+    //    return ResponseEntity.ok(carService.createCar(file));
+    //}
 
     @PostMapping("/createWithImages")
     public ResponseEntity<CarDTO> createCarWithImages(@RequestParam("images") List<MultipartFile> files) {
