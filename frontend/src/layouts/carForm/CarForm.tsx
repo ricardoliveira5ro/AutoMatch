@@ -91,13 +91,10 @@ export const CarForm = () => {
 
     const saveListing = async () => {
         const formData = new FormData();
-
-        formData.append('image', images[0]);
-
-        // Append images
-        //imageURLS.map(image => {
-        //    formData.append('images', image);
-        //});
+        
+        images.map((image: string | Blob) => {
+            formData.append('images', image);
+        });
 
         // Append other fields
         //formData.append('title', title);
