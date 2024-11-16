@@ -8,7 +8,10 @@ export const CarDescription: React.FC<{
 
     return (
         <div className='car-description-container my-3'>
-            <p className='text-white m-0' style={{ whiteSpace: 'pre-line' }}>{props.car?.description?.replace(/\\n/g, '\n')}</p>
+            <p className={`text-white m-0 ${!props.car?.description ? 'fst-italic' : ''}`} style={{ whiteSpace: 'pre-line' }}>
+                {props.car?.description ? props.car?.description?.replace(/\\n/g, '\n') : 
+                                            "This listing does not contain a description"}
+            </p>
         </div>
     );
 }
