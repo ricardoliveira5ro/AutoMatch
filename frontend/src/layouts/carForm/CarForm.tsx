@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import DatePicker from "react-datepicker";
@@ -14,6 +14,14 @@ import gearBox from '../../static/gear-box.json';
 import './CarForm.css'
 
 export const CarForm = () => {
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!localStorage.getItem("user_access_token")) {
+            navigate('/login');
+        }
+    }, []);
 
     /* ---------------- Inputs --------------------- */
     const [title, setTitle] = useState("");
@@ -89,51 +97,54 @@ export const CarForm = () => {
         }
     }
 
-    const saveListing = async () => {
+    const saveListing = () => {
         const formData = new FormData();
-        
+
+        formData.append('title', title);
+        formData.append('condition', selectedCondition);
+        formData.append('make', selectedMake);
+        formData.append('model', selectedModel);
+        formData.append('gearBox', selectedGearBox);
+        formData.append('fuelType', selectedFuelType);
+        formData.append('style', selectedStyle);
+        formData.append('mileage', mileage);
+        formData.append('price', price);
+        formData.append('horsePower', horsePower);
+        formData.append('displacement', displacement);
+        formData.append('date', date?.toISOString() || '');
+        formData.append('color', selectedColor);
+        formData.append('doors', doors);
+        formData.append('description', description);
+
         images.map((image: string | Blob) => {
             formData.append('images', image);
         });
 
-        // Append other fields
-        //formData.append('title', title);
-        //formData.append('condition', selectedCondition);
-        //formData.append('make', selectedMake);
-        //formData.append('model', selectedModel);
-        //formData.append('gearBox', selectedGearBox);
-        //formData.append('fuelType', selectedFuelType);
-        //formData.append('style', selectedStyle);
-        //formData.append('mileage', mileage);
-        //formData.append('price', price);
-        //formData.append('horsePower', horsePower);
-        //formData.append('displacement', displacement);
-        //formData.append('date', date?.toISOString() || '');
-        //formData.append('color', selectedColor);
-        //formData.append('doors', doors);
-        //formData.append('description', description);
-    
-        try {
+        const createCar = async () => {
             const response = await fetch("http://localhost:8080/api/cars/newListing", {
                 method: "POST",
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("user_access_token")}`
+                },
                 body: formData,
-            });
-    
+            })
+
             if (!response.ok) {
-                const data = await response.json().catch(() => null);
-                const error = data?.message || `Error: ${response.status}`;
-                throw new Error(error);
+                throw new Error('Something went wrong!');
             }
-    
-            console.log("Listing saved successfully!");
-        } catch (error: any) {
-            alert(error.message);
-        }
+
+            navigate('/profile');
+            return;
+        };
+
+        createCar().catch((error: any) => {
+            alert("Error creating car: " + error.message);
+        });
     };
 
 
     return (
-        <form className='container py-4'>
+        <div className='container py-4'>
             <div className='row d-flex align-items-center mb-5'>
                 <Link to={'/'} className='col-1 d-flex flex-row align-items-center back-home'>
                     <i className="bi bi-house-fill" style={{ color: 'white', fontSize: '30px' }}></i>
@@ -334,6 +345,6 @@ export const CarForm = () => {
 
                 <button className='btn btn-primary' onClick={validate}>Save listing</button>
             </div>
-        </form>
+        </div>
     );
 }

@@ -37,7 +37,7 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/users/profile", "/api/cars/listings").authenticated()
+                        .requestMatchers("/api/users/profile", "/api/cars/listings", "/api/cars/newListing").authenticated()
                         .requestMatchers("/api/favorites/**").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/cars/{id}").authenticated()
                         .anyRequest().permitAll()

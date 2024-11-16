@@ -46,6 +46,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
                 if (request.getRequestURI().equals("/api/users/profile") ||
                     request.getRequestURI().equals("/api/cars/listings") ||
+                    request.getRequestURI().equals("/api/cars/newListing") ||
                     request.getRequestURI().matches("/api/favorites(/\\d+)?") ||
                     (request.getRequestURI().matches("/api/cars/\\d+") && request.getMethod().equalsIgnoreCase("DELETE"))
                 ) {

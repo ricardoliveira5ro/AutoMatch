@@ -2,6 +2,7 @@ package com.ricardo.autoMatch.service;
 
 import com.ricardo.autoMatch.dto.CarDTO;
 import com.ricardo.autoMatch.dto.CarDetailsDTO;
+import com.ricardo.autoMatch.dto.CarRequestDTO;
 import com.ricardo.autoMatch.exception.NotFoundException;
 import com.ricardo.autoMatch.exception.UnauthorizedException;
 import com.ricardo.autoMatch.utils.Utils;
@@ -15,8 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.time.Instant;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -124,70 +124,44 @@ public class CarService {
                                 .map(Utils::convertToCarDTO).toList();
     }
 
-    public String createCar(List<MultipartFile> images) {
-        Car car = new Car("TEST", "TEST", "TEST", "TEST", Condition.NEW, 1f, Style.COUPE, Date.from(Instant.now()), 1, FuelType.DIESEL, GearBox.AUTOMATIC, Color.BLACK, 1, 1, 1, true);
-        car.setUser(userRepository.findById(1).orElseThrow(() -> new NotFoundException("User not found")));
-
+    public String createCar(CarRequestDTO carRequestDTO) {
         try {
-            car.setImgCover(images.getFirst().getBytes());
+            Car car = new Car(
+                    carRequestDTO.getTitle(),
+                    carRequestDTO.getDescription(),
+                    carRequestDTO.getMake(),
+                    carRequestDTO.getModel(),
+                    Condition.valueOf(carRequestDTO.getCondition().toUpperCase()),
+                    Float.parseFloat(carRequestDTO.getPrice()),
+                    Style.valueOf(carRequestDTO.getStyle().toUpperCase()),
+                    new SimpleDateFormat("yyyy-M-dd").parse(carRequestDTO.getDate().split("T")[0]),
+                    Integer.parseInt(carRequestDTO.getMileage()),
+                    FuelType.valueOf(carRequestDTO.getFuelType().toUpperCase()),
+                    GearBox.valueOf(carRequestDTO.getGearBox().toUpperCase()),
+                    Color.valueOf(carRequestDTO.getColor().toUpperCase()),
+                    Integer.parseInt(carRequestDTO.getDoors()),
+                    Integer.parseInt(carRequestDTO.getDisplacement()),
+                    Integer.parseInt(carRequestDTO.getHorsePower()),
+                    false
+            );
 
-            for (MultipartFile image : images) {
-                CarImage carImage = new CarImage(image.getBytes(), images.indexOf(image));
+            car.setUser(Utils.getCurrentUser());
+
+            car.setImgCover(carRequestDTO.getImages().getFirst().getBytes());
+
+            for (MultipartFile image : carRequestDTO.getImages()) {
+                CarImage carImage = new CarImage(image.getBytes(), carRequestDTO.getImages().indexOf(image));
                 carImage.setCar(car);
 
                 car.getCarImages().add(carImage);
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+
+            carRepository.save(car);
+
+        } catch (Exception e) {
+            System.err.println("Failed to create car: " + e.getMessage());
         }
 
-        carRepository.save(car);
-
-        //return Utils.convertToCarDTO(carRepository.save(car));
-        return "OK";
-    }
-
-    public CarDTO createCarV2(List<MultipartFile> files) {
-        Car car = new Car("TEST", "TEST", "TEST", "TEST", Condition.NEW, 1f, Style.COUPE, Date.from(Instant.now()), 1, FuelType.DIESEL, GearBox.AUTOMATIC, Color.BLACK, 1, 1, 1, true);
-        car.setUser(userRepository.findById(1).orElseThrow(() -> new NotFoundException("User not found")));
-
-        for (MultipartFile file : files) {
-            try {
-                //String base64Image = Base64.getEncoder().encodeToString(file.getBytes());
-
-                CarImage carImage = new CarImage(file.getBytes(), files.indexOf(file));
-                carImage.setCar(car);
-
-                car.getCarImages().add(carImage);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-        return Utils.convertToCarDTO(carRepository.save(car));
-    }
-
-    public String seedData(List<MultipartFile> files) {
-        Car car = new Car("Ford Mustang 5.0 Ti-VCT GT", "", "Ford", "Mustang", Condition.USED, 78900f, Style.COUPE, Date.from(Instant.now()), 81000, FuelType.GASOLINE, GearBox.MANUAL, Color.GREEN, 2, 4951, 450, true);
-        car.setUser(userRepository.findById(1).orElseThrow(() -> new NotFoundException("User not found")));
-
-        try {
-            car.setImgCover(files.getFirst().getBytes());
-
-            for (MultipartFile file : files) {
-                //String base64Image = Base64.getEncoder().encodeToString(file.getBytes());
-
-                CarImage carImage = new CarImage(file.getBytes(), files.indexOf(file));
-                carImage.setCar(car);
-
-                car.getCarImages().add(carImage);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        carRepository.save(car);
-
-        return "Seeded successfully";
+        return "New listing saved successfully";
     }
 }
