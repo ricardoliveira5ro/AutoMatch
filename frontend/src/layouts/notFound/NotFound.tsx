@@ -11,7 +11,7 @@ export const NotFound = () => {
                 <img src={require('../../images/404-error.png')} width={200}/>
                 <h1 className='text-white'>Ooops! Page Not Found</h1>
                 <p className='text-white'>This page doesn't exist or was removed</p>
-                <a className='not-found-home rounded-pill' onClick={() => navigate('/')}>Back to Home</a>
+                <a className='not-found-home rounded-pill' onClick={() => navigate('/home')}>Back to Home</a>
             </div>
         </div>
     );

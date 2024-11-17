@@ -109,7 +109,7 @@ export const Search = () => {
     return (
         <div className="container d-flex flex-column justify-content-center align-items-center py-4 px-3 px-sm-0" style={{rowGap: '20px'}}>
             <div className='d-flex flex-row justify-content-between align-items-center w-100'>
-                <Link className='d-flex flex-row align-items-center back-home' to='/'>
+                <Link className='d-flex flex-row align-items-center back-home' to='/home'>
                     <i className="bi bi-house-fill" style={{ color: 'white', fontSize: '30px' }}></i>
                     <p className='d-none d-sm-flex text-white ms-3 mb-0'>Home</p>
                 </Link>
