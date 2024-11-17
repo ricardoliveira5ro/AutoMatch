@@ -4,10 +4,12 @@ import { useEffect, useState } from 'react';
 import CarModel from '../../models/CarModel';
 import { SpinnerLoading } from '../utils/components/SpinnerLoading/SpinnerLoading';
 import './Favorites.css'
+import { useAuth } from '../../authentication/AuthProvider';
 
 export const Favorites = () => {
 
     const navigate = useNavigate();
+    const { logout } = useAuth();
 
     const [cars, setCars] = useState<CarModel[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -27,10 +29,9 @@ export const Favorites = () => {
 
             const responseData = await response.json();
 
-            // Unauthorized access
+            // Unauthorized access (Expired / Invalid token)
             if (response.status === 401) {
-                localStorage.removeItem("user_access_token");
-                navigate('/login', { state: { forcedRedirect: true } });
+                logout(true);
                 return;
             }
 

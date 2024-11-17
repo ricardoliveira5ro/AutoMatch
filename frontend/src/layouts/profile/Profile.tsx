@@ -5,10 +5,12 @@ import { ProfileForm } from './components/ProfileForm/ProfileForm';
 import { useEffect, useState } from 'react';
 import CarModel from '../../models/CarModel';
 import { SpinnerLoading } from '../utils/components/SpinnerLoading/SpinnerLoading';
+import { useAuth } from '../../authentication/AuthProvider';
 
 export const Profile = () => {
 
     const navigate = useNavigate();
+    const { logout } = useAuth();
 
     const [cars, setCars] = useState<CarModel[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -28,10 +30,9 @@ export const Profile = () => {
 
             const responseData = await response.json();
 
-            // Unauthorized access
+            // Unauthorized access (Expired / Invalid token)
             if (response.status === 401) {
-                localStorage.removeItem("user_access_token");
-                navigate('/login', { state: { forcedRedirect: true } });
+                logout(true);
                 return;
             }
 
@@ -90,11 +91,6 @@ export const Profile = () => {
         setCars(prevCars => prevCars.filter(c => c.id !== car.id));
     };
 
-    const logout = () => {
-        localStorage.removeItem("user_access_token");
-        navigate('/home');
-    }
-
     return (
         <div className='container py-4'>
             <div className='d-flex justify-content-between align-items-center'>
@@ -102,7 +98,7 @@ export const Profile = () => {
                     <i className="bi bi-house-fill" style={{ color: 'white', fontSize: '30px' }}></i>
                     <p className='d-flex text-white ms-3 mb-0'>Home</p>
                 </Link>
-                <a className='logout' onClick={logout}>Logout</a>
+                <a className='logout' onClick={() => logout(false)}>Logout</a>
             </div>
             <ProfileForm />
             <hr className='text-white' />
