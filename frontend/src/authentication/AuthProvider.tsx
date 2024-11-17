@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 interface AuthContextProps {
     isAuthenticated: boolean;
     login: (email: string, password: string) => void;
-    logout: () => void;
+    logout: (forcedRedirect: boolean) => void;
 }
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
@@ -47,10 +47,10 @@ export const AuthProvider: React.FC<{
         });
     }
 
-    const logout = () => {
+    const logout = (forcedRedirect: boolean) => {
         setIsAuthenticated(false);
         localStorage.removeItem("user_access_token");
-        navigate('/home');
+        navigate('/home', { state: { forcedRedirect: forcedRedirect } });
     }
 
     return (
