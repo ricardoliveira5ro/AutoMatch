@@ -31,7 +31,7 @@ export const Profile = () => {
             // Unauthorized access
             if (response.status === 401) {
                 localStorage.removeItem("user_access_token");
-                navigate('/login', { state: { forcedRedirect: responseData.message } });
+                navigate('/login', { state: { forcedRedirect: true } });
                 return;
             }
 
@@ -92,13 +92,13 @@ export const Profile = () => {
 
     const logout = () => {
         localStorage.removeItem("user_access_token");
-        navigate('/');
+        navigate('/home');
     }
 
     return (
         <div className='container py-4'>
             <div className='d-flex justify-content-between align-items-center'>
-                <Link className='col-1 d-flex flex-row align-items-center back-home px-0 px-sm-3' to='/'>
+                <Link className='col-1 d-flex flex-row align-items-center back-home px-0 px-sm-3' to='/home'>
                     <i className="bi bi-house-fill" style={{ color: 'white', fontSize: '30px' }}></i>
                     <p className='d-flex text-white ms-3 mb-0'>Home</p>
                 </Link>

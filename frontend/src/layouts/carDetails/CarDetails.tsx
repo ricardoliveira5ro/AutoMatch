@@ -114,7 +114,7 @@ export const CarDetails = () => {
 
     return (
         <div className='container w-100'>
-            <Link className='d-flex flex-row align-items-center back-home mt-3' to='/'>
+            <Link className='d-flex flex-row align-items-center back-home mt-3' to='/home'>
                 <i className="bi bi-house-fill" style={{ color: 'white', fontSize: '30px' }}></i>
                 <p className='d-none d-sm-flex text-white ms-3 mb-0'>Home</p>
             </Link>

@@ -16,7 +16,7 @@ export const KeyDetails: React.FC<{
     const toggleFavorite = () => {
         const token = localStorage.getItem("user_access_token");
         if (!token) {
-            navigate('/login');
+            navigate('/login', { state: { forcedRedirect: false } });
             return;
         }
 

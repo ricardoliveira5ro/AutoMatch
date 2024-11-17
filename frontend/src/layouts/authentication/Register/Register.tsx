@@ -28,7 +28,7 @@ export const Register = () => {
         })
         .then(async response => {
             if (response.ok) {
-                navigate('/login');
+                navigate('/login', { state: { forcedRedirect: false } });
                 return;
             }
 
@@ -57,13 +57,13 @@ export const Register = () => {
                 </div>
                 <button className="btn btn-primary" type="submit">Sign Up</button>
                 <div className='d-flex flex-row justify-content-between align-items-center w-100'>
-                    <Link className='d-flex flex-row align-items-center back-home' to='/'>
+                    <Link className='d-flex flex-row align-items-center back-home' to='/home'>
                         <i className="bi bi-house-fill" style={{color: 'white', fontSize: '30px'}}></i>
                         <p className='d-none d-sm-flex text-white ms-3 mb-0'>Go back</p>
                     </Link>
                     <div className='d-flex flex-row align-items-center' style={{columnGap: '10px'}}>
                         <p className='text-white mb-0'>Already have an account?</p>
-                        <Link to='/login' style={{color: 'var(--color-main-orange)'}}>Log in</Link>
+                        <Link to='/login' state={{ forcedRedirect: false }} style={{color: 'var(--color-main-orange)'}}>Log in</Link>
                     </div>
                 </div>
             </form>

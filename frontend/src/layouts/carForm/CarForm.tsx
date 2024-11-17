@@ -17,12 +17,6 @@ export const CarForm = () => {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (!localStorage.getItem("user_access_token")) {
-            navigate('/login');
-        }
-    }, []);
-
     /* ---------------- Inputs --------------------- */
     const [title, setTitle] = useState("");
     const [selectedCondition, setSelectedCondition] = useState("");
@@ -146,7 +140,7 @@ export const CarForm = () => {
     return (
         <div className='container py-4'>
             <div className='row d-flex align-items-center mb-5'>
-                <Link to={'/'} className='col-1 d-flex flex-row align-items-center back-home'>
+                <Link to={'/home'} className='col-1 d-flex flex-row align-items-center back-home'>
                     <i className="bi bi-house-fill" style={{ color: 'white', fontSize: '30px' }}></i>
                     <p className='d-none d-sm-flex text-white ms-3 mb-0'>Home</p>
                 </Link>

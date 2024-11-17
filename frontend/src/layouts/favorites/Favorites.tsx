@@ -14,10 +14,6 @@ export const Favorites = () => {
     const [httpError, setHttpError] = useState(null);
 
     useEffect(() => {
-        const token = localStorage.getItem("user_access_token") 
-        if (!token) {
-            navigate('/login');
-        }
 
         const fetchCars = async () => {
             
@@ -25,7 +21,7 @@ export const Favorites = () => {
                 method: "GET",
                 headers: { 
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer ${localStorage.getItem("user_access_token")}`
                 }
             })
 
@@ -34,7 +30,7 @@ export const Favorites = () => {
             // Unauthorized access
             if (response.status === 401) {
                 localStorage.removeItem("user_access_token");
-                navigate('/login', { state: { forcedRedirect: responseData.message } });
+                navigate('/login', { state: { forcedRedirect: true } });
                 return;
             }
 
@@ -96,7 +92,7 @@ export const Favorites = () => {
     return (
         <div className='container d-flex flex-column py-4'>
             <div className='row d-flex align-items-center mb-5'>
-                <Link className='col-1 d-flex flex-row align-items-center back-home' to='/'>
+                <Link className='col-1 d-flex flex-row align-items-center back-home' to='/home'>
                     <i className="bi bi-house-fill" style={{ color: 'white', fontSize: '30px' }}></i>
                     <p className='d-none d-sm-flex text-white ms-3 mb-0'>Home</p>
                 </Link>
