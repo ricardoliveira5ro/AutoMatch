@@ -21,7 +21,7 @@ export const KeyDetails: React.FC<{
         }
 
         const deleteFavorite = async () => {
-            const response = await fetch(`http://localhost:8080/api/favorites/${props.car?.id}`, {
+            const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/favorites/${props.car?.id}`, {
                 method: isFavorite ? "DELETE" : "POST",
                 headers: { 
                     'Content-Type': 'application/json',

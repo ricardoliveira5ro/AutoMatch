@@ -56,7 +56,7 @@ export const Search = () => {
         const fetchCars = async () => {
             setIsLoading(true);
 
-            const baseUrl: string = "http://localhost:8080/api/cars/search";
+            const baseUrl: string = `${process.env.REACT_APP_BASE_URL}/api/cars/search`;
             const url: string = `${baseUrl}?make=${filters.make}&model=${filters.model}&fuelType=${filters.fuelType}&selectedYear=${filters.selectedYear}` +
                 `&minYear=${filters.minYear}&maxYear=${filters.maxYear}&minMileage=${filters.minMileage}&maxMileage=${filters.maxMileage}` +
                 `&minPrice=${filters.minPrice}&maxPrice=${filters.maxPrice}&minHorsePower=${filters.minHorsePower}&maxHorsePower=${filters.maxHorsePower}` +

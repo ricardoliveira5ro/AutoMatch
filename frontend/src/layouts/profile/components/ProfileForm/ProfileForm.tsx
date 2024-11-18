@@ -10,7 +10,7 @@ export const ProfileForm = () => {
     const [phone, setPhone] = useState("");
 
     useEffect(() => {
-        fetch("http://localhost:8080/api/users/profile", {
+        fetch(`${process.env.REACT_APP_BASE_URL}/api/users/profile`, {
             method: "GET",
             headers: { 
                 'Content-Type': 'application/json',

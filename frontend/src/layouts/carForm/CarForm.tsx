@@ -115,7 +115,7 @@ export const CarForm = () => {
         });
 
         const createCar = async () => {
-            const response = await fetch("http://localhost:8080/api/cars/newListing", {
+            const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/cars/newListing`, {
                 method: "POST",
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem("user_access_token")}`
