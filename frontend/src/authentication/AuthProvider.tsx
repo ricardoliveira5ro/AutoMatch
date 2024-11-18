@@ -20,7 +20,7 @@ export const AuthProvider: React.FC<{
         // Reset value
         localStorage.removeItem("user_access_token");
         
-        fetch("http://localhost:8080/api/users/login", {
+        fetch(`${process.env.REACT_APP_BASE_URL}/api/users/login`, {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
