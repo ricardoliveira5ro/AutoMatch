@@ -53,7 +53,8 @@ public class SecurityConfiguration {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.addAllowedOrigin("http://localhost:3000/");
+        // React local frontend --> http://localhost:3000/
+        configuration.addAllowedOrigin("https://auto-match-beta.vercel.app/");
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("*");
 
