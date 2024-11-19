@@ -1,6 +1,7 @@
 package com.ricardo.autoMatch.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -21,6 +22,9 @@ public class SecurityConfiguration {
 
     private final AuthenticationProvider authenticationProvider;
     private final JWTAuthenticationFilter jwtAuthenticationFilter;
+
+    @Value("${spring.profiles.active}")
+    private String activeProfile;
 
     @Autowired
     public SecurityConfiguration(
@@ -53,8 +57,9 @@ public class SecurityConfiguration {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // React local frontend --> http://localhost:3000/
         configuration.addAllowedOrigin("https://auto-match-beta.vercel.app/");
+        configuration.addAllowedOrigin("dev".equalsIgnoreCase(activeProfile) ?
+                                         "http://localhost:3000/" : "https://auto-match-beta.vercel.app/");
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("*");
 
