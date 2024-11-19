@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Home } from './layouts/home/Home';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { Login } from './layouts/authentication/Login/Login';
 import { Register } from './layouts/authentication/Register/Register';
 import { Search } from './layouts/search/Search';
@@ -19,6 +19,7 @@ export const App = () => {
       <AuthProvider>
         <Routes>
           {/* Public routes */}
+          <Route path='/' element={<Navigate to='/home' replace />} />
           <Route path='*' element={<NotFound />} />
           <Route path='/home' element={<Home />} />
           <Route path='/login' element={<Login />} />
