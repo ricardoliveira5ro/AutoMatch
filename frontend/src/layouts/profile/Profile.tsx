@@ -118,7 +118,7 @@ export const Profile = () => {
                         {isLoading ? (
                             <SpinnerLoading />
                         ) : (
-                            <CarCardsList cars={cars} removeCar={deleteListing} />
+                            <CarCardsList cars={cars} editMode={true} removeCar={deleteListing}  />
                         )}
                     </>
                 )}

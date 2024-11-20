@@ -111,7 +111,7 @@ export const Favorites = () => {
                     {isLoading ? (
                         <SpinnerLoading/>
                     ) : (
-                        <CarCardsList cars={cars} removeCar={removeFavorite}></CarCardsList>
+                        <CarCardsList editMode={false} cars={cars} removeCar={removeFavorite} />
                     )}
                 </>
             )}
