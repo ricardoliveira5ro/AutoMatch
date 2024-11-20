@@ -3,7 +3,7 @@ package com.ricardo.autoMatch.model;
 public enum Color {
 
     BLACK("Black"),
-    BLUE("BLue"),
+    BLUE("Blue"),
     GREY("Grey"),
     WHITE("White"),
     SILVER("Silver"),
