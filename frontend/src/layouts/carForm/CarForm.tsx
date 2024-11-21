@@ -184,9 +184,13 @@ export const CarForm = () => {
             }
         });
 
+        const url = location.state?.editMode ? `${process.env.REACT_APP_BASE_URL}/api/cars/updateListing/${location.state?.carId}` :
+            	                                `${process.env.REACT_APP_BASE_URL}/api/cars/newListing`;
+        const method = location.state?.editMode ? "PUT" : "POST";
+        
         const createCar = async () => {
-            const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/cars/newListing`, {
-                method: "POST",
+            const response = await fetch(url, {
+                method: method,
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem("user_access_token")}`
                 },
