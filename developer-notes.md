@@ -28,14 +28,14 @@ ENTRYPOINT ["java", "-jar", "app.jar"]
 * Launch linking github repository available, however it doesn't allow deploy in sub folders inside repo (in this case i have backend and frontend sub folders and want to deploy only the backend)
 * Docker 
 
-    * `docker build -t [your-app] .`
     * `docker login -u [your-username]`
+    * `docker build -t [your-username]/[your-app]:latest .`
     * (Test locally) `docker run -p 8080:8080 [your-app]`
 
         * Set environment variables `-e key=value`
     
-    * `docker tag [your-tag] [your-username]/[your-app]`
-    * `docker push [your-username]/[your-app]`
+    * `docker tag [your-tag] [your-username]/[your-app]:latest`
+    * `docker push [your-username]/[your-app]:latest`
 
 * In koyeb create a new service, user docker and image will be [your-username]/[your-app]
 * Add all your environments variables 
