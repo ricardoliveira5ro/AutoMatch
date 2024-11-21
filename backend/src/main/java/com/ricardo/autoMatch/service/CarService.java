@@ -8,7 +8,6 @@ import com.ricardo.autoMatch.exception.UnauthorizedException;
 import com.ricardo.autoMatch.utils.Utils;
 import com.ricardo.autoMatch.model.*;
 import com.ricardo.autoMatch.repository.CarRepository;
-import com.ricardo.autoMatch.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,12 +22,10 @@ import java.util.*;
 public class CarService {
 
     private final CarRepository carRepository;
-    private final UserRepository userRepository;
 
     @Autowired
-    public CarService(CarRepository carRepository, UserRepository userRepository) {
+    public CarService(CarRepository carRepository) {
         this.carRepository = carRepository;
-        this.userRepository = userRepository;
     }
 
     public List<CarDTO> getAllCars(int page, int size) {
@@ -163,5 +160,45 @@ public class CarService {
         }
 
         return "New listing saved successfully";
+    }
+
+    @Transactional
+    public String updateCar(CarRequestDTO carRequestDTO, Long id) {
+        try {
+            Car car = carRepository.findById(id).orElseThrow(() -> new NotFoundException("Car not found"));
+
+            car.setTitle(carRequestDTO.getTitle());
+            car.setDescription(carRequestDTO.getDescription());
+            car.setMake(carRequestDTO.getMake());
+            car.setModel(carRequestDTO.getModel());
+            car.setCondition(Condition.valueOf(carRequestDTO.getCondition().toUpperCase()));
+            car.setPrice(Float.parseFloat(carRequestDTO.getPrice()));
+            car.setStyle(Style.valueOf(carRequestDTO.getStyle().toUpperCase()));
+            car.setDate(new SimpleDateFormat("yyyy-M-dd").parse(carRequestDTO.getDate().split("T")[0]));
+            car.setMileage(Integer.parseInt(carRequestDTO.getMileage()));
+            car.setFuelType(FuelType.valueOf(carRequestDTO.getFuelType().toUpperCase()));
+            car.setGearBox(GearBox.valueOf(carRequestDTO.getGearBox().toUpperCase()));
+            car.setColor(Color.valueOf(carRequestDTO.getColor().toUpperCase()));
+            car.setDoors(Integer.parseInt(carRequestDTO.getDoors()));
+            car.setDisplacement(Integer.parseInt(carRequestDTO.getDisplacement()));
+            car.setHorsePower(Integer.parseInt(carRequestDTO.getHorsePower()));
+
+            car.setImgCover(carRequestDTO.getImages().getFirst().getBytes());
+
+            car.getCarImages().clear();
+            for (MultipartFile image : carRequestDTO.getImages()) {
+                CarImage carImage = new CarImage(image.getBytes(), carRequestDTO.getImages().indexOf(image));
+                carImage.setCar(car);
+
+                car.getCarImages().add(carImage);
+            }
+
+            carRepository.save(car);
+
+        } catch (Exception e) {
+            System.err.println("Failed to update car: " + e.getMessage());
+        }
+
+        return "Listing updated successfully";
     }
 }

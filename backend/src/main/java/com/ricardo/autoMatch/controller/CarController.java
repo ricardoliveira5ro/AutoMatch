@@ -57,4 +57,9 @@ public class CarController {
     public ResponseEntity<String> createCar(@ModelAttribute CarRequestDTO carRequestDTO) {
         return ResponseEntity.ok(carService.createCar(carRequestDTO));
     }
+
+    @PutMapping("/updateListing/{id}")
+    public ResponseEntity<String> updateCar(@ModelAttribute CarRequestDTO carRequestDTO, @PathVariable int id) {
+        return ResponseEntity.ok(carService.updateCar(carRequestDTO, (long) id));
+    }
 }
