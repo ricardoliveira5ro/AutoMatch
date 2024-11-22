@@ -1,7 +1,12 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './ProfileForm.css'
+import { useAuth } from '../../../../authentication/AuthProvider';
 
-export const ProfileForm = () => {
+export const ProfileForm: React.FC<{
+    onSaveSuccess: () => void
+}> = (props) => {
+
+    const { logout } = useAuth();
 
     const [email, setEmail] = useState("");
     const [firstName, setFirstName] = useState("");
@@ -38,6 +43,43 @@ export const ProfileForm = () => {
         });
     }, []);
 
+    const saveUserInfo = () => {
+        fetch(`${process.env.REACT_APP_BASE_URL}/api/users/info`, {
+            method: "PUT",
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem("user_access_token")}`
+            },
+            body: JSON.stringify({
+                firstName: firstName,
+                lastName: lastName,
+                location: location,
+                contactPhone: phone
+            })
+        })
+        .then(async response => {
+
+            if (response.ok) {
+                props.onSaveSuccess();
+                return;
+            }
+
+            // Unauthorized access (Expired / Invalid token)
+            if (response.status === 401) {
+                logout(true);
+                return;
+            }
+
+            const data = await response.json();
+            const error = data || "Unknown error"
+            
+            return Promise.reject(error)
+        })
+        .catch(error => {
+            alert(error.message)
+        });
+    }
+
     return (
         <div className='row py-5 profile-form-container'>
             <div className='col-3 d-none d-sm-flex justify-content-center align-items-center'>
@@ -55,7 +97,7 @@ export const ProfileForm = () => {
                     </div>
                     <div className='email-save-container d-flex flex-row justify-content-between align-items-center'>
                         <input value={email} onChange={e => setEmail(e.target.value)} type="text" placeholder="Email" aria-label="Email" aria-describedby="profile-email" disabled />
-                        <button className='btn btn-primary px-4 save-profile-btn'>Save Changes</button>
+                        <button className='btn btn-primary px-4 save-profile-btn' onClick={saveUserInfo}>Save Changes</button>
                     </div>
                 </div>
             </div>
