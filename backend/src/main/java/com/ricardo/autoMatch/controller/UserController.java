@@ -53,4 +53,9 @@ public class UserController {
     public ResponseEntity<UserDTO> getUserInfo() {
         return ResponseEntity.ok(Utils.convertToUserDTO(Utils.getCurrentUser()));
     }
+
+    @PutMapping("/info")
+    public ResponseEntity<UserDTO> updateUserInfo(@RequestBody UserInfoRequestDTO userInfoRequestDTO) {
+        return ResponseEntity.ok(Utils.convertToUserDTO(userService.updateUserInfo(userInfoRequestDTO)));
+    }
 }

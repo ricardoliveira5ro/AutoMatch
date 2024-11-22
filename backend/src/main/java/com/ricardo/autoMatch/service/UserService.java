@@ -2,6 +2,7 @@ package com.ricardo.autoMatch.service;
 
 import com.ricardo.autoMatch.dto.LoginRequestDTO;
 import com.ricardo.autoMatch.dto.SignupRequestDTO;
+import com.ricardo.autoMatch.dto.UserInfoRequestDTO;
 import com.ricardo.autoMatch.model.User;
 import com.ricardo.autoMatch.repository.UserRepository;
 import com.ricardo.autoMatch.utils.Utils;
@@ -47,5 +48,19 @@ public class UserService {
         );
 
         return userRepository.findByContactEmail(loginRequestDTO.getEmail()).orElseThrow();
+    }
+
+    public User updateUserInfo(UserInfoRequestDTO userInfoRequestDTO) {
+        User user = Utils.getCurrentUser();
+
+        user.setFirstName(userInfoRequestDTO.getFirstName());
+        user.setLastName(userInfoRequestDTO.getLastName());
+        user.setContactPhone(userInfoRequestDTO.getContactPhone());
+
+        String location = userInfoRequestDTO.getLocation() != null && !userInfoRequestDTO.getLocation().isEmpty() ?
+                                    userInfoRequestDTO.getLocation() : null;
+        user.setLocation(location);
+
+        return userRepository.save(user);
     }
 }
