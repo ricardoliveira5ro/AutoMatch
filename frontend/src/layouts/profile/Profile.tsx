@@ -16,6 +16,8 @@ export const Profile = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState(null);
 
+    const [showAlert, setShowAlert] = useState(false);
+
     useEffect(() => {
         const fetchCars = async () => {
             setIsLoading(true);
@@ -91,8 +93,20 @@ export const Profile = () => {
         setCars(prevCars => prevCars.filter(c => c.id !== car.id));
     };
 
+    useEffect(() => {
+        if (showAlert) {
+            const timer = setTimeout(() => setShowAlert(false), 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [showAlert]);
+
     return (
         <div className='container py-4'>
+            {showAlert &&
+                <div className="container alert alert-success alert-dismissible fade show top-alert" role="alert">
+                    Your information has been updated!
+                </div>
+            }
             <div className='d-flex justify-content-between align-items-center'>
                 <Link className='col-1 d-flex flex-row align-items-center back-home px-0 px-sm-3' to='/home'>
                     <i className="bi bi-house-fill" style={{ color: 'white', fontSize: '30px' }}></i>
@@ -100,7 +114,7 @@ export const Profile = () => {
                 </Link>
                 <a className='logout' onClick={() => logout(false)}>Logout</a>
             </div>
-            <ProfileForm />
+            <ProfileForm onSaveSuccess={() => setShowAlert(true)} />
             <hr className='text-white' />
             <div className='mt-5 w-100'>
                 <div className='row mb-4'>
