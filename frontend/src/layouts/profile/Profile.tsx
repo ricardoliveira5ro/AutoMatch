@@ -22,7 +22,7 @@ export const Profile = () => {
         const fetchCars = async () => {
             setIsLoading(true);
 
-            const response = await fetch(`/api/cars/listings`, {
+            const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/cars/listings`, {
                 method: "GET",
                 headers: { 
                     'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ export const Profile = () => {
 
     const deleteListing = (car: CarModel) => {
         const deleteCar = async () => {
-            const response = await fetch(`/api/cars/${car.id}`, {
+            const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/cars/${car.id}`, {
                 method: "DELETE",
                 headers: { 
                     'Content-Type': 'application/json',
