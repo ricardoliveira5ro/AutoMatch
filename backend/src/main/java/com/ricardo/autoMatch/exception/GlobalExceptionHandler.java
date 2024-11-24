@@ -34,6 +34,10 @@ public class GlobalExceptionHandler {
             return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST.value(), message), HttpStatus.BAD_REQUEST);
         }
 
+        if (exception instanceof RateLimitingException) {
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.TOO_MANY_REQUESTS.value(), exception.getMessage()), HttpStatus.TOO_MANY_REQUESTS);
+        }
+
         // Default
         return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST.value(), exception.getMessage()), HttpStatus.BAD_REQUEST);
     }
