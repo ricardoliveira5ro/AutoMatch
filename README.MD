@@ -3,6 +3,7 @@
 This is a personal project that demos a web application for managing cars listings. Users can explore and filter cars, save favorites, and manage listings using a simple and easy interface. The goal of this project was to create a practical, feature-rich application that demonstrated full-stack web development abilities.
 
 🌐 The application is live and available [here](https://auto-match-beta.vercel.app/home)
+
 <br/>
 
 ## 🌟 Features
@@ -30,8 +31,8 @@ This is a personal project that demos a web application for managing cars listin
 
 Here you can find the technical documentation for each part of the project.
   
-* [Frontend Documentation](./frontend/README.md)
-* [Backend Documentation](./backend/README.md)
+* [Frontend Documentation](./frontend/README.MD)
+* [Backend Documentation](./backend/README.MD)
 <br/>
 
 > [!WARNING]
