@@ -22,7 +22,7 @@ export const CarDetails = () => {
 
     useEffect(() => {
         const fetchCar = async () => {
-            const url = `/api/cars/${id}`
+            const url = `${process.env.REACT_APP_BASE_URL}/api/cars/${id}`
 
             const response = await fetch(url);
 
@@ -79,7 +79,7 @@ export const CarDetails = () => {
         const token = localStorage.getItem("user_access_token");
 
         if (token) {
-            fetch(`/api/favorites/${id}`, {
+            fetch(`${process.env.REACT_APP_BASE_URL}/api/favorites/${id}`, {
                 method: "GET",
                 headers: { 
                     'Content-Type': 'application/json',
