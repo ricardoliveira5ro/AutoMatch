@@ -12,7 +12,7 @@ export const Recommendations = () => {
 
     useEffect(() => {
         const fetchCars = async () => {
-            const url: string = `${process.env.REACT_APP_BASE_URL}/api/cars/recommended?page=0&size=9`
+            const url: string = `/api/cars/recommended?page=0&size=9`
 
             const response = await fetch(url);
 
