@@ -45,7 +45,7 @@ export const CarForm = () => {
     useEffect(() => {
         if (location.state?.editMode && location.state?.carId) {
             const fetchCar = async () => {
-                const url = `${process.env.REACT_APP_BASE_URL}/api/cars/${location.state?.carId}`
+                const url = `/api/cars/${location.state?.carId}`
 
                 const response = await fetch(url);
 
@@ -184,8 +184,8 @@ export const CarForm = () => {
             }
         });
 
-        const url = location.state?.editMode ? `${process.env.REACT_APP_BASE_URL}/api/cars/updateListing/${location.state?.carId}` :
-            	                                `${process.env.REACT_APP_BASE_URL}/api/cars/newListing`;
+        const url = location.state?.editMode ? `/api/cars/updateListing/${location.state?.carId}` :
+            	                                `/api/cars/newListing`;
         const method = location.state?.editMode ? "PUT" : "POST";
         
         const createCar = async () => {

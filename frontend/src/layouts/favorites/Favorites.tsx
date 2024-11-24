@@ -19,7 +19,7 @@ export const Favorites = () => {
 
         const fetchCars = async () => {
             
-            const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/favorites/`, {
+            const response = await fetch(`/api/favorites/`, {
                 method: "GET",
                 headers: { 
                     'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ export const Favorites = () => {
 
     const removeFavorite = (car: CarModel) => {
         const deleteFavorite = async () => {
-            const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/favorites/${car.id}`, {
+            const response = await fetch(`/api/favorites/${car.id}`, {
                 method: "DELETE",
                 headers: { 
                     'Content-Type': 'application/json',

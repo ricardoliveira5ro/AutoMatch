@@ -15,7 +15,7 @@ export const ProfileForm: React.FC<{
     const [phone, setPhone] = useState("");
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_BASE_URL}/api/users/profile`, {
+        fetch(`/api/users/profile`, {
             method: "GET",
             headers: { 
                 'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ export const ProfileForm: React.FC<{
     }, []);
 
     const saveUserInfo = () => {
-        fetch(`${process.env.REACT_APP_BASE_URL}/api/users/info`, {
+        fetch(`/api/users/info`, {
             method: "PUT",
             headers: { 
                 'Content-Type': 'application/json',

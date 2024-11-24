@@ -15,7 +15,7 @@ export const Register = () => {
     const register = (e: any) => {
         e.preventDefault();
 
-        fetch(`${process.env.REACT_APP_BASE_URL}/api/users/signup`, {
+        fetch(`/api/users/signup`, {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
