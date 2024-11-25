@@ -42,7 +42,7 @@ public class SecurityConfiguration {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/users/profile", "/api/users/info").authenticated()
-                        .requestMatchers("/api/cars/newListing", "/api/cars/updateListing/{id}").authenticated()
+                        .requestMatchers("/api/cars/newListing", "/api/cars/listings", "/api/cars/updateListing/{id}").authenticated()
                         .requestMatchers("/api/favorites/**").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/cars/{id}").authenticated()
                         .anyRequest().permitAll()
