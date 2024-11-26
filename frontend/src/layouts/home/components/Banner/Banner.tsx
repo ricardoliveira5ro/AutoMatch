@@ -2,10 +2,14 @@ import './Banner.css';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
+import { getSymbols } from '@ricardo5ro/symbols-pack';
+
 import make_models_data from '../../../../static/make-model.json';
 import fuelType_data from '../../../../static/fuel-type.json';
 
 export const Banner = () => {
+
+    const symbols = getSymbols();
     
     /* ---------- Filter inputs ------------ */
     const [selectedMake, setSelectedMake] = useState("All");
@@ -85,7 +89,7 @@ export const Banner = () => {
                             <div className='container p-0'>
                                 <span className="text-white">Price (Max.)</span>
                             </div>
-                            <input value={maxPrice} onChange={e => setMaxPrice(e.target.value)} type="number" className="banner-input" placeholder="€" aria-label="Price (Max.)" aria-describedby="priceMax" />
+                            <input value={maxPrice} onChange={e => setMaxPrice(e.target.value)} type="number" className="banner-input" placeholder={`${symbols.euro}`} aria-label="Price (Max.)" aria-describedby="priceMax" />
                         </div>
                         <div className='col d-none d-md-flex flex-column align-items-center'>
                             <div className='container p-0'>

@@ -4,9 +4,13 @@ import { formatValueSpaces } from '../../functions';
 import React from 'react';
 import CarModel from '../../../../models/CarModel';
 
+import { getSymbols } from '@ricardo5ro/symbols-pack';
+
 export const CardCard: React.FC<{
     car: CarModel | undefined
 }> = (props) => {
+
+    const symbols = getSymbols();
 
     const carImg = props.car?.imgCover ? `data:image/jpeg;base64,${props.car.imgCover}` :
                     require('../../../../images/image-not-available.jpg')
@@ -44,7 +48,7 @@ export const CardCard: React.FC<{
                                 </div>
                             </div>
                         </div>
-                        <span className='card-text fs-4' style={{ color: 'var(--color-main-orange)' }}>{formatValueSpaces(props.car?.price || 0)} €</span>
+                        <span className='card-text fs-4' style={{ color: 'var(--color-main-orange)' }}>{formatValueSpaces(props.car?.price || 0)} {`${symbols.euro}`}</span>
                     </div>
                 </div>
             </div>

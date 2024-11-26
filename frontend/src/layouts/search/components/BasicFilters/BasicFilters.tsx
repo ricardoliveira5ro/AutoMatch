@@ -3,11 +3,15 @@ import './BasicFilters.css';
 import make_models_data from '../../../../static/make-model.json';
 import fuelType_data from '../../../../static/fuel-type.json';
 
+import { getSymbols } from '@ricardo5ro/symbols-pack';
+
 export const BasicFilters: React.FC<{
     toggleAdvancedFilters: any,
     filters: any,
     onFilterChange: (name: string, value: string) => void
 }> = (props) => {
+
+    const symbols = getSymbols();
 
     /* ---------- Make <--> Model logic ------------ */
     const [models, setModels] = useState<{ model: string }[]>(make_models_data.find(data => data.make === props.filters.make)?.models || []);
@@ -72,13 +76,13 @@ export const BasicFilters: React.FC<{
                 <div className='container p-0'>
                     <span className="text-white">Price (Min.)</span>
                 </div>
-                <input value={props.filters.minPrice} onChange={e => props.onFilterChange('minPrice', e.target.value)} type="number" className="banner-input" placeholder="€" aria-label="Price Min" aria-describedby="price-min" />
+                <input value={props.filters.minPrice} onChange={e => props.onFilterChange('minPrice', e.target.value)} type="number" className="banner-input" placeholder={`${symbols.euro}`} aria-label="Price Min" aria-describedby="price-min" />
             </div>
             <div className='d-flex flex-column align-items-center'>
                 <div className='container p-0'>
                     <span className="text-white">Price (Max.)</span>
                 </div>
-                <input value={props.filters.maxPrice} onChange={e => props.onFilterChange('maxPrice', e.target.value)} type="number" className="banner-input" placeholder="€" aria-label="Price Max" aria-describedby="price-max" />
+                <input value={props.filters.maxPrice} onChange={e => props.onFilterChange('maxPrice', e.target.value)} type="number" className="banner-input" placeholder={`${symbols.euro}`} aria-label="Price Max" aria-describedby="price-max" />
             </div>
             <div className='d-flex flex-column align-items-center'>
                 <div className='container p-0'>

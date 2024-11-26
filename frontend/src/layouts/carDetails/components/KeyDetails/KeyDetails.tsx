@@ -3,6 +3,7 @@ import './KeyDetails.css'
 import CarModel from '../../../../models/CarModel';
 import { formatValueSpaces } from '../../../utils/functions';
 import { useNavigate } from 'react-router-dom';
+import { getSymbols } from '@ricardo5ro/symbols-pack';
 
 export const KeyDetails: React.FC<{
     car: CarModel | undefined,
@@ -12,6 +13,8 @@ export const KeyDetails: React.FC<{
     const navigate = useNavigate();
 
     const [isFavorite, setIsFavorite] = useState(props.isFavorite);
+
+    const symbols = getSymbols();
 
     const toggleFavorite = () => {
         const token = localStorage.getItem("user_access_token");
@@ -48,7 +51,7 @@ export const KeyDetails: React.FC<{
                 <div>
                     <span className='fs-5'>{props.car?.title}</span>
                     <p className='fs-6'>{props.car?.model}</p>
-                    <span className='fs-4' style={{ color: 'var(--color-main-orange)' }}>{formatValueSpaces(props.car?.price || 0)} €</span>
+                    <span className='fs-4' style={{ color: 'var(--color-main-orange)' }}>{formatValueSpaces(props.car?.price || 0)} {symbols.euro}</span>
                     <hr className='text-white'></hr>
                     <span>{props.car?.user?.firstName} {props.car?.user?.lastName}</span>
                     <p>{props.car?.user?.location}</p>
