@@ -13,12 +13,16 @@ import gearBox from '../../static/gear-box.json';
 
 import { SpinnerLoading } from '../utils/components/SpinnerLoading/SpinnerLoading';
 
+import { getSymbols } from '@ricardo5ro/symbols-pack';
+
 import './CarForm.css'
 
 export const CarForm = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
+
+    const symbols = getSymbols();
 
     /* ---------------- Inputs --------------------- */
     const [title, setTitle] = useState("");
@@ -331,7 +335,7 @@ export const CarForm = () => {
                                         <div className='container p-0'>
                                             <span className="text-white">Price</span>
                                         </div>
-                                        <input value={price} onChange={e => setPrice(e.target.value)} type="number" required className="banner-input" placeholder="€" aria-label="Title" aria-describedby="title-from" />
+                                        <input value={price} onChange={e => setPrice(e.target.value)} type="number" required className="banner-input" placeholder={`${symbols.euro}`} aria-label="Title" aria-describedby="title-from" />
                                     </div>
                                     <div className='d-flex flex-column align-items-center col-12 col-md'>
                                         <div className='container p-0'>
